@@ -4,6 +4,8 @@ const config = {} // require("./config.json")
 
 config.token = process.env.BOT_SECRET
 
+console.log("use bot token: " + config.token)
+
 client.login(config.token)
 
 config.prefix = "!"
