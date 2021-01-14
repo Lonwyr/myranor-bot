@@ -3,8 +3,7 @@
     "version": "0.0.1",
     "repository": "github:lonwyr/myranor-bot",
     "config": {
-            "prefix": "!"
-        }
+        "prefix": "!"
     },
     "dependencies": {
         "discordjs":  ""
