@@ -13,6 +13,6 @@
         "prefix": "!"
     },
     "dependencies": {
-        "discord.js":  ""
+        "discordjs":  ""
     }
 }
