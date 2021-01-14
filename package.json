@@ -1,0 +1,12 @@
+{
+    "name": "myranor-bot",
+    "version": "0.0.1",
+    "repository": "github:lonwyr/myranor-bot",
+    "config": {
+            "prefix": "!"
+        }
+    },
+    "dependencies": {
+        "discordjs":  ""
+    }
+}
