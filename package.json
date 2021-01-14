@@ -5,6 +5,9 @@
     "engines": {
         "node" : ">=0.12"
     },
+    "scripts": {
+      "start": "node app.js"
+    },
     "config": {
         "prefix": "!"
     },
