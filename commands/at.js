@@ -14,7 +14,7 @@ module.exports = {
 
     if (args.length > 0) {
       const hit = attackRoll === 1 || (attackRoll <= args[0] && attackRoll !== 20)
-      message = message + 'und **' + (hit ? 'könnte treffen' : 'verfehlt') + '**'
+      message = message + ' und **' + (hit ? 'könnte treffen' : 'verfehlt') + '**'
 
       const fumble = attackRoll === 20 && confirmationRoll > args[0]
       if (fumble) {
@@ -24,12 +24,12 @@ module.exports = {
 
       if (hit) {
         if (args.length > 1) {
-          const RE_DAMAGE = /(?<amount>\d*)W(?<size>\d?)(?<algebraic>[\+|\-]?)(?<modifier>\d*)/;
+          const RE_DAMAGE = /(?<amount>\d*)[W|w](?<size>\d?)(?<algebraic>[\+|\-]?)(?<modifier>\d*)/;
           const matchObj = RE_DAMAGE.exec(args[1]);
           const amount = parseInt(matchObj.groups.amount) || 1
           const size = parseInt(matchObj.groups.size) || 6
-          const algebraic = matchObj.groups.algebraic
-          const modifier = parseInt(matchObj.groups.modifier)
+          const algebraic = matchObj.groups.algebraic || "+"
+          const modifier = parseInt(matchObj.groups.modifier) || 0
           let damageRoll = diceRoller.sum(size, amount, algebraic, modifier)
 
           message  = message + '\n[' + damageRoll.results.join(', ') + ']' + algebraic + modifier + ' für **' + damageRoll.sum + ' TP**'
