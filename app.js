@@ -26,7 +26,7 @@ bot.on('message', msg => {
 
   if (!content.startsWith(config.prefix)) return
 
-  const command = content.slice(1)
+  const command = content.slice(config.prefix.length) // remove the prelimiter
 
   if (!bot.commands.has(command)) return
 
@@ -36,18 +36,4 @@ bot.on('message', msg => {
     console.error(error)
     msg.reply('there was an error trying to execute that command!')
   }
-});
-
-/*
-client.on("message", (message) => {
-	if (!message.content.startsWith(config.prefix) || message.author.bot) return;
-
-	console.log("command received: " + message.content)
-	
-	if (message.content.startsWith(config.prefix + "ping")) {
-		message.channel.send("pong!");
-	} else
-	if (message.content.startsWith(config.prefix + "foo")) {
-		message.channel.send("bar!");
-	}
-})*/
+})
