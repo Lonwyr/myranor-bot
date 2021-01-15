@@ -1,11 +1,10 @@
-const { DiscordAPIError } = require("discord.js")
 const trefferzonen = require("./../data/trefferzonen.json")
 const diceRoller = require("./../helper/diceRoller")
 
 module.exports = {
   name: 'at',
   description: 'Rolls attack, damage plus confirmation rolls and target area',
-  help: '*[AT-Wert] [Schadenswurf] [Größendifferenz]* Würfelt für dich deine Attacke plus Bestätigungs-Würfe und Trefferzonen.\n',
+  help: '*[AT-Wert] [Schadenswurf] [Größendifferenz]* Würfelt für dich deine Attacke plus Bestätigungs-Würfe und Trefferzonen.',
   execute(msg, args) {
     const attackRoll = diceRoller.roll(20)
     const confirmationRoll = (attackRoll === 1 || attackRoll === 20) ? diceRoller.roll(20) : undefined
