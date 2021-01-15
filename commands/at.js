@@ -28,8 +28,8 @@ module.exports = {
           const matchObj = RE_DAMAGE.exec(args[1]);
           const amount = parseInt(matchObj.groups.amount) || 1
           const size = parseInt(matchObj.groups.size) || 6
-          const algebraic = matchObj.groups.algebraic
-          const modifier = parseInt(matchObj.groups.modifier)
+          const algebraic = matchObj.groups.algebraic || "+"
+          const modifier = parseInt(matchObj.groups.modifier) || 0
           let damageRoll = diceRoller.sum(size, amount, algebraic, modifier)
 
           message  = message + '\n[' + damageRoll.results.join(', ') + ']' + algebraic + modifier + ' für **' + damageRoll.sum + ' TP**'
