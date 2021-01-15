@@ -1,0 +1,90 @@
+{
+    "-6": {
+        "Brust": 20,
+        "Arme": 18,
+        "Bauch": 14,
+        "Beine": 10
+    },
+    "-5": {
+        "Brust": 20,
+        "Arme": 18,
+        "Bauch": 13,
+        "Beine": 9
+    },
+    "-4": {
+        "Brust": 20,
+        "Arme": 17,
+        "Bauch": 11,
+        "Beine": 8
+    },
+    "-3": {
+        "Kopf": 20,
+        "Brust": 19,
+        "Arme": 16,
+        "Bauch": 10,
+        "Beine": 7
+    },
+    "-2": {
+        "Kopf": 20,
+        "Brust": 19,
+        "Arme": 15,
+        "Bauch": 9,
+        "Beine": 7 
+    },
+    "-1": {
+        "Kopf": 20,
+        "Brust": 18,
+        "Arme": 14,
+        "Bauch": 8,
+        "Beine": 6
+    },
+    "0": {
+        "Kopf": 20,
+        "Brust": 18,
+        "Arme": 14,
+        "Bauch": 8,
+        "Beine": 6
+    },
+    "1": {
+        "Kopf": 20,
+        "Brust": 18,
+        "Arme": 14,
+        "Bauch": 8,
+        "Beine": 6
+    },
+    "2": {
+        "Kopf": 20,
+        "Brust": 17,
+        "Arme": 13,
+        "Bauch": 7,
+        "Beine": 5
+    },
+    "3": {
+        "Kopf": 20,
+        "Brust": 17,
+        "Arme": 13,
+        "Bauch": 6,
+        "Beine": 4
+    },
+    "4": {
+        "Kopf": 20,
+        "Brust": 16,
+        "Arme": 12,
+        "Bauch": 5,
+        "Beine": 3
+    },
+    "5": {
+        "Kopf": 20,
+        "Brust": 15,
+        "Arme": 11,
+        "Bauch": 4,
+        "Beine": 2
+    },
+    "6": {
+        "Kopf": 20,
+        "Brust": 14,
+        "Arme": 10,
+        "Bauch": 3,
+        "Beine": 1
+    }
+}
