@@ -1,12 +1,17 @@
 
 const config = require("./../config.json")
+const at = require('./at')
+
+const messageReducer = (message, command) => message +'\n' + '**' + config.prefix + command.name + '** ' + command.help
 
 module.exports = {
   name: 'help',
   description: 'provides the needed help',
   execute(msg, args) {
-    msg.channel.send('Der Myranor Würfelsklave.\n' +
-    'Folgende Befehle werden zur Zeit unterstützt:\n' +
+    const message = [at].reduce(messageReducer, 'Der **Myranor Würfelsklave**.\n' +
+    'Folgende Befehle werden zur Zeit unterstützt:\n\n' +
     '**' + config.prefix + 'help** um genau diese Nachricht zu lesen.')
+
+    msg.channel.send(message)
   }
 }
