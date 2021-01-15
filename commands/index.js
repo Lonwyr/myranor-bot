@@ -1,4 +1,6 @@
 module.exports = {
   help: require('./help'),
-  at: require('./at')
+  at: require('./at'),
+  pa: require('./pa'),
+  aw: require('./aw')
 }
