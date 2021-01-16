@@ -1,4 +1,4 @@
-const diceRoller = require('../helper/diceRoller')
+const defenseExecute = require('./defenseExecute')
 
 module.exports = {
   name: 'pa',
