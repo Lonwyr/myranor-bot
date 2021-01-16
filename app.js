@@ -19,6 +19,10 @@ Object.keys(botCommands).map(key => {
   bot.commands.set(botCommands[key].name, botCommands[key])
 });
 
+bot.on("ready", () => {
+  bot.user.setActivity(config.prefix + 'help and other', { type: 'WATCHING' })
+})
+
 bot.on('message', msg => {
   const args = msg.content.split(/ +/)
   const content = args.shift().toLowerCase()
