@@ -4,15 +4,14 @@ const meeleFumbles = require('./../data/meeleFumbles.json')
 const Discord = require('discord.js')
 
 module.exports = {
-    execute: function (msg, args, config) {
-        
+  execute: function (msg, args, config) {
     const defenseRoll = diceRoller.roll(20)
     const confirmationRoll = (defenseRoll === 1 || defenseRoll === 20) ? diceRoller.roll(20) : undefined
     
     let resultEmbed = new Discord.MessageEmbed()
-      .setColor(colors.neutral)
-      .setTitle(config.title)
-      .setAuthor(msg.author.username)
+    .setColor(colors.neutral)
+    .setTitle(config.title)
+    .setAuthor(msg.author.username)
 
     const defenseValue = parseInt(args[0])
 

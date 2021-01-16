@@ -34,7 +34,7 @@ module.exports = {
 
         if (pointsProvided) {
             resultEmbed.addField(points, config.value)
-            if (Number.isInteger(parseInt(args[4]))) resultEmbed.addField(modifier, 'Erleichterung / Erschwernis')
+            if (Number.isInteger(modifier)) resultEmbed.addField(modifier, 'Erleichterung / Erschwernis')
         }
 
         resultEmbed.addFields(

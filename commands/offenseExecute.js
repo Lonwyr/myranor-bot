@@ -1,5 +1,6 @@
 const diceRoller = require('./../helper/diceRoller')
 const colors = require('./../helper/colors')
+const trefferzonen = require('./../data/trefferzonen.json')
 const Discord = require('discord.js')
 
 module.exports = {
@@ -52,13 +53,13 @@ module.exports = {
             }
 
             if (args.length > 1) {
-                const RE_DAMAGE = /(?<amount>\d*)[W|w](?<size>\d?)(?<algebraic>[\+|\-]?)(?<modifier>\d*)/;
+                const RE_DAMAGE = /(?<amount>\d*)[W|w|D|d](?<size>\d?)(?<algebraic>[\+|\-]?)(?<modifier>\d*)/;
                 const matchObj = RE_DAMAGE.exec(args[1]);
                 const amount = parseInt(matchObj.groups.amount) || 1
                 const size = parseInt(matchObj.groups.size) || 6
                 const algebraic = matchObj.groups.algebraic || '+'
                 const modifier = parseInt(matchObj.groups.modifier) || 0
-                let damageRoll = diceRoller.sum(size, amount, algebraic, modifier)
+                const damageRoll = diceRoller.sum(size, amount, algebraic, modifier)
 
                 resultEmbed.addField(damageRoll.sum + ' TP', '[' + damageRoll.results.join('+') + ']' + algebraic + modifier, true)
             }
