@@ -21,7 +21,7 @@ module.exports = {
         const att2 = parseInt(args[1])
         const att3 = parseInt(args[2])
 
-        const points = parseInt(args[3]) || 0
+        let points = parseInt(args[3]) || 0
         const modifier = parseInt(args[4]) || 0
 
         const extremeCheckPenalty = Math.max(modifier - points, 0)
@@ -35,6 +35,8 @@ module.exports = {
         if (pointsProvided) {
             resultEmbed.addField(points, config.value)
             if (Number.isInteger(modifier)) resultEmbed.addField(modifier, 'Erleichterung / Erschwernis')
+        } else if (extremeCheckPenalty > 0) {
+            points = 0
         }
 
         const att1ModifiedValue = att1 - extremeCheckPenalty
