@@ -19,7 +19,7 @@ module.exports = {
         if (confirmationRoll) {
             resultEmbed.addFields(
                 { name: attackRoll, value: atDescription, inline: true },
-                { name: confirmationRoll, value: 'Bestätigung', inline: true }
+                { name: confirmationRoll, value: 'Prüfwurf', inline: true }
             )
         } else {
             resultEmbed.addField(attackRoll, atDescription)

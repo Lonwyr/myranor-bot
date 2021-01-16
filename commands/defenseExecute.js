@@ -1,5 +1,6 @@
 const diceRoller = require('./../helper/diceRoller')
 const colors = require('./../helper/colors')
+const meeleFumbles = require('./../data/meeleFumbles.json')
 const Discord = require('discord.js')
 
 module.exports = {
@@ -20,22 +21,22 @@ module.exports = {
     if (confirmationRoll) {
       resultEmbed.addFields(
         { name: defenseRoll, value: defenseDescription, inline: true },
-        { name: confirmationRoll, value: defenseDescription, inline: true }
+        { name: confirmationRoll, value: "Prüfwurf", inline: true }
       )
     } else {
       resultEmbed.addField(defenseRoll, defenseDescription)
     }
 
     if (defenseRoll === 20) {
-      if (!Number.isInteger(defenseValue)) {
+      if (!Number.isInteger(defenseValue) || confirmationRoll > defenseValue) {
         let fumbleRoll = diceRoller.sum(6, 2)
-        resultEmbed.addField(fumbleRoll.sum, '[' + fumbleRoll.results.join('+') + '] Patzer-Wurf')
-        .setDescription('Patzer?')
-        .setColor(colors.criticalFailure)
-      } else if (confirmationRoll > defenseValue) {
-        let fumbleRoll = diceRoller.sum(6, 2)
-        resultEmbed.addField(fumbleRoll.sum, '[' + fumbleRoll.results.join('+') + '] Patzer-Wurf')
-        .setDescription('Patzer')
+        const fumbleResult = meeleFumbles.results.find(result => {
+          return result.range.min <= fumbleRoll.sum && result.range.max >= fumbleRoll.sum
+        })
+
+        resultEmbed.addField(fumbleRoll.sum, ' [' + fumbleRoll.results.join('+') + '] Patzer-Wurf')
+        .addField(fumbleResult.title, fumbleResult.description)
+        .setDescription('Patzer' + (confirmationRoll > defenseValue ? '' : '?'))
         .setColor(colors.criticalFailure)
       } else {
         resultEmbed.setDescription(config.failure)
