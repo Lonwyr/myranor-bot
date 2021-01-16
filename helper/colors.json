@@ -1,0 +1,7 @@
+{
+    "neutral": "#3498DB",
+    "criticalSuccess": "#27AE60",
+    "success": "#2ECC71",
+    "failure" : "#808B96",
+    "criticalFailure": "#C0392B"
+}

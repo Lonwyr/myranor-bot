@@ -1,0 +1,31 @@
+{
+    "results": [{
+        "range": {
+            "min": 2,
+            "max": 2
+        },
+        "title": "Waffe zerstört",
+        "description": "INI -4, verbleibende Kampfaktionen in der Runde verfallen"
+    }, {
+        "range": {
+            "min": 3,
+            "max": 3
+        },
+        "title": "Waffe beschädigt",
+        "description": "INI -3, verbleibende Kampfaktionen in der Runde verfallen, Schusswaffe beötigt 30 Aktionen zur Wiederherstellung, Wurfwaffe zerstört"
+    }, {
+        "range": {
+            "min": 4,
+            "max": 10
+        },
+        "title": "Fehlschuss",
+        "description": "INI -2, Waffe beötigt 2 Aktionen zur Wiederherstellung"
+    }, {
+        "range": {
+            "min": 11,
+            "max": 12
+        },
+        "title": "Kamerad Getroffen",
+        "description": "INI -3, am nächsten an der Schussbahn stehender Freund erleidet TP ohne ansagen, wenn kein Freund vorhanden trifft Schütze sich selbst"
+    }]
+}
