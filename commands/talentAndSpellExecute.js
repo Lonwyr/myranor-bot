@@ -37,10 +37,13 @@ module.exports = {
             if (Number.isInteger(modifier)) resultEmbed.addField(modifier, 'Erleichterung / Erschwernis')
         }
 
+        const att1ModifiedValue = att1 - extremeCheckPenalty
+        const att2ModifiedValue = att2 - extremeCheckPenalty
+        const att3ModifiedValue = att3 - extremeCheckPenalty
         resultEmbed.addFields(
-            { name: rolls[0], value: Number.isInteger(att1) ? 'Wert: ' + att1 : 'Attribut 1', inline: true },
-            { name: rolls[1], value: Number.isInteger(att2) ? 'Wert: ' + att2 : 'Attribut 2', inline: true },
-            { name: rolls[2], value: Number.isInteger(att3) ? 'Wert: ' + att3 : 'Attribut 3', inline: true }
+            { name: rolls[0], value: Number.isInteger(att1) ? 'Wert: ' + att1ModifiedValue : 'Attribut 1', inline: true },
+            { name: rolls[1], value: Number.isInteger(att2) ? 'Wert: ' + att2ModifiedValue : 'Attribut 2', inline: true },
+            { name: rolls[2], value: Number.isInteger(att3) ? 'Wert: ' + att3ModifiedValue : 'Attribut 3', inline: true }
         )
         
         if (lucky) {
@@ -50,7 +53,7 @@ module.exports = {
             resultEmbed.setDescription('Patzer!')
             .setColor(colors.criticalFailure)
         } else if (args.length > 2) {
-            if (!pointsProvided) {
+            if (args.length === 3) {
                 const diffSum = (att1diff + att2diff + att3diff) * -1
                 const resultMessage = diffSum === 0 ? 'mit allen Punkten übrig' : 'benötigt ' + diffSum + ' ' + config.abb + ' zum Ausgleichen'
                 resultEmbed.setDescription(resultMessage)
