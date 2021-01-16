@@ -1,4 +1,4 @@
-const talentAndSpellExecute = require("./talentAndSpellExecute")
+const talentAndSpellExecute = require('./talentAndSpellExecute')
 
 module.exports = {
   name: 'zfw',
@@ -6,9 +6,9 @@ module.exports = {
   help: '*[Attribute1 Attribute2, Attribute3] [ZfW] [Modifikator]* Würfelt für dich eine Zauberprobe.',
   execute(msg, args) {
     const config = {
-      title: "Zauberprobe",
-      value: "ZfW",
-      abb: "ZfP"
+      title: 'Zauberprobe',
+      value: 'ZfW',
+      abb: 'ZfP'
     }
     talentAndSpellExecute.execute(msg, args, config)
   }

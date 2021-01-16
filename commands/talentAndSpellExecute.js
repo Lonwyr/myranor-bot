@@ -1,6 +1,6 @@
-const diceRoller = require("./../helper/diceRoller")
-const colors = require("./../helper/colors")
-const Discord = require('discord.js');
+const diceRoller = require('./../helper/diceRoller')
+const colors = require('./../helper/colors')
+const Discord = require('discord.js')
 
 function compare(attr, roll, extremeCheckPenalty) {
     return Math.min(attr - extremeCheckPenalty - roll, 0)
@@ -13,9 +13,9 @@ module.exports = {
         const fumble = rolls.filter(roll => roll === 20).length >= 2
 
         let resultEmbed = new Discord.MessageEmbed()
-            .setColor(colors.neutral)
-            .setTitle(config.title)
-            .setAuthor(msg.author.username)
+        .setColor(colors.neutral)
+        .setTitle(config.title)
+        .setAuthor(msg.author.username)
 
         const att1 = parseInt(args[0])
         const att2 = parseInt(args[1])
@@ -34,13 +34,13 @@ module.exports = {
 
         if (pointsProvided) {
             resultEmbed.addField(points, config.value)
-            if (Number.isInteger(parseInt(args[4]))) resultEmbed.addField(modifier, "Erleichterung / Erschwernis")
+            if (Number.isInteger(parseInt(args[4]))) resultEmbed.addField(modifier, 'Erleichterung / Erschwernis')
         }
 
         resultEmbed.addFields(
-            { name: rolls[0], value: Number.isInteger(att1) ? "Wert: " + att1 : "Attribut 1", inline: true },
-            { name: rolls[1], value: Number.isInteger(att2) ? "Wert: " + att2 : "Attribut 2", inline: true },
-            { name: rolls[2], value: Number.isInteger(att3) ? "Wert: " + att3 : "Attribut 3", inline: true }
+            { name: rolls[0], value: Number.isInteger(att1) ? 'Wert: ' + att1 : 'Attribut 1', inline: true },
+            { name: rolls[1], value: Number.isInteger(att2) ? 'Wert: ' + att2 : 'Attribut 2', inline: true },
+            { name: rolls[2], value: Number.isInteger(att3) ? 'Wert: ' + att3 : 'Attribut 3', inline: true }
         )
         
         if (lucky) {

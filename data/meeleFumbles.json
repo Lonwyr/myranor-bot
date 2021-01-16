@@ -1,0 +1,45 @@
+{
+    "results": [{
+        "range": {
+            "min": 2,
+            "max": 2
+        },
+        "title": "Waffe zerstört",
+        "description": "INI -4, bei BF unter 1 Waffe verloren und BF +2, bei natürlicher Waffe Schwerer Eigentreffer"
+    }, {
+        "range": {
+            "min": 3,
+            "max": 5
+        },
+        "title": "Sturz",
+        "description": "INI -2, am Boden liegend, aufstehen benötigt die Aktion *Position* und GE-Probe +BE, kann in Stolpern verwandelt werden mit *Standfest* (GE-Probe +2), *Balance* (+0) oder *Herausragende Balance* (-4)"
+    }, {
+        "range": {
+            "min": 6,
+            "max": 8
+        },
+        "title": "Stolpern",
+        "description": "INI -2"
+    }, {
+        "range": {
+            "min": 9,
+            "max": 10
+        },
+        "title": "Waffe verloren",
+        "description": "INI -2, Aufheben benötigt GE-Probe und Aktion *Position*, bei natürlicher Waffe Sturz"
+    }, {
+        "range": {
+            "min": 11,
+            "max": 11
+        },
+        "title": "Eigentreffer",
+        "description": "INI -3, TP der Waffe ohne TP/KK oder Ansagen"
+    }, {
+        "range": {
+            "min": 12,
+            "max": 12
+        },
+        "title": "Schwerer Eigentreffer",
+        "description": "INI -4, doppelte TP der Waffe ohne TP/KK oder Ansagen"
+    }]
+}

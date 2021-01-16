@@ -1,4 +1,4 @@
-const defenseExecute = require("./defenseExecute")
+const defenseExecute = require('./defenseExecute')
 
 module.exports = {
   name: 'aw',
@@ -6,7 +6,7 @@ module.exports = {
   help: '*[AW-Wert]* Würfelt für dich dein Ausweichen plus Bestätigungs-Würfe bei einem Patzer.',
   execute(msg, args) {
     const config = {
-      title: "Ausweichen",
+      title: 'Ausweichen',
       color: '#27AE60',
       success: 'Ausgewichen',
       criticalSuccess: 'Glückliches Ausweichen',

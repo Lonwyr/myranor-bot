@@ -1,4 +1,4 @@
-const diceRoller = require("../helper/diceRoller")
+const diceRoller = require('../helper/diceRoller')
 
 module.exports = {
   name: 'pa',
@@ -6,7 +6,7 @@ module.exports = {
   help: '*[PA-Wert]* Würfelt für dich deine Parade plus Bestätigungs-Würfe bei einem Patzer.',
   execute(msg, args) {
     const config = {
-      title: "Parrieren",
+      title: 'Parrieren',
       color: '#27AE60',
       success: 'Parriert',
       criticalSuccess: 'Glückliche Parade',

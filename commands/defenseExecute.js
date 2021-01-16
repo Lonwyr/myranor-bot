@@ -1,6 +1,6 @@
-const diceRoller = require("./../helper/diceRoller")
-const colors = require("./../helper/colors")
-const Discord = require('discord.js');
+const diceRoller = require('./../helper/diceRoller')
+const colors = require('./../helper/colors')
+const Discord = require('discord.js')
 
 module.exports = {
     execute: function (msg, args, config) {
