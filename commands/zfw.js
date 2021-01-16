@@ -7,7 +7,6 @@ module.exports = {
   execute(msg, args) {
     const config = {
       title: "Zauberprobe",
-      color: '#3498DB',
       value: "ZfW",
       abb: "ZfP"
     }

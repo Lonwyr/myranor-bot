@@ -7,7 +7,6 @@ module.exports = {
   execute(msg, args) {
     const config = {
       title: "Talentprobe",
-      color: '#F1C40F',
       value: "TaW",
       abb: "TaP"
     }

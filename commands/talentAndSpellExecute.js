@@ -1,4 +1,5 @@
 const diceRoller = require("./../helper/diceRoller")
+const colors = require("./../helper/colors")
 const Discord = require('discord.js');
 
 function compare(attr, roll, extremeCheckPenalty) {
@@ -12,7 +13,7 @@ module.exports = {
         const fumble = rolls.filter(roll => roll === 20).length >= 2
 
         let resultEmbed = new Discord.MessageEmbed()
-            .setColor(config.color)
+            .setColor(colors.neutral)
             .setTitle(config.title)
             .setAuthor(msg.author.username)
 
@@ -42,9 +43,13 @@ module.exports = {
             { name: rolls[2], value: Number.isInteger(att3) ? "Wert: " + att3 : "Attribut 3", inline: true }
         )
         
-        if (lucky) resultEmbed.setDescription('Ein hervorragendes Ergebnis!')
-        else if (fumble) resultEmbed.setDescription('Patzer!')
-        else if (args.length > 2) {
+        if (lucky) {
+            resultEmbed.setDescription('Ein hervorragendes Ergebnis!')
+            .setColor(colors.criticalSuccess)
+        } else if (fumble) {
+            resultEmbed.setDescription('Patzer!')
+            .setColor(colors.criticalFailure)
+        } else if (args.length > 2) {
             if (!pointsProvided) {
                 const diffSum = (att1diff + att2diff + att3diff) * -1
                 const resultMessage = diffSum === 0 ? 'mit allen Punkten übrig' : 'benötigt ' + diffSum + ' ' + config.abb + ' zum Ausgleichen'
@@ -54,9 +59,13 @@ module.exports = {
                 const bufferLeft = buffer + att1diff + att2diff + att3diff
                 const pointsLeft = points + Math.min(bufferLeft, 0)
                 
-                const resultMessage = pointsLeft >= 0 ? 'mit Erfolg und ' + pointsLeft + ' ' + config.abb + '*' :
-                '\nund scheitert um ' + pointsLeft + ' ' + config.abb
-                resultEmbed.setDescription(resultMessage)
+                if (pointsLeft >= 0) {
+                    resultEmbed.setDescription('mit Erfolg und ' + pointsLeft + ' ' + config.abb + '*')
+                    .setColor(colors.success)
+                } else {
+                    resultEmbed.setDescription('Gescheitert um ' + (-1 * pointsLeft) + ' ' + config.abb)
+                    .setColor(colors.failure)
+                }
             }
         }
 
