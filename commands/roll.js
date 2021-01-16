@@ -9,7 +9,6 @@ module.exports = {
   execute(msg, args) {
     let resultEmbed = new Discord.MessageEmbed()
     .setColor(colors.neutral)
-    .setTitle('Würfelwurf')
     .setAuthor(msg.author.username)
 
     if (args.length > 0) {
@@ -22,9 +21,11 @@ module.exports = {
       const roll = diceRoller.sum(size, amount, algebraic, modifier)
 
       resultEmbed.addField(roll.sum, '[' + roll.results.join('+') + ']' + algebraic + modifier, true)
+      .setTitle('Würfelwurf '+ args[0])
     } else {
       const roll = diceRoller.sum(20, 1)
       resultEmbed.addField(roll.sum, '[' + roll.results.join('+') + ']', true)
+      .setTitle('Würfelwurf 1W20')
     }
     
     msg.channel.send(resultEmbed)
