@@ -1,5 +1,6 @@
-const trefferzonen = require("./../data/trefferzonen.json")
-const diceRoller = require("./../helper/diceRoller")
+const trefferzonen = require('./../data/trefferzonen.json')
+const diceRoller = require('./../helper/diceRoller')
+const Discord = require('discord.js');
 
 module.exports = {
   name: 'at',
@@ -9,19 +10,44 @@ module.exports = {
     const attackRoll = diceRoller.roll(20)
     const confirmationRoll = (attackRoll === 1 || attackRoll === 20) ? diceRoller.roll(20) : undefined
 
-    let message = ' greift an [' + attackRoll + (confirmationRoll ? ' >> ' + confirmationRoll + ']' : ']')
+    
+    let resultEmbed = new Discord.MessageEmbed()
+      .setColor('#E74C3C')
+      .setTitle('Attacke')
+      .setAuthor(msg.author.username)
 
-    if (args.length > 0) {
-      const hit = attackRoll === 1 || (attackRoll <= args[0] && attackRoll !== 20)
-      message = message + ' und **' + (hit ? 'könnte treffen' : 'verfehlt') + '**'
+    const atValue = parseInt(args[0])
 
-      const fumble = attackRoll === 20 && confirmationRoll > args[0]
-      if (fumble) {
+    const atDescription = 'AT-Wert' + (Number.isInteger(atValue) ? ': ' + atValue : '')
+
+    if (confirmationRoll) {
+      resultEmbed.addFields(
+        { name: attackRoll, value: atDescription, inline: true },
+        { name: confirmationRoll, value: atDescription, inline: true }
+      )
+    } else {
+      resultEmbed.addField(attackRoll, atDescription)
+    }
+
+    if (attackRoll === 20) {
+      if (!Number.isInteger(atValue)) {
         let fumbleRoll = diceRoller.sum(6, 2)
-        message = message + '\nPatzer [' + fumbleRoll.results.join(', ') + '] **' + fumbleRoll.sum + '**'
+        resultEmbed.addField(fumbleRoll.sum, '[' + fumbleRoll.results.join('+') + '] Patzer-Wurf')
+        resultEmbed.setDescription('Patzer?')
+      } else if (confirmationRoll > atValue) {
+        resultEmbed.setDescription('Patzer')
+        let fumbleRoll = diceRoller.sum(6, 2)
+        resultEmbed.addField(fumbleRoll.sum, '[' + fumbleRoll.results.join('+') + '] Patzer-Wurf')
+      } else {
+        resultEmbed.setDescription('verfehlt')
       }
-
+    } else if (Number.isInteger(atValue)) {
+      const hit = attackRoll === 1 || (attackRoll <= atValue)
+      
       if (hit) {
+        if (attackRoll === 1 && confirmationRoll <= atValue) resultEmbed.setDescription('potentielle Glückliche Attacke')
+        else resultEmbed.setDescription('potentieller Treffer')
+
         if (args.length > 1) {
           const RE_DAMAGE = /(?<amount>\d*)[W|w](?<size>\d?)(?<algebraic>[\+|\-]?)(?<modifier>\d*)/;
           const matchObj = RE_DAMAGE.exec(args[1]);
@@ -31,10 +57,10 @@ module.exports = {
           const modifier = parseInt(matchObj.groups.modifier) || 0
           let damageRoll = diceRoller.sum(size, amount, algebraic, modifier)
 
-          message  = message + '\n[' + damageRoll.results.join(', ') + ']' + algebraic + modifier + ' für **' + damageRoll.sum + ' TP**'
+          resultEmbed.addField(damageRoll.sum + ' TP', '[' + damageRoll.results.join('+') + ']' + algebraic + modifier, true)
         }
         
-        const sizeDifference = args[2] !== undefined ? args[2] : "0"
+        const sizeDifference = args[2] !== undefined ? args[2] : '0'
         const hitTable = trefferzonen[sizeDifference]
         const zoneRoll = diceRoller.roll(20)
         let targetZone
@@ -46,14 +72,18 @@ module.exports = {
           }
         }
         
-        message = message + '\n[' + zoneRoll + '] auf **' + targetZone + ' **'
-        
-        if (targetZone === "Arme" || targetZone === "Beine") {
-          message = message + (zoneRoll % 2 ? " (links)" : "(rechts)")
-        }
+        let zoneMessage = targetZone
+        if (targetZone === 'Arme' || targetZone === 'Beine') {
+          zoneMessage = zoneMessage + (zoneRoll % 2 ? ' (links)' : ' (rechts)')
+        } 
+        resultEmbed.addField(zoneMessage, '[' + zoneRoll + '] Trefferzone; Größendifferent: ' + sizeDifference, true)
+      } else {
+        resultEmbed.setDescription('verfehlt')
       }
+    } else if (attackRoll === 1) {
+      resultEmbed.setDescription('potentielle Glückliche Attacke?')
     }
 
-    msg.reply(message) 
+    msg.channel.send(resultEmbed)
   }
 }

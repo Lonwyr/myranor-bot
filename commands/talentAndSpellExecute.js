@@ -12,9 +12,9 @@ module.exports = {
         const fumble = rolls.filter(roll => roll === 20).length >= 2
 
         let resultEmbed = new Discord.MessageEmbed()
-        .setColor(config.color)
-        .setTitle(config.title)
-        .setAuthor(msg.author.username)
+            .setColor(config.color)
+            .setTitle(config.title)
+            .setAuthor(msg.author.username)
 
         const att1 = parseInt(args[0])
         const att2 = parseInt(args[1])
