@@ -47,7 +47,7 @@ module.exports = {
             { name: rolls[1], value: Number.isInteger(att2) ? 'Wert: ' + att2ModifiedValue : 'Attribut 2', inline: true },
             { name: rolls[2], value: Number.isInteger(att3) ? 'Wert: ' + att3ModifiedValue : 'Attribut 3', inline: true }
         )
-        
+ 
         if (lucky) {
             resultEmbed.setDescription('Ein hervorragendes Ergebnis!')
             .setColor(colors.criticalSuccess)
@@ -63,7 +63,7 @@ module.exports = {
                 const buffer = -1 * Math.min(modifier, 0)
                 const bufferLeft = buffer + att1diff + att2diff + att3diff
                 const pointsLeft = points + Math.min(bufferLeft, 0)
-                
+
                 if (pointsLeft >= 0) {
                     resultEmbed.setDescription('mit Erfolg und ' + pointsLeft + ' ' + config.abb + '*')
                     .setColor(colors.success)
