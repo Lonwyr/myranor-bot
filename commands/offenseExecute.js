@@ -53,7 +53,7 @@ module.exports = {
             }
 
             if (args.length > 1) {
-                const RE_DAMAGE = /(?<amount>\d*)[W|w|D|d](?<size>\d?)(?<algebraic>[\+|\-]?)(?<modifier>\d*)/;
+                const RE_DAMAGE = /(?<amount>\d*)[W|w|D|d](?<size>\d*)(?<algebraic>[\+|\-]?)(?<modifier>\d*)/;
                 const matchObj = RE_DAMAGE.exec(args[1])
                 const amount = parseInt(matchObj.groups.amount) || 1
                 const size = parseInt(matchObj.groups.size) || 6
