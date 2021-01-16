@@ -5,6 +5,12 @@ module.exports = {
   description: 'Rolls a skill check',
   help: '*[Attribute1 Attribute2, Attribute3] [TaW] [Modifikator]* Würfelt für dich eine Talentprobe.',
   execute(msg, args) {
-    talentAndSpellExecute.execute(msg, args, "TaP")
+    const config = {
+      title: "Talentprobe",
+      color: '#F1C40F',
+      value: "TaW",
+      abb: "TaP"
+    }
+    talentAndSpellExecute.execute(msg, args, config)
   }
 }
