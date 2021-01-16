@@ -1,7 +1,7 @@
 module.exports = {
   help: require('./help'),
   issues: require('./issues'),
-  roll: require('./roll'),
+  wurf: require('./wurf'),
   at: require('./at'),
   fk: require('./fk'),
   pa: require('./pa'),

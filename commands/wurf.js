@@ -12,7 +12,7 @@ module.exports = {
     .setAuthor(msg.author.username)
 
     if (args.length > 0) {
-      const RE_DICE = /(?<amount>\d*)[W|w|D|d](?<size>\d*)(?<algebraic>[\+|\-]?)(?<modifier>\d*)/;
+      const RE_DICE = /(?<amount>\d*)[W|w|D|d](?<size>\d*)(?<algebraic>[\+|\-]?)(?<modifier>\d*)/
       const matchObj = RE_DICE.exec(args[0])
       const amount = parseInt(matchObj.groups.amount) || 1
       const size = parseInt(matchObj.groups.size) || 6
