@@ -3,5 +3,6 @@ module.exports = {
   at: require('./at'),
   pa: require('./pa'),
   aw: require('./aw'),
-  taw: require('./taw')
+  taw: require('./taw'),
+  zfw: require('./zfw')
 }
