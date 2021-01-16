@@ -62,7 +62,7 @@ module.exports = {
             } else {
                 const buffer = -1 * Math.min(modifier, 0)
                 const bufferLeft = buffer + att1diff + att2diff + att3diff
-                const pointsLeft = points + Math.min(bufferLeft, 0)
+                const pointsLeft = Math.max(points - Math.max(modifier, 0), 0) + Math.min(bufferLeft, 0)
 
                 if (pointsLeft >= 0) {
                     resultEmbed.setDescription('mit Erfolg und ' + pointsLeft + ' ' + config.abb + '*')
