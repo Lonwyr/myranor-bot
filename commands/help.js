@@ -1,5 +1,6 @@
 
 const config = require('./../config.json')
+const issues = require('./issues')
 const at = require('./at')
 const fk = require('./fk')
 const pa = require('./pa')
@@ -13,7 +14,7 @@ module.exports = {
   name: 'help',
   description: 'provides the needed help',
   execute(msg, args) {
-    const message = [at, fk, pa, aw, taw, zfw].reduce(messageReducer, 'Der **Myranor Würfelsklave**.\n' +
+    const message = [issues, at, fk, pa, aw, taw, zfw].reduce(messageReducer, 'Der **Myranor Würfelsklave**.\n' +
     'Folgende Befehle werden zur Zeit unterstützt:\n\n' +
     '**' + config.prefix + 'help** um genau diese Nachricht zu lesen.')
 
