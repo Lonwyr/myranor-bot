@@ -1,5 +1,6 @@
 const trefferzonen = require('./../data/trefferzonen.json')
 const diceRoller = require('./../helper/diceRoller')
+const colors = require("./../helper/colors")
 const Discord = require('discord.js');
 
 module.exports = {
@@ -7,14 +8,14 @@ module.exports = {
   description: 'Rolls attack, damage plus confirmation rolls and target area',
   help: '*[AT-Wert] [Schadenswurf] [Größendifferenz]* Würfelt für dich deine Attacke plus Bestätigungs-Würfe und Trefferzonen.',
   execute(msg, args) {
-    const attackRoll = diceRoller.roll(20)
+    const attackRoll = 20 //diceRoller.roll(20)
     const confirmationRoll = (attackRoll === 1 || attackRoll === 20) ? diceRoller.roll(20) : undefined
 
     
     let resultEmbed = new Discord.MessageEmbed()
-      .setColor('#E74C3C')
-      .setTitle('Attacke')
-      .setAuthor(msg.author.username)
+    .setColor(colors.neutral)
+    .setTitle('Attacke')
+    .setAuthor(msg.author.username)
 
     const atValue = parseInt(args[0])
 
@@ -23,30 +24,33 @@ module.exports = {
     if (confirmationRoll) {
       resultEmbed.addFields(
         { name: attackRoll, value: atDescription, inline: true },
-        { name: confirmationRoll, value: atDescription, inline: true }
+        { name: confirmationRoll, value: "Bestätigung", inline: true }
       )
     } else {
       resultEmbed.addField(attackRoll, atDescription)
     }
 
     if (attackRoll === 20) {
-      if (!Number.isInteger(atValue)) {
+      if (!Number.isInteger(atValue) || confirmationRoll > atValue) {
         let fumbleRoll = diceRoller.sum(6, 2)
         resultEmbed.addField(fumbleRoll.sum, '[' + fumbleRoll.results.join('+') + '] Patzer-Wurf')
-        resultEmbed.setDescription('Patzer?')
-      } else if (confirmationRoll > atValue) {
-        resultEmbed.setDescription('Patzer')
-        let fumbleRoll = diceRoller.sum(6, 2)
-        resultEmbed.addField(fumbleRoll.sum, '[' + fumbleRoll.results.join('+') + '] Patzer-Wurf')
+        .setDescription('Patzer?')
+        .setColor(colors.criticalFailure)
       } else {
         resultEmbed.setDescription('verfehlt')
+        .setColor(colors.failure)
       }
     } else if (Number.isInteger(atValue)) {
       const hit = attackRoll === 1 || (attackRoll <= atValue)
       
       if (hit) {
-        if (attackRoll === 1 && confirmationRoll <= atValue) resultEmbed.setDescription('potentielle Glückliche Attacke')
-        else resultEmbed.setDescription('potentieller Treffer')
+        if (attackRoll === 1 && confirmationRoll <= atValue) {
+          resultEmbed.setDescription('potentielle Glückliche Attacke')
+          .setColor(colors.criticalSuccess)
+        } else {
+          resultEmbed.setDescription('potentieller Treffer')
+          .setColor(colors.success)
+        }
 
         if (args.length > 1) {
           const RE_DAMAGE = /(?<amount>\d*)[W|w](?<size>\d?)(?<algebraic>[\+|\-]?)(?<modifier>\d*)/;
@@ -79,9 +83,11 @@ module.exports = {
         resultEmbed.addField(zoneMessage, '[' + zoneRoll + '] Trefferzone; Größendifferent: ' + sizeDifference, true)
       } else {
         resultEmbed.setDescription('verfehlt')
+        .setColor(colors.failure)
       }
     } else if (attackRoll === 1) {
       resultEmbed.setDescription('potentielle Glückliche Attacke?')
+      .setColor(colors.criticalSuccess)
     }
 
     msg.channel.send(resultEmbed)
