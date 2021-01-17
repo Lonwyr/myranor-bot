@@ -3,7 +3,8 @@ const defenseExecute = require('./defenseExecute')
 module.exports = {
   name: 'pa',
   description: 'Rolls defense with weapons',
-  help: '*[PA-Wert]* Würfelt für dich deine Parade plus Bestätigungs-Würfe bei einem Patzer.',
+  help: '*[PA-Wert]* Würfelt für dich deine Parade.',
+  detailedHelp: 'Bei einer 1 oder 20 wird wird er Bestätigungs-Wurf gemacht und bei einem Patzer die Patzer-Tabelle gewürfelt.',
   execute(msg, args) {
     const config = {
       title: 'Parrieren',

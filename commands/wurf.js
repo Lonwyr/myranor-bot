@@ -5,7 +5,8 @@ const Discord = require('discord.js')
 module.exports = {
   name: 'roll',
   description: 'Rolls a check',
-  help: 'Würfelt die Würfel. z.B. d20 (default) 2W6+4 3w20',
+  help: 'Würfelt die Würfel.',
+  detailedHelp: 'Standard wird 1W20 gewürfelt.\nBeispiele: 2W6+4 3w20-2 d10 w6+4.',
   execute(msg, args) {
     let resultEmbed = new Discord.MessageEmbed()
     .setColor(colors.neutral)
