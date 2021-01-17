@@ -12,10 +12,16 @@ module.exports = {
     .setColor(colors.neutral)
     .setTitle(config.title)
     .setAuthor(msg.author.username)
+    if (args.length === 0) {
+      resultEmbed.setTitle(config.title)
+      .setDescription(`Für <@${msg.author.id}>`)
+  } else {
+      resultEmbed.setDescription(`${config.title} für <@${msg.author.id}>`)
+  }
 
     const defenseValue = parseInt(args[0])
 
-    const defenseDescription = config.title + '-Wert' + (Number.isInteger(defenseValue) ? ': ' + defenseValue : '')
+    const defenseDescription = Number.isInteger(defenseValue) ? '/' + defenseValue : config.title + '-Wert'
 
     if (confirmationRoll) {
       resultEmbed.addFields(
@@ -35,10 +41,10 @@ module.exports = {
 
         resultEmbed.addField(fumbleRoll.sum, ' [' + fumbleRoll.results.join('+') + '] Patzer-Wurf')
         .addField(fumbleResult.title, fumbleResult.description)
-        .setDescription('Patzer' + (confirmationRoll > defenseValue ? '' : '?'))
+        .setTitle('Patzer' + (confirmationRoll > Math.min(defenseValue, 19) ? '' : '?'))
         .setColor(colors.criticalFailure)
       } else {
-        resultEmbed.setDescription(config.failure)
+        resultEmbed.setTitle(config.failure)
         .setColor(colors.failure)
       }
     } else if (Number.isInteger(defenseValue)) {
@@ -46,19 +52,19 @@ module.exports = {
       
       if (defended) {
         if (defenseRoll === 1 && confirmationRoll <= defenseValue) {
-            resultEmbed.setDescription(config.criticalSuccess)
+            resultEmbed.setTitle(config.criticalSuccess)
             .setColor(colors.criticalSuccess)
         } else {
-            resultEmbed.setDescription(config.success)
+            resultEmbed.setTitle(config.success)
             .setColor(colors.success)
         }      
         
       } else {
-        resultEmbed.setDescription(config.failure)
+        resultEmbed.setTitle(config.failure)
         .setColor(colors.failure)
       }
     } else if (defenseRoll === 1) {
-      resultEmbed.setDescription(config.potentialCriticalSucess)
+      resultEmbed.setTitle(config.potentialCriticalSucess)
       .setColor(colors.criticalSuccess)
     }
 

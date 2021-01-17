@@ -5,11 +5,11 @@ const Discord = require('discord.js')
 module.exports = {
   name: 'roll',
   description: 'Rolls a check',
-  help: 'Würfelt die Würfel. z.B. d20 2W6+4 3w20',
+  help: 'Würfelt die Würfel. z.B. d20 (default) 2W6+4 3w20',
   execute(msg, args) {
     let resultEmbed = new Discord.MessageEmbed()
     .setColor(colors.neutral)
-    .setAuthor(msg.author.username)
+    .setDescription(`Für <@${msg.author.id}>`)
 
     if (args.length > 0) {
       const RE_DICE = /(?<amount>\d*)[W|w|D|d](?<size>\d*)(?<algebraic>[\+|\-]?)(?<modifier>\d*)/

@@ -7,7 +7,6 @@ module.exports = {
   help: '*[AT-Wert] [Schadenswurf] [Größendifferenz]* Würfelt für dich deine Nachkampf-Attacke plus Bestätigungs-Würfe und Trefferzonen.',
   execute(msg, args) {
     const config = {
-        title: 'Attacke',
         abb: 'AT',
         fumbles: meeleFumbles
     }

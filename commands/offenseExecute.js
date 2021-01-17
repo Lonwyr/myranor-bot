@@ -10,12 +10,15 @@ module.exports = {
         
         let resultEmbed = new Discord.MessageEmbed()
         .setColor(colors.neutral)
-        .setTitle(config.title)
-        .setAuthor(msg.author.username)
-
+        if (args.length === 0) {
+            resultEmbed.setTitle(config.title)
+            .setDescription(`Für <@${msg.author.id}>`)
+        } else {
+            resultEmbed.setDescription(`Attacke für <@${msg.author.id}>`)
+        }
         const atValue = parseInt(args[0])
 
-        const atDescription = config.abb + '-Wert' + (Number.isInteger(atValue) ? ': ' + atValue : '')
+        const atDescription = Number.isInteger(atValue) ? '/' + atValue : config.abb + '-Wert'
 
         if (confirmationRoll) {
             resultEmbed.addFields(
@@ -27,17 +30,17 @@ module.exports = {
         }
 
         if (attackRoll === 20) {
-            if (!Number.isInteger(atValue) || confirmationRoll > atValue) {
+            if (confirmationRoll === 20 || (!Number.isInteger(atValue) || confirmationRoll > atValue)) {
                 let fumbleRoll = diceRoller.sum(6, 2)
                 const fumbleResult = config.fumbles.results.find(result => {
                     return result.range.min <= fumbleRoll.sum && result.range.max >= fumbleRoll.sum
                 })
                 resultEmbed.addField(fumbleRoll.sum, ' [' + fumbleRoll.results.join('+') + '] Patzer-Wurf')
                 resultEmbed.addField(fumbleResult.title, fumbleResult.description)
-                .setDescription('Patzer?')
+                .setTitle('Patzer' + (confirmationRoll === 20 || Number.isInteger(atValue) ? "" : "?"))
                 .setColor(colors.criticalFailure)
             } else {
-                resultEmbed.setDescription('verfehlt')
+                resultEmbed.setTitle('Attacke verfehlt')
                 .setColor(colors.failure)
             }
         } else if (Number.isInteger(atValue)) {
@@ -45,10 +48,10 @@ module.exports = {
         
         if (hit) {
             if (attackRoll === 1 && confirmationRoll <= atValue) {
-                resultEmbed.setDescription('potentielle Glückliche Attacke')
+                resultEmbed.setTitle('Glückliche Attacke!')
                 .setColor(colors.criticalSuccess)
             } else {
-                resultEmbed.setDescription('potentieller Treffer')
+                resultEmbed.setTitle('erfolgreiche Attacke')
                 .setColor(colors.success)
             }
 
@@ -82,11 +85,11 @@ module.exports = {
             } 
             resultEmbed.addField(zoneMessage, '[' + zoneRoll + '] Trefferzone; Größendifferent: ' + sizeDifference, true)
         } else {
-            resultEmbed.setDescription('verfehlt')
+            resultEmbed.setTitle('Attacke verfehlt')
             .setColor(colors.failure)
         }
         } else if (attackRoll === 1) {
-            resultEmbed.setDescription('potentielle Glückliche Attacke?')
+            resultEmbed.setTitle('potentiell geglücklte Attacke?')
             .setColor(colors.criticalSuccess)
         }
 
