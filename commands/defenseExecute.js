@@ -12,6 +12,12 @@ module.exports = {
     .setColor(colors.neutral)
     .setTitle(config.title)
     .setAuthor(msg.author.username)
+    if (args.length === 0) {
+      resultEmbed.setTitle(config.title)
+      .setDescription(`Für <@${msg.author.id}>`)
+  } else {
+      resultEmbed.setDescription(`${config.title} für <@${msg.author.id}>`)
+  }
 
     const defenseValue = parseInt(args[0])
 
@@ -35,7 +41,7 @@ module.exports = {
 
         resultEmbed.addField(fumbleRoll.sum, ' [' + fumbleRoll.results.join('+') + '] Patzer-Wurf')
         .addField(fumbleResult.title, fumbleResult.description)
-        .setTitle('Patzer' + (confirmationRoll > defenseValue ? '' : '?'))
+        .setTitle('Patzer' + (confirmationRoll > Math.min(defenseValue, 19) ? '' : '?'))
         .setColor(colors.criticalFailure)
       } else {
         resultEmbed.setTitle(config.failure)

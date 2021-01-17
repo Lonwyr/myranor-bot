@@ -30,14 +30,14 @@ module.exports = {
         }
 
         if (attackRoll === 20) {
-            if (!Number.isInteger(atValue) || confirmationRoll > atValue) {
+            if (confirmationRoll === 20 || (!Number.isInteger(atValue) || confirmationRoll > atValue)) {
                 let fumbleRoll = diceRoller.sum(6, 2)
                 const fumbleResult = config.fumbles.results.find(result => {
                     return result.range.min <= fumbleRoll.sum && result.range.max >= fumbleRoll.sum
                 })
                 resultEmbed.addField(fumbleRoll.sum, ' [' + fumbleRoll.results.join('+') + '] Patzer-Wurf')
                 resultEmbed.addField(fumbleResult.title, fumbleResult.description)
-                .setTitle('Patzer?')
+                .setTitle('Patzer' + (confirmationRoll === 20 || Number.isInteger(atValue) ? "" : "?"))
                 .setColor(colors.criticalFailure)
             } else {
                 resultEmbed.setTitle('Attacke verfehlt')
