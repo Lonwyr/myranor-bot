@@ -7,18 +7,18 @@ function compare(attr, roll, extremeCheckPenalty) {
     return Math.min(attr - extremeCheckPenalty - roll, 0)
 }
 
-function getAttribute(userId, attributeArgument, defaultDescription) {
+async function getAttribute(userId, attributeArgument, defaultDescription) {
     if (!attributeArgument) return [NaN, defaultDescription]
 
     const parsedArgument = parseInt(attributeArgument)
     if (Number.isInteger(parsedArgument)) return [parsedArgument, `/${attributeArgument}`]
 
-    const attributeValue = cache.get(userId, attributeArgument)
+    const attributeValue = await cache.get(userId, attributeArgument)
     return [attributeValue, `${attributeArgument} (${attributeValue})`]
 }
 
 module.exports = {
-    execute: function (msg, args, config) {
+    execute: async function (msg, args, config) {
         const rolls = diceRoller.sum(20, 3).results
         const lucky = rolls.filter(roll => roll === 1).length >= 2
         const fumble = rolls.filter(roll => roll === 20).length >= 2
@@ -35,9 +35,9 @@ module.exports = {
         }  
 
         try {
-            const [att1, att1Description] = getAttribute(msg.author.id, args[0], "Attribute 1")
-            const [att2, att2Description] = getAttribute(msg.author.id, args[1], "Attribute 2")
-            const [att3, att3Description] = getAttribute(msg.author.id, args[2], "Attribute 3")
+            const [att1, att1Description] = await getAttribute(msg.author.id, args[0], "Attribute 1")
+            const [att2, att2Description] = await getAttribute(msg.author.id, args[1], "Attribute 2")
+            const [att3, att3Description] = await getAttribute(msg.author.id, args[2], "Attribute 3")
 
             const pointsProvided = Number.isInteger(parseInt(args[3]))
             let points = pointsProvided ? parseInt(args[3]) : 0

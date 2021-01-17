@@ -16,10 +16,17 @@ module.exports = {
   name: 'help',
   description: 'provides the needed help',
   execute(msg, args) {
-    const message = [issues, werte, wurf, at, fk, pa, aw, taw, zfw].reduce(messageReducer, 'Der **Myranor Würfelsklave**.\n' +
-    'Folgende Befehle werden zur Zeit unterstützt:\n\n' +
-    '**' + config.prefix + 'help** *[command]* um genauere infos zu erhalten diese Nachricht zu lesen.')
-
-    msg.channel.send(message)
+    if (args.length === 0) {
+      const message = [issues, werte, wurf, at, fk, pa, aw, taw, zfw].reduce(messageReducer, 'Der **Myranor Würfelsklave**.\n' +
+      'Folgende Befehle werden zur Zeit unterstützt:\n\n' +
+      '**' + config.prefix + 'help** *[command]* um genauere infos zu erhalten.')
+      msg.channel.send(message)
+    } else {
+      const command = [issues, werte, wurf, at, fk, pa, aw, taw, zfw].find((command) => command.name === args[0])
+      if (!command) {
+        msg.channel.send(command.help + '\n\n' + command.detailedHelp)
+      }
+        msg.channel.send(`Kein Befehl mit dem namen ${args[0]} wurde gefunden`)
+    }
   }
 }

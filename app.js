@@ -26,7 +26,6 @@ bot.on("ready", () => {
 bot.on('message', msg => {
   const args = msg.content.split(/[ |\,]+/)
   const content = args.shift().toLowerCase()
-  console.info(`Called command: ${content}`)
 
   if (!content.startsWith(config.prefix)) return
 
