@@ -5,6 +5,7 @@ module.exports = {
   name: 'issues',
   description: 'Info for feedback',
   help: '*Gibt Informationen, wie man Bugs melden kann oder einfach nur Danke sagen.',
+  detailedHelp: 'Lob ist natürlich willkommen',
   execute(msg, args) {
     const exampleEmbed = new Discord.MessageEmbed()
     .setColor('#0099ff')
