@@ -16,9 +16,12 @@ module.exports = {
         let resultEmbed = new Discord.MessageEmbed()
         .setColor(colors.neutral)
         
-        if (args.length < 3) resultEmbed.setTitle(config.title)
-        .setDescription(`Für <@${msg.author.id}>.`)
-        else resultEmbed.setDescription(`${config.title} für <@${msg.author.id}>.`)
+        if (args.length < 3) {
+            resultEmbed.setTitle(config.title)
+            .setDescription(`Für <@${msg.author.id}>`)
+        } else {
+            resultEmbed.setDescription(`${config.title} für <@${msg.author.id}>`)
+        }  
 
         const att1 = parseInt(args[0])
         const att2 = parseInt(args[1])

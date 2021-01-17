@@ -9,10 +9,13 @@ module.exports = {
         const confirmationRoll = (attackRoll === 1 || attackRoll === 20) ? diceRoller.roll(20) : undefined
         
         let resultEmbed = new Discord.MessageEmbed()
-        .setTitle("Attacke")
         .setColor(colors.neutral)
-        .setAuthor(msg.author.username)
-
+        if (args.length === 0) {
+            resultEmbed.setTitle(config.title)
+            .setDescription(`Für <@${msg.author.id}>`)
+        } else {
+            resultEmbed.setDescription(`Attacke für <@${msg.author.id}>`)
+        }
         const atValue = parseInt(args[0])
 
         const atDescription = Number.isInteger(atValue) ? '/' + atValue : config.abb + '-Wert'
