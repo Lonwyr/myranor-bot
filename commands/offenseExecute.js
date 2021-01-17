@@ -9,13 +9,13 @@ module.exports = {
         const confirmationRoll = (attackRoll === 1 || attackRoll === 20) ? diceRoller.roll(20) : undefined
         
         let resultEmbed = new Discord.MessageEmbed()
+        .setTitle("Attacke")
         .setColor(colors.neutral)
-        .setTitle(config.title)
         .setAuthor(msg.author.username)
 
         const atValue = parseInt(args[0])
 
-        const atDescription = config.abb + '-Wert' + (Number.isInteger(atValue) ? ': ' + atValue : '')
+        const atDescription = Number.isInteger(atValue) ? '/' + atValue : config.abb + '-Wert'
 
         if (confirmationRoll) {
             resultEmbed.addFields(
@@ -34,10 +34,10 @@ module.exports = {
                 })
                 resultEmbed.addField(fumbleRoll.sum, ' [' + fumbleRoll.results.join('+') + '] Patzer-Wurf')
                 resultEmbed.addField(fumbleResult.title, fumbleResult.description)
-                .setDescription('Patzer?')
+                .setTitle('Patzer?')
                 .setColor(colors.criticalFailure)
             } else {
-                resultEmbed.setDescription('verfehlt')
+                resultEmbed.setTitle('Attacke verfehlt')
                 .setColor(colors.failure)
             }
         } else if (Number.isInteger(atValue)) {
@@ -45,10 +45,10 @@ module.exports = {
         
         if (hit) {
             if (attackRoll === 1 && confirmationRoll <= atValue) {
-                resultEmbed.setDescription('potentielle Glückliche Attacke')
+                resultEmbed.setTitle('Glückliche Attacke!')
                 .setColor(colors.criticalSuccess)
             } else {
-                resultEmbed.setDescription('potentieller Treffer')
+                resultEmbed.setTitle('erfolgreiche Attacke')
                 .setColor(colors.success)
             }
 
@@ -82,11 +82,11 @@ module.exports = {
             } 
             resultEmbed.addField(zoneMessage, '[' + zoneRoll + '] Trefferzone; Größendifferent: ' + sizeDifference, true)
         } else {
-            resultEmbed.setDescription('verfehlt')
+            resultEmbed.setTitle('Attacke verfehlt')
             .setColor(colors.failure)
         }
         } else if (attackRoll === 1) {
-            resultEmbed.setDescription('potentielle Glückliche Attacke?')
+            resultEmbed.setTitle('potentiell geglücklte Attacke?')
             .setColor(colors.criticalSuccess)
         }
 

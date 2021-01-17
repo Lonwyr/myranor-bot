@@ -8,7 +8,6 @@ module.exports = {
   help: '*[FK-Wert] [Schadenswurf] [Größendifferenz]* Würfelt für dich deine Fernkampf-Attacke plus Bestätigungs-Würfe und Trefferzonen.',
   execute(msg, args) {
     const config = {
-        title: 'Attacke',
         abb: 'FK',
         fumbles: rangedFumbles
     }
