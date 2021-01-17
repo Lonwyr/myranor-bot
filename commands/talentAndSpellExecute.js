@@ -15,10 +15,10 @@ module.exports = {
 
         let resultEmbed = new Discord.MessageEmbed()
         .setColor(colors.neutral)
-        .setAuthor(msg.author.username)
         
         if (args.length < 3) resultEmbed.setTitle(config.title)
-        else resultEmbed.setDescription(config.title)
+        .setDescription(`Für <@${msg.author.id}>.`)
+        else resultEmbed.setDescription(`${config.title} für <@${msg.author.id}>.`)
 
         const att1 = parseInt(args[0])
         const att2 = parseInt(args[1])
@@ -39,9 +39,9 @@ module.exports = {
         const att2ModifiedValue = att2 - extremeCheckPenalty
         const att3ModifiedValue = att3 - extremeCheckPenalty
         resultEmbed.addFields(
-            { name: rolls[0], value: Number.isInteger(att1) ? '/' + att1ModifiedValue : 'Attribut 1', inline: true },
-            { name: rolls[1], value: Number.isInteger(att2) ? '/' + att2ModifiedValue : 'Attribut 2', inline: true },
-            { name: rolls[2], value: Number.isInteger(att3) ? '/' + att3ModifiedValue : 'Attribut 3', inline: true }
+            { name: rolls[0], value: Number.isInteger(att1) ? `/${att1ModifiedValue}` : 'Attribut 1', inline: true },
+            { name: rolls[1], value: Number.isInteger(att2) ? `/${att2ModifiedValue}` : 'Attribut 2', inline: true },
+            { name: rolls[2], value: Number.isInteger(att3) ? `/${att3ModifiedValue}` : 'Attribut 3', inline: true }
         )
  
         if (lucky) {
@@ -52,7 +52,7 @@ module.exports = {
             .setColor(colors.criticalFailure)
         } else if (args.length >= 3) {
             if (pointsProvided) {
-                const pointsTitle = points + (modifierProvided ? ' (' + modifier + ')' : '')
+                const pointsTitle = points + (modifierProvided ? ` (${modifier})` : '')
                 const modifierDescription = modifier > 0 ? 'Erschwernis' : 'Erleichterung'
                 const pointsDescription = config.value + (modifierProvided ? ' (' + modifierDescription +')' : '')
                 resultEmbed.addField(pointsTitle, pointsDescription)
@@ -62,18 +62,22 @@ module.exports = {
 
             if (args.length === 3) {
                 const diffSum = (att1diff + att2diff + att3diff) * -1
-                const resultMessage = diffSum === 0 ? 'Alle Punkte übrig' : 'benötigt ' + diffSum + ' ' + config.abb + ' zum Ausgleichen'
-                resultEmbed.setTitle(resultMessage)
+                if (diffSum === 0) {
+                    resultEmbed.setTitle('Alle Punkte übrig')
+                } else {
+                    resultEmbed.setTitle(`benötigt ${diffSum} ${config.abb} zum Ausgleichen`)
+                    .setColor(colors.failure)
+                }
             } else {
                 const buffer = -1 * Math.min(modifier, 0)
                 const bufferLeft = buffer + att1diff + att2diff + att3diff
                 const pointsLeft = Math.max(points - Math.max(modifier, 0), 0) + Math.min(bufferLeft, 0)
 
                 if (pointsLeft >= 0) {
-                    resultEmbed.setTitle('Erfolg: ' + pointsLeft + ' ' + config.abb + '*')
+                    resultEmbed.setTitle(`Erfolg: ${pointsLeft} ${config.abb}*`)
                     .setColor(colors.success)
                 } else {
-                    resultEmbed.setTitle('Gescheitert: um ' + (-1 * pointsLeft) + ' ' + config.abb)
+                    resultEmbed.setTitle(`Gescheitert: um ${-1 * pointsLeft} ${config.abb}`)
                     .setColor(colors.failure)
                 }
             }
