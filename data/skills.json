@@ -1,0 +1,297 @@
+{
+    "items": [{
+        "name": "akrobatik",
+        "attributes": ["MU", "GE", "KO"]
+    }, {
+        "name": "athletik",
+        "attributes": ["GE", "KO", "KK"]
+    }, {
+        "name": "fliegen",
+        "attributes": ["MU", "IN", "GE"]
+    }, {
+        "name": "freiesfliegen",
+        "attributes": ["MU", "GE", "KK"]
+    }, {
+        "name": "gauklerei",
+        "attributes": ["MU", "CH", "FF"]
+    }, {
+        "name": "klettern",
+        "attributes": ["MI", "IN", "GE"]
+    }, {
+        "name": "körperbeherrschung",
+        "attributes": ["MU", "IN", "GE"]
+    }, {
+        "name": "reiten",
+        "attributes": ["CH", "GE", "KK"]
+    }, {
+        "name": "skifahren",
+        "attributes": ["GE", "GE", "KO"]
+    }, {
+        "name": "schleichen",
+        "attributes": ["MU", "IN", "GE"]
+    }, {
+        "name": "schwimmen",
+        "attributes": ["GE", "KO", "KK"]
+    }, {
+        "name": "selbstbeherrschung",
+        "attributes": ["MU", "KO", "KK"]
+    }, {
+        "name": "sichverkleiden",
+        "attributes": ["MU", "IN", "GE"]
+    }, {
+        "name": "singen",
+        "attributes": ["IN", "CH", "CH"]
+    }, {
+        "name": "sinnesschärfe",
+        "attributes": ["KL", "IN", "IN"]
+    }, {
+        "name": "stimmenimmitieren",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
+        "name": "tanzen",
+        "attributes": ["CH", "GE", "GE"]
+    }, {
+        "name": "taschendiebstahl",
+        "attributes": ["MU", "IN", "FF"]
+    }, {
+        "name": "zechen",
+        "attributes": ["IN", "KO", "KK"]
+    }, {
+        "name": "betören",
+        "attributes": ["IN", "CH", "CH"]
+    }, {
+        "name": "etikette",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
+        "name": "gassenwissen",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
+        "name": "lehren",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
+        "name": "menschenkenntnis",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
+        "name": "sichverkleiden",
+        "attributes": ["MU", "CH", "GE"]
+    }, {
+        "name": "überreden",
+        "attributes": ["MU", "IN", "CH"]
+    }, {
+        "name": "überzeugen",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
+        "name": "fährtensuche",
+        "attributes": ["KL", "IN", "KO"]
+    }, {
+        "name": "fallenstellen",
+        "attributes": ["KL", "FF", "KK"]
+    }, {
+        "name": "fesselnentfesseln",
+        "attributes": ["FF", "GE", "KK"]
+    }, {
+        "name": "fischenangeln",
+        "attributes": ["IN", "FF", "KK"]
+    }, {
+        "name": "orientierung",
+        "attributes": ["KL", "IN", "IN"]
+    }, {
+        "name": "wettervorhersage",
+        "attributes": ["KL", "IN", "IN"]
+    }, {
+        "name": "wildnisleben",
+        "attributes": ["IN", "GE", "KO"]
+    }, {
+        "name": "anatomie",
+        "attributes": ["MU", "KL", "FF"]
+    }, {
+        "name": "brettwürfelspiele",
+        "attributes": ["KL", "KL", "IN"]
+    }, {
+        "name": "geographie",
+        "attributes": ["KL", "KL", "IN"]
+    }, {
+        "name": "geschichtswissen",
+        "attributes": ["KL", "KL", "IN"]
+    }, {
+        "name": "gesteinkunde",
+        "attributes": ["KL", "IN", "FF"]
+    }, {
+        "name": "götterkulte",
+        "attributes": ["KL", "KL", "IN"]
+    }, {
+        "name": "heraldik",
+        "attributes": ["KL", "KL", "FF"]
+    }, {
+        "name": "hüttenkunde",
+        "attributes": ["KL", "IN", "KO"]
+    }, {
+        "name": "kriegskunst",
+        "attributes": ["MU", "KL", "CH"]
+    }, {
+        "name": "magiekunde",
+        "attributes": ["KL", "KL", "IN"]
+    }, {
+        "name": "mechanik",
+        "attributes": ["KL", "KL", "FF"]
+    }, {
+        "name": "pflanzenkunde",
+        "attributes": ["KL", "IN", "FF"]
+    }, {
+        "name": "philosophie",
+        "attributes": ["KL", "KL", "IN"]
+    }, {
+        "name": "rechnen",
+        "attributes": ["KL", "KL", "IN"]
+    }, {
+        "name": "rechtskunde",
+        "attributes": ["KL", "KL", "IN"]
+    }, {
+        "name": "sagenlegenden",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
+        "name": "schätzen",
+        "attributes": ["KL", "IN", "IN"]
+    }, {
+        "name": "sprachenkunde",
+        "attributes": ["KL", "KL", "IN"]
+    }, {
+        "name": "sternenkunde",
+        "attributes": ["KL", "KL", "IN"]
+    }, {
+        "name": "tierkunde",
+        "attributes": ["MU", "KL", "IN"]
+    }, {
+        "name": "sprache",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
+        "name": "lesenschreiben",
+        "attributes": ["KL", "KL", "FF"]
+    }, {
+        "name": "abrichten",
+        "attributes": ["MU", "IN", "CH"]
+    }, {
+        "name": "ackerbau",
+        "attributes": ["IN", "FF", "KO"]
+    }, {
+        "name": "alchemie",
+        "attributes": ["MU", "KL", "FF"]
+    }, {
+        "name": "bergbau",
+        "attributes": ["IN", "KO", "KK"]
+    }, {
+        "name": "bogenbau",
+        "attributes": ["KL", "IN", "FF"]
+    }, {
+        "name": "bootefahren",
+        "attributes": ["GE", "KO", "KK"]
+    }, {
+        "name": "brauer",
+        "attributes": ["KL", "FF", "KK"]
+    }, {
+        "name": "fahrzeuglenken",
+        "attributes": ["IN", "CH", "FF"]
+    }, {
+        "name": "falschspiel",
+        "attributes": ["MU", "CH", "FF"]
+    }, {
+        "name": "feinmechanik",
+        "attributes": ["KL", "FF", "FF"]
+    }, {
+        "name": "feuersteinbearbeitung",
+        "attributes": ["KL", "FF", "FF"]
+    }, {
+        "name": "fleischer",
+        "attributes": ["KL", "FF", "KK"]
+    }, {
+        "name": "fluggerätsteuern",
+        "attributes": ["MI", "IN", "FF"]
+    }, {
+        "name": "gerberkürschner",
+        "attributes": ["KL", "FF", "KO"]
+    }, {
+        "name": "glaskunst",
+        "attributes": ["FF", "FF", "KO"]
+    }, {
+        "name": "grobschmied",
+        "attributes": ["FF", "KO", "KK"]
+    }, {
+        "name": "hauswirtschaft",
+        "attributes": ["IN", "CH", "FF"]
+    }, {
+        "name": "heilkundegift",
+        "attributes": ["MU", "KL", "IN"]
+    }, {
+        "name": "heilkundekrankheit",
+        "attributes": ["MU", "KL", "CH"]
+    }, {
+        "name": "heilkundeseele",
+        "attributes": ["IN", "CH", "CH"]
+    }, {
+        "name": "heilkundewunden",
+        "attributes": ["KL", "CH", "FF"]
+    }, {
+        "name": "holzbearbeitung",
+        "attributes": ["KL", "FF", "KK"]
+    }, {
+        "name": "kartographie",
+        "attributes": ["KL", "KL", "FF"]
+    }, {
+        "name": "kochen",
+        "attributes": ["KL", "IN", "FF"]
+    }, {
+        "name": "kristallzucht",
+        "attributes": ["KL", "IN", "FF"]
+    }, {
+        "name": "lederarbeiten",
+        "attributes": ["KL", "FF", "FF"]
+    }, {
+        "name": "malenzeichnen",
+        "attributes": ["KL", "IN", "FF"]
+    }, {
+        "name": "maurer",
+        "attributes": ["FF", "GE", "KK"]
+    }, {
+        "name": "musizieren",
+        "attributes": ["IN", "CH", "FF"]
+    }, {
+        "name": "schlösserknacken",
+        "attributes": ["IN", "FF", "FF"]
+    }, {
+        "name": "schnapsbrennen",
+        "attributes": ["kl", "IN", "FF"]
+    }, {
+        "name": "schneider",
+        "attributes": ["KL", "FF", "FF"]
+    }, {
+        "name": "seefahrt",
+        "attributes": ["FF", "GE", "KK"]
+    }, {
+        "name": "steinmetz",
+        "attributes": ["FF", "FF", "KK"]
+    }, {
+        "name": "steinschneiderjuwelier",
+        "attributes": ["IN", "FF", "FF"]
+    }, {
+        "name": "stoffefärben",
+        "attributes": ["KL", "FF", "KK"]
+    }, {
+        "name": "tätowieren",
+        "attributes": ["IN", "FF", "FF"]
+    }, {
+        "name": "töpfern",
+        "attributes": ["KL", "FF", "FF"]
+    }, {
+        "name": "fiehzucht",
+        "attributes": ["KL", "IN", "KK"]
+    }, {
+        "name": "webekunst",
+        "attributes": ["FF", "FF", "KK"]
+    }, {
+        "name": "winzer",
+        "attributes": ["KL", "FF", "KK"]
+    }, {
+        "name": "zimmermann",
+        "attributes": ["KL", "FF", "KK"]
+    }]
+}

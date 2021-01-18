@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = Object.assign({
   help: require('./help'),
   issues: require('./issues'),
   werte: require('./werte'),
@@ -9,4 +9,4 @@ module.exports = {
   aw: require('./aw'),
   taw: require('./taw'),
   zfw: require('./zfw')
-}
+}, require('./specificSkillsAndSpells'));
