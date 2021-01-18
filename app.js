@@ -20,7 +20,7 @@ Object.keys(botCommands).map(key => {
 });
 
 bot.on("ready", () => {
-  bot.user.setActivity(config.prefix + 'help and other', { type: 'WATCHING' })
+  bot.user.setActivity(config.prefix + 'hilfe', { type: 'WATCHING' })
 })
 
 bot.on('message', msg => {

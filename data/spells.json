@@ -1,0 +1,120 @@
+{
+    "items": [{
+        "name": "elementar",
+        "attributes": ["MU", "KL", "CH"]
+    }, {
+        "name": "eis",
+        "attributes": ["MU", "KL", "CH"]
+    }, {
+        "name": "erz",
+        "attributes": ["MU", "KL", "CH"]
+    }, {
+        "name": "feuer",
+        "attributes": ["MU", "KL", "CH"]
+    }, {
+        "name": "humus",
+        "attributes": ["MU", "KL", "CH"]
+    }, {
+        "name": "kraft",
+        "attributes": ["MU", "KL", "CH"]
+    }, {
+        "name": "luft",
+        "attributes": ["MU", "KL", "CH"]
+    }, {
+        "name": "wasser",
+        "attributes": ["MU", "KL", "CH"]
+    }, {
+        "name": "tiergeister",
+        "attributes": ["MU", "KL", "IN"]
+    }, {
+        "name": "stellar",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
+        "name": "aggression",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
+        "name": "begierde",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
+        "name": "harmonie",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
+        "name": "endgültigkeit",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
+        "name": "erfolg",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
+        "name": "erkenntnis",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
+        "name": "freiheit",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
+        "name": "kreativität",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
+        "name": "wahnsinn",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
+        "name": "zauberei",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
+        "name": "totenwesen",
+        "attributes": ["MU", "MU", "CH"]
+    }, {
+        "name": "zeit",
+        "attributes": ["MU", "KL", "IN"]
+    }, {
+        "name": "dämonisch",
+        "attributes": ["MU", "MU", "CH"]
+    }, {
+        "name": "abgrund",
+        "attributes": ["MU", "MU", "CH"]
+    }, {
+        "name": "aggari",
+        "attributes": ["MU", "MU", "CH"]
+    }, {
+        "name": "avastada",
+        "attributes": ["MU", "MU", "CH"]
+    }, {
+        "name": "carafei",
+        "attributes": ["MU", "MU", "CH"]
+    }, {
+        "name": "darcalya",
+        "attributes": ["MU", "MU", "CH"]
+    }, {
+        "name": "dyakhol",
+        "attributes": ["MU", "MU", "CH"]
+    }, {
+        "name": "eskates",
+        "attributes": ["MU", "MU", "CH"]
+    }, {
+        "name": "galkuzul",
+        "attributes": ["MU", "MU", "CH"]
+    }, {
+        "name": "ghorgumor",
+        "attributes": ["MU", "MU", "CH"]
+    }, {
+        "name": "iryabaar",
+        "attributes": ["MU", "MU", "CH"]
+    }, {
+        "name": "khalyanar",
+        "attributes": ["MU", "MU", "CH"]
+    }, {
+        "name": "misharya",
+        "attributes": ["MU", "MU", "CH"]
+    }, {
+        "name": "naggarach",
+        "attributes": ["MU", "MU", "CH"]
+    }, {
+        "name": "thesephai",
+        "attributes": ["MU", "MU", "CH"]
+    }, {
+        "name": "tyakaar",
+        "attributes": ["MU", "MU", "CH"]
+    }, {
+        "name": "xolovar",
+        "attributes": ["MU", "MU", "CH"]
+    }]
+}
