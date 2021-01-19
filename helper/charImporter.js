@@ -28,11 +28,13 @@ function extractAttributes(attributes) {
 function extractSkillsAndSpells(list) {
     let json = {}
 
-    for (item of list) {
-        const name = item._attributes.name.replace(/[\ |\/|:]/gm, '').toLowerCase()
-        const value = parseInt(item._attributes.value)
-        if (!name.startsWith('lesenschreiben') && !name.startsWith('sprachenkennen')) {
-            json[name] = parseInt(value)
+    if (list) {
+        for (item of list) {
+            const name = item._attributes.name.replace(/[\ |\/|:]/gm, '').toLowerCase()
+            const value = parseInt(item._attributes.value)
+            if (!name.startsWith('lesenschreiben') && !name.startsWith('sprachenkennen')) {
+                json[name] = parseInt(value)
+            }
         }
     }
 
@@ -41,6 +43,18 @@ function extractSkillsAndSpells(list) {
 
 module.exports = {
     import: function (msg) {
+        let slot = 1
+
+        if (msg.content) {
+            slot = parseInt(msg.content)
+            if (Number.isNaN(slot) || slot < 1 || slot > 3) {
+                msg.reply("Sorry bitte nenn mir einen gültigen Slot (**1**, **2** oder **3**)")
+                return
+            }
+
+            slot = parseInt(msg.content)
+        }
+
         const userId = msg.author.id
         const url = msg.attachments.toJSON()[0].url
         if (!url.endsWith('.xml')) throw new Error('no XML provided')
@@ -60,9 +74,9 @@ module.exports = {
                     spells: extractSkillsAndSpells(spells)
                 }
 
-                cache.store(userId, charJson)
+                cache.store(userId, charJson, slot)
                 
-            msg.reply('Got it! Ich wärm die Würfel schon mal vor!')
+            msg.reply(`Charakter is gespeichert in slot *${slot}.\nIch wärm die Würfel schon mal vor!`)
             } else {
                 throw error
             }
