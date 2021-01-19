@@ -21,7 +21,9 @@ createCommand = (name, attributes, category) => {
 }
 
 for (spell of spells.items) {
-  exportModules[spell.name] = createCommand(spell.name, spell.attributes, 'zfw')
+  for (prefix of ['e', 'w']) {
+    exportModules[prefix + spell.name] = createCommand(prefix + spell.name, spell.attributes, 'zfw')
+  }
 }
 
 for (skill of skills.items) {

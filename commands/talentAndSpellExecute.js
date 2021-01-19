@@ -44,7 +44,7 @@ module.exports = {
             resultEmbed.setTitle(config.title)
             .setDescription(`${config.title} für <@${msg.author.id}>`)
         } else {
-            resultEmbed.setDescription(`${config.title} für ${name ? ' ' + name + ' (<@${msg.author.id}>)' : '<@${msg.author.id}>' }`)
+            resultEmbed.setDescription(`${config.title} für ${name ? ' ' + name + ' (<@' + msg.author.id + '>)' : '<@' + msg.author.id +'>'}`)
         }  
 
         try {
