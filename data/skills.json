@@ -36,7 +36,7 @@
         "name": "selbstbeherrschung",
         "attributes": ["MU", "KO", "KK"]
     }, {
-        "name": "sichverkleiden",
+        "name": "sichverstecken",
         "attributes": ["MU", "IN", "GE"]
     }, {
         "name": "singen",
@@ -259,7 +259,7 @@
         "attributes": ["IN", "FF", "FF"]
     }, {
         "name": "schnapsbrennen",
-        "attributes": ["kl", "IN", "FF"]
+        "attributes": ["KL", "IN", "FF"]
     }, {
         "name": "schneider",
         "attributes": ["KL", "FF", "FF"]
