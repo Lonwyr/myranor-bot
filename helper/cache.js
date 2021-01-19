@@ -6,40 +6,68 @@ const pool = new Pool({
   ssl: {
     rejectUnauthorized: false
   }
-});
+})
 
 module.exports = {
-    store: async function (userId, args) {
-        if (!cache[userId])
-            cache[userId] = {}
+    store: async function (userId, char) {
+        const charString = JSON.stringify(char)
 
-        for (const arg of args) {
-            [key, value] = arg.split(/\=/)
-
-            if (allowListedValues.includes(key) && value.match(/\d+/g)) {
-                const client = await pool.connect()
-                await client.query(`
-                    INSERT INTO values (userid, key, value)
-                    VALUES('${userId}', '${key}','${value}') 
-                    ON CONFLICT (userId, key) 
-                    DO 
-                    UPDATE SET value = '${value}' `)
-                client.release()
-            } else {
-                throw new Error('Wert nicht erlaubt.')
+        const client = await pool.connect()
+        try {
+            await client.query(`
+                INSERT INTO characters (userid, character)
+                VALUES('${userId}', '${charString}') 
+                ON CONFLICT (userid) 
+                DO 
+                UPDATE SET character = '${charString}' `)
+        } finally {
+            client.release()
+        }
+        
+        cache[userId] = char
+    },
+    load: async function () {
+        const client = await pool.connect()
+        console.info('loading characters from DB.')
+        try {
+            const result = await client.query(`SELECT * FROM characters`)
+            for (row of result.rows) {
+                cache[row.userid] = JSON.parse(row.character)
             }
+            console.info('Characters loaded from DB.')
+        } finally {
+            client.release()
         }
     },
-    get: async function (userId, key) {
-        if (allowListedValues.includes(key)) {
-            const client = await pool.connect()
-            const result = await client.query(`
-                SELECT value FROM values WHERE userid = '${userId}' AND key = '${key}'`)
-            client.release()
-            if (!result.rowCount === 1) throw new Error(`Wert '${key}' war nicht gespeichert`)
-            return result.rows[0].value
+    checkCharacter: function (userId) {
+        return !!cache[userId]
+    },
+    getAttribute: function (userId, key) {
+        if (cache[userId] && cache[userId].attributes[key]) {
+            return cache[userId].attributes[key]
         } else {
-            throw new Error('Wert nicht erlaubt.')
+            throw Error(`Wert ${key} for user ${userId} is not stored.`)
         }
-    }
+    },
+    getName: function (userId) {
+        if (cache[userId]) {
+            return cache[userId].name
+        } else {
+            throw Error(`No character for user ${userId} is stored.`)
+        }
+    },
+    getSkill: function (userId, key) {
+        if (cache[userId] && cache[userId].skills[key]) {
+            return cache[userId].skills[key]
+        } else {
+            throw Error(`Skill ${key} for user ${userId} is not stored.`)
+        }
+    },
+    getSpell: function (userId, key) {
+        if (cache[userId] && cache[userId].spells[key]) {
+            return cache[userId].spells[key]
+        } else {
+            throw Error(`Spell ${key} for user ${userId} is not stored.`)
+        }
+    },
 }

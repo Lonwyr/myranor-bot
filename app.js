@@ -4,6 +4,8 @@ console.log("Starting")
 const Discord = require("discord.js")
 const config = require("./config.json")
 const botCommands = require('./commands')
+const charImporter = require('./helper/charImporter')
+const cache = require('./helper/cache')
 
 config.token = process.env.BOT_SECRET
 
@@ -19,11 +21,18 @@ Object.keys(botCommands).map(key => {
   bot.commands.set(botCommands[key].name, botCommands[key])
 });
 
-bot.on("ready", () => {
+bot.on("ready", async () => {
   bot.user.setActivity(config.prefix + 'hilfe', { type: 'WATCHING' })
+  await cache.load()
 })
 
 bot.on('message', msg => {
+
+  // import
+  if (msg.channel.type === 'dm' && msg.attachments.size > 0) {
+    charImporter.import(msg)
+  }
+
   const args = msg.content.split(/[ |\,]+/)
   const content = args.shift().toLowerCase()
 

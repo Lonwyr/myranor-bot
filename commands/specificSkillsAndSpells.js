@@ -15,13 +15,15 @@ createCommand = (name, attributes, category) => {
     detailedHelp: '',
     execute(msg, args) {
       const command = this.category === 'taw' ? taw : zfw
-      command.execute(msg, attributes.concat(args))
+      command.execute(msg, attributes.concat(args), this.name)
     }
   }
 }
 
 for (spell of spells.items) {
-  exportModules[spell.name] = createCommand(spell.name, spell.attributes, 'zfw')
+  for (prefix of ['e', 'w']) {
+    exportModules[prefix + spell.name] = createCommand(prefix + spell.name, spell.attributes, 'zfw')
+  }
 }
 
 for (skill of skills.items) {

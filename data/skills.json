@@ -42,7 +42,7 @@
         "name": "singen",
         "attributes": ["IN", "CH", "CH"]
     }, {
-        "name": "sinnesschärfe",
+        "name": "sinnenschärfe",
         "attributes": ["KL", "IN", "IN"]
     }, {
         "name": "stimmenimmitieren",
@@ -117,7 +117,7 @@
         "name": "gesteinkunde",
         "attributes": ["KL", "IN", "FF"]
     }, {
-        "name": "götterkulte",
+        "name": "götterundkulte",
         "attributes": ["KL", "KL", "IN"]
     }, {
         "name": "heraldik",
