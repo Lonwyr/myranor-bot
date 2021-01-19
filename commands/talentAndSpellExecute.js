@@ -7,18 +7,31 @@ function compare(attr, roll, extremeCheckPenalty) {
     return Math.min(attr - extremeCheckPenalty - roll, 0)
 }
 
-async function getAttribute(userId, attributeArgument, defaultDescription) {
+function getAttribute(userId, attributeArgument, defaultDescription) {
     if (!attributeArgument) return [NaN, defaultDescription]
 
     const parsedArgument = parseInt(attributeArgument)
     if (Number.isInteger(parsedArgument)) return [parsedArgument, `/${attributeArgument}`]
 
-    const attributeValue = await cache.get(userId, attributeArgument)
+    const attributeValue = cache.getAttribute(userId, attributeArgument)
     return [attributeValue, `${attributeArgument} (${attributeValue})`]
 }
 
 module.exports = {
-    execute: async function (msg, args, config) {
+    execute: async function (msg, args, config, checkName) {
+        let name
+        if (checkName) {
+            const userId = msg.author.id
+            if (!cache.checkCharacter(userId)) {
+                msg.reply('Bitte importiere erst einen Character aus der **Helden-Software**\nGehe einfach auf "Datei > Exportieren > Helden exportieren" und flüster ihn mir zu.')
+                return
+            }
+
+            name = cache.getName(userId)
+            const getter = config.type === 'skill' ? cache.getSkill : cache.getSpell
+            args.splice(3, 0, getter(userId, checkName))
+        }
+
         const rolls = diceRoller.sum(20, 3).results
         const lucky = rolls.filter(roll => roll === 1).length >= 2
         const fumble = rolls.filter(roll => roll === 20).length >= 2
@@ -29,15 +42,15 @@ module.exports = {
         
         if (args.length < 3) {
             resultEmbed.setTitle(config.title)
-            .setDescription(`Für <@${msg.author.id}>`)
+            .setDescription(`${config.title} für <@${msg.author.id}>`)
         } else {
-            resultEmbed.setDescription(`${config.title} für <@${msg.author.id}>`)
+            resultEmbed.setDescription(`${config.title} für ${name ? ' ' + name + ' (<@${msg.author.id}>)' : '<@${msg.author.id}>' }`)
         }  
 
         try {
-            const [att1, att1Description] = await getAttribute(msg.author.id, args[0], "Attribute 1")
-            const [att2, att2Description] = await getAttribute(msg.author.id, args[1], "Attribute 2")
-            const [att3, att3Description] = await getAttribute(msg.author.id, args[2], "Attribute 3")
+            const [att1, att1Description] = getAttribute(msg.author.id, args[0], "Attribute 1")
+            const [att2, att2Description] = getAttribute(msg.author.id, args[1], "Attribute 2")
+            const [att3, att3Description] = getAttribute(msg.author.id, args[2], "Attribute 3")
 
             const pointsProvided = Number.isInteger(parseInt(args[3]))
             let points = pointsProvided ? parseInt(args[3]) : 0
@@ -65,7 +78,7 @@ module.exports = {
             } else if (fumble) {
                 resultEmbed.setTitle('Patzer!')
                 .setColor(colors.criticalFailure)
-            } else if (args.length >= 3) {
+            } else if (args.length >= 3 || checkName) {
                 if (pointsProvided) {
                     const pointsTitle = points + (modifierProvided ? ` (${modifier})` : '')
                     const modifierDescription = modifier > 0 ? 'Erschwernis' : 'Erleichterung'
