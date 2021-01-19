@@ -5,29 +5,31 @@ const zfw = require('./zfw')
 
 let exportModules = {}
 
-createCommand = (name, attributes, category) => {
+createCommand = (name, attributes, descriptionText, category) => {
   return {
     name: name,
     category: category,
     attributes: attributes,
     description: `Rolls a ${category} check.`,
+    descriptionText: descriptionText,
     help: `*[TaW] [Modifikator]* Würfelt für dich eine ${category}.\nSollten nicht alle Attribute vorhanden sein, wird komplett ohne Attributeswerte gewürfelt.`,
     detailedHelp: '',
     execute(msg, args) {
       const command = this.category === 'taw' ? taw : zfw
-      command.execute(msg, attributes.concat(args), this.name)
+      command.execute(msg, attributes.concat(args), this.name, this.descriptionText)
     }
   }
 }
 
 for (spell of spells.items) {
   for (prefix of ['e', 'w']) {
-    exportModules[prefix + spell.name] = createCommand(prefix + spell.name, spell.attributes, 'zfw')
+    const description = (prefix === 'e' ? 'Essenz: ' : 'Wesen: ') + spell.description
+    exportModules[prefix + spell.name] = createCommand(prefix + spell.name, spell.attributes, description, 'zfw')
   }
 }
 
 for (skill of skills.items) {
-  exportModules[skill.name] = createCommand(skill.name, skill.attributes, 'taw')
+  exportModules[skill.name] = createCommand(skill.name, skill.attributes, skill.description, 'taw')
 }
 
 module.exports = exportModules

@@ -42,11 +42,11 @@ module.exports = {
         .setColor(colors.neutral)
         
         if (args.length < 3) {
-            resultEmbed.setTitle(config.title)
+            resultEmbed.setTitle(`${config.description ? config.description : config.title}-Probe`)
             .setDescription(`für <@${msg.author.id}>`)
         } else {
-            resultEmbed.setDescription(`${config.title} für <@${msg.author.id}>`)
-        }  
+            resultEmbed.setDescription(`${config.description ? config.description : config.title}-Probe für <@${msg.author.id}>`)
+        }
 
         try {
             const pointsProvided = Number.isInteger(parseInt(args[3]))

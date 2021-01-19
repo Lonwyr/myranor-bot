@@ -94,14 +94,14 @@ module.exports = {
         }
     },
     getSkill: function (userId, key) {
-        if (cache[userId] && cache[userId].skills[key]) {
+        if (cache[userId] && cache[userId].skills[key] !== undefined) {
             return cache[userId].skills[key]
         } else {
             throw Error(`Skill ${key} for user ${userId} is not stored.`)
         }
     },
     getSpell: function (userId, key) {
-        if (cache[userId] && cache[userId].spells[key]) {
+        if (cache[userId] && cache[userId].spells[key] !== undefined) {
             return cache[userId].spells[key]
         } else {
             throw Error(`Spell ${key} for user ${userId} is not stored.`)

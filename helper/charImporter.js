@@ -19,7 +19,7 @@ function extractAttributes(attributes) {
 
     for (attribute of attributes) {
         const attributesAbb = attributeAbbs[attribute._attributes.name]
-        if (attributesAbb) attributesJson[attributesAbb] = parseInt(attribute._attributes.value)
+        if (attributesAbb) attributesJson[attributesAbb] = parseInt(attribute._attributes.value) + parseInt(attribute._attributes.mod)
     }
 
     return attributesJson
@@ -63,7 +63,7 @@ module.exports = {
             if (!error && response.statusCode == 200) {
                 const charString = convert.xml2json(body, {compact: true, spaces: 2})
                 const char = JSON.parse(charString).helden.held
-                const attributes = char.eigenschaften.eigenschaft            
+                const attributes = char.eigenschaften.eigenschaft
                 const skills = char.talentliste.talent
                 const spells = char.zauberliste.zauber
 
@@ -76,7 +76,7 @@ module.exports = {
 
                 cache.store(userId, charJson, slot)
                 
-            msg.reply(`Charakter is gespeichert in slot *${slot}.\nIch wärm die Würfel schon mal vor!`)
+            msg.reply(`Charakter is gespeichert in **Slot ${slot}**.\nIch wärm die Würfel schon mal vor!`)
             } else {
                 throw error
             }
