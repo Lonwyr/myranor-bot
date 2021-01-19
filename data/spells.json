@@ -1,120 +1,159 @@
 {
     "items": [{
         "name": "elementar",
+        "description": "Elementar",
         "attributes": ["MU", "KL", "CH"]
     }, {
         "name": "eis",
+        "description": "Eis",
         "attributes": ["MU", "KL", "CH"]
     }, {
         "name": "erz",
+        "description": "Erz",
         "attributes": ["MU", "KL", "CH"]
     }, {
         "name": "feuer",
+        "description": "Feuer",
         "attributes": ["MU", "KL", "CH"]
     }, {
         "name": "humus",
+        "description": "Humus",
         "attributes": ["MU", "KL", "CH"]
     }, {
         "name": "kraft",
+        "description": "Kraft",
         "attributes": ["MU", "KL", "CH"]
     }, {
         "name": "luft",
+        "description": "Luft",
         "attributes": ["MU", "KL", "CH"]
     }, {
         "name": "wasser",
+        "description": "Wasser",
         "attributes": ["MU", "KL", "CH"]
     }, {
         "name": "tiergeister",
+        "description": "Tiergeister",
         "attributes": ["MU", "KL", "IN"]
     }, {
         "name": "stellar",
+        "description": "Stellar",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "aggression",
+        "description": "Aggression",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "begierde",
+        "description": "Begierde",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "harmonie",
+        "description": "Harmonie",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "endgültigkeit",
+        "description": "Endgültigkeit",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "erfolg",
+        "description": "Erfolg",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "erkenntnis",
+        "description": "Erkenntnis",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "freiheit",
+        "description": "Freiheit",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "kreativität",
+        "description": "Kreativität",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "wahnsinn",
+        "description": "Wahnsinn",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "zauberei",
+        "description": "Zauberei",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "totenwesen",
+        "description": "Totenwesen",
         "attributes": ["MU", "MU", "CH"]
     }, {
         "name": "zeit",
+        "description": "Zeit",
         "attributes": ["MU", "KL", "IN"]
     }, {
         "name": "dämonisch",
+        "description": "Dämonisch",
         "attributes": ["MU", "MU", "CH"]
     }, {
         "name": "abgrund",
+        "description": "Abgrund",
         "attributes": ["MU", "MU", "CH"]
     }, {
         "name": "aggari",
+        "description": "Aggari",
         "attributes": ["MU", "MU", "CH"]
     }, {
         "name": "avastada",
+        "description": "Avastada",
         "attributes": ["MU", "MU", "CH"]
     }, {
         "name": "carafai",
+        "description": "Carafai",
         "attributes": ["MU", "MU", "CH"]
     }, {
         "name": "darcalya",
+        "description": "Darcalya",
         "attributes": ["MU", "MU", "CH"]
     }, {
         "name": "dyakhol",
+        "description": "Dyakhol",
         "attributes": ["MU", "MU", "CH"]
     }, {
         "name": "eskates",
+        "description": "Eskates",
         "attributes": ["MU", "MU", "CH"]
     }, {
         "name": "galkuzul",
+        "description": "Galkuzul",
         "attributes": ["MU", "MU", "CH"]
     }, {
         "name": "ghorgumor",
+        "description": "Ghorgumor",
         "attributes": ["MU", "MU", "CH"]
     }, {
         "name": "iryabaar",
+        "description": "Iryabaar",
         "attributes": ["MU", "MU", "CH"]
     }, {
         "name": "khalyanar",
+        "description": "Khalyanar",
         "attributes": ["MU", "MU", "CH"]
     }, {
         "name": "misharya",
+        "description": "Misharya",
         "attributes": ["MU", "MU", "CH"]
     }, {
         "name": "naggarach",
+        "description": "Naggarach",
         "attributes": ["MU", "MU", "CH"]
     }, {
         "name": "thesephai",
+        "description": "Thesephai",
         "attributes": ["MU", "MU", "CH"]
     }, {
         "name": "tyakaar",
+        "description": "Tyakaar",
         "attributes": ["MU", "MU", "CH"]
     }, {
         "name": "xolovar",
+        "description": "Xolovar",
         "attributes": ["MU", "MU", "CH"]
     }]
 }
