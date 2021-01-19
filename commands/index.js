@@ -7,5 +7,6 @@ module.exports = Object.assign({
   pa: require('./pa'),
   aw: require('./aw'),
   taw: require('./taw'),
-  zfw: require('./zfw')
+  zfw: require('./zfw'),
+  switch: require('./switch')
 }, require('./specificSkillsAndSpells'));

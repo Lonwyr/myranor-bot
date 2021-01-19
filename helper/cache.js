@@ -9,17 +9,24 @@ const pool = new Pool({
 })
 
 module.exports = {
-    store: async function (userId, char) {
+    store: async function (userId, char, slot) {
         const charString = JSON.stringify(char)
 
         const client = await pool.connect()
         try {
             await client.query(`
-                INSERT INTO characters (userid, character)
-                VALUES('${userId}', '${charString}') 
+                INSERT INTO characters (userid, slot, character)
+                VALUES('${userId}', '${slot}', '${charString}') 
+                ON CONFLICT (userid, slot) 
+                DO 
+                UPDATE SET character = '${charString}'`)
+                
+            await client.query(`
+                INSERT INTO activeslot (userid, slot)
+                VALUES('${userId}', '${slot}') 
                 ON CONFLICT (userid) 
                 DO 
-                UPDATE SET character = '${charString}' `)
+                UPDATE SET slot = '${slot}'`)
         } finally {
             client.release()
         }
@@ -28,13 +35,43 @@ module.exports = {
     },
     load: async function () {
         const client = await pool.connect()
-        console.info('loading characters from DB.')
+        console.info('Loading characters from DB')
         try {
-            const result = await client.query(`SELECT * FROM characters`)
+            const result = await client.query(`
+                SELECT c.userid, character FROM characters c inner join activeslot a ON c.userid = a.userid
+                UNION
+                SELECT userid, character FROM characters c WHERE slot = '1' AND userid NOT IN (SELECT userid FROM activeslot)
+            `)
             for (row of result.rows) {
                 cache[row.userid] = JSON.parse(row.character)
             }
-            console.info('Characters loaded from DB.')
+            console.info('Characters loaded from DB')
+        } finally {
+            client.release()
+        }
+    },
+    activateSlot: async function (userId, slot) {
+        const client = await pool.connect()
+        try {
+            const result = await client.query(`
+                SELECT userid, character
+                FROM characters
+                WHERE slot = '${slot}' AND userid = '${userId}'
+            `)
+           
+            if (result.rows.length !== 1) {
+                return
+            }
+            cache[userId] = JSON.parse(result.rows[0].character)
+
+            await client.query(`
+                INSERT INTO activeslot (userid, slot)
+                VALUES('${userId}', '${slot}') 
+                ON CONFLICT (userid)
+                DO 
+                UPDATE SET slot = '${slot}'`)
+
+                return this.getName(userId)
         } finally {
             client.release()
         }
