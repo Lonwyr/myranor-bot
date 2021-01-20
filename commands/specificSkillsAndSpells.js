@@ -15,8 +15,12 @@ createCommand = (name, attributes, descriptionText, category) => {
     help: `*[TaW] [Modifikator]* Würfelt für dich eine ${category}.\nSollten nicht alle Attribute vorhanden sein, wird komplett ohne Attributeswerte gewürfelt.`,
     detailedHelp: '',
     execute(msg, args) {
+      const specialization = !!(args[0] === '+')
+      if (specialization) {
+        args.splice(0, 1)
+      }
       const command = this.category === 'taw' ? taw : zfw
-      command.execute(msg, attributes.concat(args), this.name, this.descriptionText)
+      command.execute(msg, attributes.concat(args), this.name, this.descriptionText, specialization)
     }
   }
 }

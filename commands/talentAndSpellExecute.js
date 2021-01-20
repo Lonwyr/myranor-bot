@@ -46,11 +46,11 @@ module.exports = {
                 resultEmbed.setTitle(`${config.description ? config.description : config.title}-Probe`)
                 .setDescription(`für <@${msg.author.id}>`)
             } else {
-                resultEmbed.setDescription(`${config.description ? config.description : config.title}-Probe für <@${msg.author.id}>`)
+                resultEmbed.setDescription(`${config.description ? config.description : config.title}${config.specialization ? ' (Spezialisierung)' : ''}-Probe für <@${msg.author.id}>`)
             }
 
             const pointsProvided = Number.isInteger(parseInt(args[3]))
-            let points = pointsProvided ? parseInt(args[3]) : 0
+            let points = (pointsProvided ? parseInt(args[3]) : 0) + (config.specialization ? 2 : 0)
             const modifierProvided = Number.isInteger(parseInt(args[4])) && parseInt(args[4]) !== 0
             const modifier = modifierProvided ? parseInt(args[4]) : 0
 
