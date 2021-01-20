@@ -83,28 +83,32 @@ module.exports = {
         if (cache[userId] && cache[userId].attributes[key]) {
             return cache[userId].attributes[key]
         } else {
-            throw Error(`Wert ${key} for user ${userId} is not stored.`)
+            console.log(`Attribute ${key} for user ${userId} is not stored.`)
+            throw Error(`Wert **${key}** ist mir für deinen Char nicht bekannt.`)
         }
     },
     getName: function (userId) {
         if (cache[userId]) {
             return cache[userId].name
         } else {
-            throw Error(`No character for user ${userId} is stored.`)
+            console.log(`No character for user ${userId} is stored.`)
+            throw Error(`Du hast noch keinen Charakter gespeichert. **Flüster ihn mir einfach zu**.`)
         }
     },
     getSkill: function (userId, key) {
         if (cache[userId] && cache[userId].skills[key] !== undefined) {
             return cache[userId].skills[key]
         } else {
-            throw Error(`Skill ${key} for user ${userId} is not stored.`)
+            console.log(`Skill ${key} for user ${userId} is not stored.`)
+            throw Error(`Das Talent **${key}** ist für deinen Char nicht aktiviert.`)
         }
     },
     getSpell: function (userId, key) {
         if (cache[userId] && cache[userId].spells[key] !== undefined) {
             return cache[userId].spells[key]
         } else {
-            throw Error(`Spell ${key} for user ${userId} is not stored.`)
+            console.log(`Spell ${key} for user ${userId} is not stored.`)
+            throw Error(`Der Zauber *?*${key}** ist für deinen Char nicht aktiviert.`)
         }
     },
 }

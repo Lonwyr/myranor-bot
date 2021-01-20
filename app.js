@@ -40,7 +40,10 @@ bot.on('message', msg => {
 
   const command = content.slice(config.prefix.length) // remove the prelimiter
 
-  if (!bot.commands.has(command)) return
+  if (!bot.commands.has(command)) {
+    msg.reply(`Sorry, aber den Befehl **${command}** kenne ich nicht. Versuche es mal mit **/hilfe** oder bei Talenten und Zaubern den Namen ohne '/' und Leerzeichen.`)
+    return
+  }
 
   try {
     bot.commands.get(command).execute(msg, args)
