@@ -20,37 +20,37 @@ function getAttribute(userId, roll, attributeArgument, defaultDescription, extre
 
 module.exports = {
     execute: async function (msg, args, config, checkName) {
-        let name
-        if (checkName) {
-            const userId = msg.author.id
-            if (!cache.checkCharacter(userId)) {
-                msg.reply('Bitte importiere erst einen Character aus der **Helden-Software**\nGehe einfach auf "Datei > Exportieren > Helden exportieren" und flüster ihn mir zu.')
-                return
+        try {
+            let name
+            if (checkName) {
+                const userId = msg.author.id
+                if (!cache.checkCharacter(userId)) {
+                    msg.reply('Bitte importiere erst einen Character aus der **Helden-Software**\nGehe einfach auf "Datei > Exportieren > Helden exportieren" und flüster ihn mir zu.')
+                    return
+                }
+
+                name = cache.getName(userId)
+                const getter = config.type === 'skill' ? cache.getSkill : cache.getSpell
+                args.splice(3, 0, getter(userId, checkName))
             }
 
-            name = cache.getName(userId)
-            const getter = config.type === 'skill' ? cache.getSkill : cache.getSpell
-            args.splice(3, 0, getter(userId, checkName))
-        }
-
-        const rolls = diceRoller.sum(20, 3).results
-        const lucky = rolls.filter(roll => roll === 1).length >= 2
-        const fumble = rolls.filter(roll => roll === 20).length >= 2
+            const rolls = diceRoller.sum(20, 3).results
+            const lucky = rolls.filter(roll => roll === 1).length >= 2
+            const fumble = rolls.filter(roll => roll === 20).length >= 2
 
 
-        let resultEmbed = new Discord.MessageEmbed()
-        .setColor(colors.neutral)
-        
-        if (args.length < 3) {
-            resultEmbed.setTitle(`${config.description ? config.description : config.title}-Probe`)
-            .setDescription(`für <@${msg.author.id}>`)
-        } else {
-            resultEmbed.setDescription(`${config.description ? config.description : config.title}-Probe für <@${msg.author.id}>`)
-        }
+            let resultEmbed = new Discord.MessageEmbed()
+            .setColor(colors.neutral)
+            
+            if (args.length < 3) {
+                resultEmbed.setTitle(`${config.description ? config.description : config.title}-Probe`)
+                .setDescription(`für <@${msg.author.id}>`)
+            } else {
+                resultEmbed.setDescription(`${config.description ? config.description : config.title}${config.specialization ? ' (Spezialisierung)' : ''}-Probe für <@${msg.author.id}>`)
+            }
 
-        try {
             const pointsProvided = Number.isInteger(parseInt(args[3]))
-            let points = pointsProvided ? parseInt(args[3]) : 0
+            let points = (pointsProvided ? parseInt(args[3]) : 0) + (config.specialization ? 2 : 0)
             const modifierProvided = Number.isInteger(parseInt(args[4])) && parseInt(args[4]) !== 0
             const modifier = modifierProvided ? parseInt(args[4]) : 0
 
