@@ -3,7 +3,7 @@ const colors = require('./../helper/colors')
 const Discord = require('discord.js')
 
 module.exports = {
-  name: 'roll',
+  name: 'wurf',
   description: 'Rolls a check',
   help: 'Würfelt die Würfel.',
   detailedHelp: 'Standard wird 1W20 gewürfelt.\nBeispiele: 2W6+4 3w20-2 d10 w6+4.',
