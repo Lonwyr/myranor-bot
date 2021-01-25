@@ -1,5 +1,6 @@
 module.exports = Object.assign({
   help: require('./help'),
+  template: require('./template'),
   issues: require('./issues'),
   wurf: require('./wurf'),
   at: require('./at'),
