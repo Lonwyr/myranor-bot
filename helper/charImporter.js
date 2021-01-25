@@ -1,4 +1,3 @@
-
 const convert = require('xml-js')
 const request = require('request')
 const cache = require('./cache')
@@ -58,23 +57,29 @@ module.exports = {
 
         const userId = msg.author.id
         const url = msg.attachments.toJSON()[0].url
-        if (!url.endsWith('.xml')) throw new Error('no XML provided')
+        if (!url.endsWith('.xml') && !url.endsWith('.json')) throw new Error('no XML or JSON provided')
 
         request.get(url, function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                const charString = convert.xml2json(body, {compact: true, spaces: 2})
-                const char = JSON.parse(charString).helden.held
-                const attributes = char.eigenschaften.eigenschaft
-                const skills = char.talentliste.talent
-                const spells = char.zauberliste.zauber
+                let charJson
 
-                let charJson = {
-                    name: char._attributes.name,
-                    attributes: extractAttributes(attributes),
-                    skills: extractSkillsAndSpells(skills)
+                if (url.endsWith('.xml')) {
+                    const charString = convert.xml2json(body, {compact: true, spaces: 2})
+                    const char = JSON.parse(charString).helden.held
+                    const attributes = char.eigenschaften.eigenschaft
+                    const skills = char.talentliste.talent
+                    const spells = char.zauberliste.zauber
+
+                    charJson = {
+                        name: char._attributes.name,
+                        attributes: extractAttributes(attributes),
+                        skills: extractSkillsAndSpells(skills)
+                    }
+
+                    charJson.spells = extractSkillsAndSpells(spells)
+                } else {
+                    charJson = JSON.parse(body)
                 }
-
-                charJson.spells = extractSkillsAndSpells(spells)
 
                 cache.store(userId, charJson, slot)
                 

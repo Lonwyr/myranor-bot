@@ -80,7 +80,7 @@ module.exports = {
         return !!cache[userId]
     },
     getAttribute: function (userId, key) {
-        if (cache[userId] && cache[userId].attributes[key]) {
+        if (cache[userId] && cache[userId].attributes[key] !== undefined) {
             return cache[userId].attributes[key]
         } else {
             console.log(`Attribute ${key} for user ${userId} is not stored.`)
@@ -108,7 +108,7 @@ module.exports = {
             return cache[userId].spells[key]
         } else {
             console.log(`Spell ${key} for user ${userId} is not stored.`)
-            throw Error(`Der Zauber *?*${key}** ist für deinen Char nicht aktiviert.`)
+            throw Error(`Der Zauber **${key}** ist für deinen Char nicht aktiviert.`)
         }
     },
 }
