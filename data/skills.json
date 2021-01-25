@@ -284,6 +284,10 @@
         "description": "Grobschmied",
         "attributes": ["FF", "KO", "KK"]
     }, {
+        "name": "handel",
+        "description": "Handel",
+        "attributes": ["KL", "IN", "CH"]
+    }, {
         "name": "hauswirtschaft",
         "description": "Hauswirtschaft",
         "attributes": ["IN", "CH", "FF"]

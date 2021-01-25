@@ -30,7 +30,8 @@ function extractSkillsAndSpells(list) {
 
     if (list) {
         for (item of list) {
-            const name = item._attributes.name.replace(/[\ |\/|:]/gm, '').toLowerCase()
+            let name = item._attributes.name.replace(/[\ |\/|:]/gm, '').toLowerCase()
+            name = name.replace(/elementar\((.*?)\)/gm, '$1')
             const value = parseInt(item._attributes.value)
             if (!name.startsWith('lesenschreiben') && !name.startsWith('sprachenkennen')) {
                 json[name] = parseInt(value)
@@ -70,9 +71,10 @@ module.exports = {
                 let charJson = {
                     name: char._attributes.name,
                     attributes: extractAttributes(attributes),
-                    skills: extractSkillsAndSpells(skills),
-                    spells: extractSkillsAndSpells(spells)
+                    skills: extractSkillsAndSpells(skills)
                 }
+
+                charJson.spells = extractSkillsAndSpells(spells)
 
                 cache.store(userId, charJson, slot)
                 
