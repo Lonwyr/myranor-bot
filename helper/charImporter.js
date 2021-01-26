@@ -30,7 +30,8 @@ function extractSkillsAndSpells(list) {
     if (list) {
         for (item of list) {
             let name = item._attributes.name.replace(/[\ |\/|:]/gm, '').toLowerCase()
-            name = name.replace(/elementar\((.*?)\)/gm, '$1')
+            name = name.replace(/elementar\((.*?)\)/gm, '$1') // elemental spells
+            name = name.replace(/liturgiekenntnis\:\ .*/gm, 'liturgiekenntnis') // Ritual- und Liturgiekenntnis
             const value = parseInt(item._attributes.value)
             if (!name.startsWith('lesenschreiben') && !name.startsWith('sprachenkennen')) {
                 json[name] = parseInt(value)
