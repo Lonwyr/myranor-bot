@@ -399,5 +399,9 @@
         "name": "zimmermann",
         "description": "Zimmermann",
         "attributes": ["KL", "FF", "KK"]
+    }, {
+        "name": "liturgiekenntnis",
+        "description": "Liturgiekenntnis",
+        "attributes": ["MU", "IN", "CH"]
     }]
 }
