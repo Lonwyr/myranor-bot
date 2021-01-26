@@ -96,6 +96,14 @@
         "description": "Menschenkenntnis",
         "attributes": ["KL", "IN", "CH"]
     }, {
+        "name": "schauspielerei",
+        "description": "Schauspielerei",
+        "attributes": ["MU", "KL", "CH"]
+    }, {
+        "name": "schriftlicherausdruck",
+        "description": "Schriftlicher Ausdruck",
+        "attributes": ["KL", "IN", "IN"]
+    }, {
         "name": "sichverkleiden",
         "description": "Sich Verkleiden",
         "attributes": ["MU", "CH", "GE"]
