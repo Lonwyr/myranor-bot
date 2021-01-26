@@ -14,19 +14,25 @@ module.exports = {
 
         const client = await pool.connect()
         try {
-            await client.query(`
-                INSERT INTO characters (userid, slot, character)
-                VALUES('${userId}', '${slot}', '${charString}') 
+            const insertCharacterQuery = {
+                text: `INSERT INTO characters (userid, slot, character)
+                VALUES($1, $2, $3) 
                 ON CONFLICT (userid, slot) 
                 DO 
-                UPDATE SET character = '${charString}'`)
+                UPDATE SET character = $3`,
+                values: [userId, slot, charString]
+            }
+            await client.query(insertCharacterQuery)
                 
-            await client.query(`
-                INSERT INTO activeslot (userid, slot)
-                VALUES('${userId}', '${slot}') 
+            const actiaveSlotQuery = {
+                text: `INSERT INTO activeslot (userid, slot)
+                VALUES($1, $2) 
                 ON CONFLICT (userid) 
                 DO 
-                UPDATE SET slot = '${slot}'`)
+                UPDATE SET slot = $2`,
+                values: [userId, slot]
+            }
+            await client.query(actiaveSlotQuery)
         } finally {
             client.release()
         }
@@ -53,23 +59,31 @@ module.exports = {
     activateSlot: async function (userId, slot) {
         const client = await pool.connect()
         try {
-            const result = await client.query(`
-                SELECT userid, character
-                FROM characters
-                WHERE slot = '${slot}' AND userid = '${userId}'
-            `)
+            const getActiveCharacter = {
+                text: `
+                    SELECT userid, character
+                    FROM characters
+                    WHERE slot = $1 AND userid = $2
+                `,
+                values: [slot, userId]
+            }
+            const result = await client.query(getActiveCharacter)
            
             if (result.rows.length !== 1) {
                 return
             }
             cache[userId] = JSON.parse(result.rows[0].character)
 
-            await client.query(`
-                INSERT INTO activeslot (userid, slot)
-                VALUES('${userId}', '${slot}') 
-                ON CONFLICT (userid)
-                DO 
-                UPDATE SET slot = '${slot}'`)
+            const activateSlotQuery = {
+                text: `
+                    INSERT INTO activeslot (userid, slot)
+                    VALUES($1, $2) 
+                    ON CONFLICT (userid)
+                    DO 
+                    UPDATE SET slot = $2`,
+                values: [userId, slot]
+            }
+            await client.query(activateSlotQuery)
 
                 return this.getName(userId)
         } finally {
