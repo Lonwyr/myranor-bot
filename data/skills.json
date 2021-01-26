@@ -22,7 +22,7 @@
     }, {
         "name": "klettern",
         "description": "Klettern",
-        "attributes": ["MI", "IN", "GE"]
+        "attributes": ["MU", "IN", "GE"]
     }, {
         "name": "körperbeherrschung",
         "description": "Körperbeherrschung",
