@@ -1,0 +1,14 @@
+CREATE TABLE public.activeslot
+(
+    userid bigint,
+    slot smallint,
+    CONSTRAINT activeslot_pkey UNIQUE (userid)
+)
+
+CREATE TABLE public.characters
+(
+    userid bigint NOT NULL,
+    slot smallint NOT NULL,
+    "character" character(10000) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT characters_pkey PRIMARY KEY (userid, slot)
+)

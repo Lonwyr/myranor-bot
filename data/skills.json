@@ -204,7 +204,7 @@
         "description": "Rechtskunde",
         "attributes": ["KL", "KL", "IN"]
     }, {
-        "name": "sagenlegenden",
+        "name": "sagenundlegenden",
         "description": "Sagen/Legenden",
         "attributes": ["KL", "IN", "CH"]
     }, {
