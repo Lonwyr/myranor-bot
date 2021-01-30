@@ -10,6 +10,7 @@ module.exports = {
   execute(msg, args) {
     const config = {
         abb: 'AT',
+        title: 'Nahkampfangriff',
         fumbles: meeleFumbles
     }
     offenseExecute.execute(msg, args, config)

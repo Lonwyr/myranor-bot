@@ -11,6 +11,7 @@ module.exports = {
   execute(msg, args) {
     const config = {
         abb: 'FK',
+        title: 'Fernkampfangriff',
         fumbles: rangedFumbles
     }
     offenseExecute.execute(msg, args, config)
