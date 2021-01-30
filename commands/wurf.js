@@ -21,7 +21,7 @@ module.exports = {
       const modifier = parseInt(matchObj.groups.modifier) || 0
       const roll = diceRoller.sum(size, amount, algebraic, modifier)
 
-      resultEmbed.addField(roll.sum, '[' + roll.results.join('+') + ']' + algebraic + modifier, true)
+      resultEmbed.addField(roll.sum, `[${roll.results.join('+')}]${modifier !== 0 ? algebraic + modifier : ''}`, true)
       .setTitle('Würfelwurf '+ args[0])
     } else {
       const roll = diceRoller.sum(20, 1)
