@@ -70,7 +70,7 @@ module.exports = {
                 resultEmbed.setTitle(`${name ? name + ' erzielt e' : 'E'}inhervorragendes Ergebnis!`)
                 .setColor(colors.criticalSuccess)
             } else if (fumble) {
-                resultEmbed.setTitle(`${name ? name + 'patzt!' : 'Patzer!'}`)
+                resultEmbed.setTitle(`${name ? name + ' patzt!' : 'Patzer!'}`)
                 .setColor(colors.criticalFailure)
             } else {
                 const att1diff = compare(att1, rolls[0], extremeCheckPenalty)

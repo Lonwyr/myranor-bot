@@ -13,19 +13,36 @@ module.exports = {
     .setDescription(`Für <@${msg.author.id}>`)
 
     if (args.length > 0) {
-      const RE_DICE = /(?<amount>\d*)[W|w|D|d](?<size>\d*)(?<algebraic>[\+|\-]?)(?<modifier>\d*)/
-      const matchObj = RE_DICE.exec(args[0])
-      const amount = parseInt(matchObj.groups.amount) || 1
-      const size = parseInt(matchObj.groups.size) || 6
-      const algebraic = matchObj.groups.algebraic || '+'
-      const modifier = parseInt(matchObj.groups.modifier) || 0
-      const roll = diceRoller.sum(size, amount, algebraic, modifier)
+      const diceExpression = args[0];
+      // check for a single d20 with theshold
+      if (parseInt(diceExpression).toString() === diceExpression) {  
+        const rollResult = diceRoller.sum(20, 1).sum
+        resultEmbed.addField(rollResult, 'W20', true)
+        .setTitle('Würfelwurf 1W20')
+        if (rollResult === 1) {
+          resultEmbed.setColor(colors.criticalSuccess);
+        } else if (rollResult === 20) {
+          resultEmbed.setColor(colors.criticalFailure);
+        } else if (rollResult <= parseInt(diceExpression)) {
+          resultEmbed.setColor(colors.success);
+        } else {
+          resultEmbed.setColor(colors.failure);
+        }
+      } else {
+        const RE_DICE = /(?<amount>\d*)[W|w|D|d](?<size>\d*)(?<algebraic>[\+|\-]?)(?<modifier>\d*)/
+        const matchObj = RE_DICE.exec(diceExpression)
+        const amount = parseInt(matchObj.groups.amount) || 1
+        const size = parseInt(matchObj.groups.size) || 6
+        const algebraic = matchObj.groups.algebraic || '+'
+        const modifier = parseInt(matchObj.groups.modifier) || 0
+        const roll = diceRoller.sum(size, amount, algebraic, modifier)
 
-      resultEmbed.addField(roll.sum, `[${roll.results.join('+')}]${modifier !== 0 ? algebraic + modifier : ''}`, true)
-      .setTitle('Würfelwurf '+ args[0])
+        resultEmbed.addField(roll.sum, `[${roll.results.join('+')}]${modifier !== 0 ? algebraic + modifier : ''}`, true)
+        .setTitle('Würfelwurf '+ diceExpression)
+      }
     } else {
       const roll = diceRoller.sum(20, 1)
-      resultEmbed.addField(roll.sum, '[' + roll.results.join('+') + ']', true)
+      resultEmbed.addField(roll.sum, 'W20', true)
       .setTitle('Würfelwurf 1W20')
     }
     
