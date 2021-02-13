@@ -7,7 +7,7 @@ module.exports = {
   detailedHelp: 'Bei einer 1 oder 20 wird wird er Bestätigungs-Wurf gemacht und bei einem Patzer die Patzer-Tabelle gewürfelt.',
   execute(msg, args) {
     const config = {
-      title: 'Parrieren',
+      title: 'Parade',
       color: '#27AE60',
       success: 'Parriert',
       criticalSuccess: 'Glückliche Parade',

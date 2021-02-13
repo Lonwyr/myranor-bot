@@ -64,7 +64,7 @@ module.exports = {
                 const modifier = parseInt(matchObj.groups.modifier) || 0
                 const damageRoll = diceRoller.sum(size, amount, algebraic, modifier)
 
-                resultEmbed.addField(damageRoll.sum + ' TP', '[' + damageRoll.results.join('+') + ']' + algebraic + modifier, true)
+                resultEmbed.addField(`${damageRoll.sum} TP`, `[${damageRoll.results.join('+')}]${modifier !== 0 ? algebraic + modifier : ''}`, true)
             }
             
             const sizeDifference = args[2] !== undefined ? args[2] : '0'
