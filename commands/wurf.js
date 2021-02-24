@@ -38,6 +38,7 @@ module.exports = {
     msg.channel.send(resultEmbed)
   }
 }
+
 function roll1d20Check(resultEmbed, diceExpression) {
   const value = parseInt(diceExpression)
   const rollResult = diceRoller.sum(20, 1).sum
