@@ -16,18 +16,7 @@ module.exports = {
       const diceExpression = args[0];
       // check for a single d20 with theshold
       if (parseInt(diceExpression).toString() === diceExpression) {  
-        const rollResult = diceRoller.sum(20, 1).sum
-        resultEmbed.addField(rollResult, 'W20', true)
-        .setTitle('Würfelwurf 1W20')
-        if (rollResult === 1) {
-          resultEmbed.setColor(colors.criticalSuccess);
-        } else if (rollResult === 20) {
-          resultEmbed.setColor(colors.criticalFailure);
-        } else if (rollResult <= parseInt(diceExpression)) {
-          resultEmbed.setColor(colors.success);
-        } else {
-          resultEmbed.setColor(colors.failure);
-        }
+        roll1d20Check(resultEmbed, diceExpression)
       } else {
         const RE_DICE = /(?<amount>\d*)[W|w|D|d](?<size>\d*)(?<algebraic>[\+|\-]?)(?<modifier>\d*)/
         const matchObj = RE_DICE.exec(diceExpression)
@@ -49,3 +38,27 @@ module.exports = {
     msg.channel.send(resultEmbed)
   }
 }
+
+function roll1d20Check(resultEmbed, diceExpression) {
+  const value = parseInt(diceExpression)
+  const rollResult = diceRoller.sum(20, 1).sum
+  const confirmationRoll = (rollResult === 1 || rollResult === 20) ? diceRoller.roll(20) : undefined
+
+  resultEmbed.addField(rollResult, 'W20', true)
+    .setTitle('Würfelwurf 1W20')
+  
+  if (confirmationRoll) {
+    resultEmbed.addField(confirmationRoll, 'Bestätigung', true)
+  }
+
+  if (rollResult === 1 && confirmationRoll <= value) {
+    resultEmbed.setColor(colors.criticalSuccess)
+  } else if (rollResult === 20 && confirmationRoll > value) {
+    resultEmbed.setColor(colors.criticalFailure)
+  } else if (rollResult <= value) {
+    resultEmbed.setColor(colors.success)
+  } else {
+    resultEmbed.setColor(colors.failure)
+  }
+}
+
