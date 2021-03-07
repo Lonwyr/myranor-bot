@@ -60,4 +60,3 @@ function roll1d20Check(resultEmbed, diceExpression) {
     resultEmbed.setColor(colors.failure)
   }
 }
-
