@@ -1,6 +1,5 @@
 const offenseExecute = require('./offenseExecute')
 const rangedFumbles = require('./../data/rangedFumbles.json')
-const Discord = require('discord.js')
 
 module.exports = {
   name: 'fk',

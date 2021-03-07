@@ -83,7 +83,7 @@ module.exports = {
             if (targetZone === 'Arme' || targetZone === 'Beine') {
                 zoneMessage = zoneMessage + (zoneRoll % 2 ? ' (links)' : ' (rechts)')
             } 
-            resultEmbed.addField(zoneMessage, '[' + zoneRoll + '] Trefferzone; Größendifferent: ' + sizeDifference, true)
+            resultEmbed.addField(zoneMessage, `[${zoneRoll}] Trefferzone; Größendifferent: ${sizeDifference}`, true)
         } else {
             resultEmbed.setTitle('Attacke verfehlt')
             .setColor(colors.failure)
