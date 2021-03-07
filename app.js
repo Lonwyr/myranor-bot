@@ -6,6 +6,7 @@ const config = require("./config.json")
 const botCommands = require('./commands')
 const charImporter = require('./helper/charImporter')
 const cache = require('./helper/cache')
+const initController = require('./helper/initController')
 
 config.token = process.env.BOT_SECRET
 
@@ -27,7 +28,6 @@ bot.on("ready", async () => {
 })
 
 bot.on('message', msg => {
-
   // import
   if (msg.channel.type === 'dm' && msg.attachments.size > 0) {
     charImporter.import(msg)
@@ -51,3 +51,6 @@ bot.on('message', msg => {
     msg.reply('there was an error trying to execute that command!')
   }
 })
+
+
+bot.on('messageReactionAdd', initController.onReaction)
