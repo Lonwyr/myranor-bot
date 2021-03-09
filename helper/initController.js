@@ -1,4 +1,5 @@
 const Discord = require('discord.js')
+const diceRoller = require('./../helper/diceRoller')
 const colors = require('./colors')
 const cache = require('./cache')
 
@@ -25,9 +26,6 @@ function startInit(message) {
   .setTitle("Initiative")
 
   return message.channel.send(resultEmbed).then(async resultMessage => {
-    //await resultMessage.react('🎲')
-    await resultMessage.react('☠️')
-    //await resultMessage.react('🛑')
     setActiveInitative(resultMessage)
   })
 }
@@ -40,9 +38,27 @@ async function getInit(message) {
   return activeInitatives[message.channel.id]
 }
 
-async function setParticipant(message, name, initValue) {
+async function setParticipant(message, name, initValueOrExpression) {
   let init = await getInit(message)
-  init.participants[name] = initValue
+  let expression = ""
+  
+  if (init.participants[name]) {
+    expression = init.participants[name].expression
+    if (initValueOrExpression === "max") {
+      initValueOrExpression = diceRoller.max(expression)
+    } else if (!isNaN(initValueOrExpression) && (initValueOrExpression.startsWith("+") || initValueOrExpression.startsWith("-"))) {
+      initValueOrExpression = init.participants[name].value + parseInt(initValueOrExpression)
+    }
+  } else if (parseInt(initValueOrExpression).toString() !== initValueOrExpression) {
+    expression = initValueOrExpression
+    initValueOrExpression = diceRoller.rollExpression(initValueOrExpression).sum
+  } else {
+    initValueOrExpression = parseInt(initValueOrExpression)
+  }
+  init.participants[name] = {
+    value: initValueOrExpression,
+    expression: expression
+  }
   postInit(message)
 }
 
@@ -58,9 +74,13 @@ async function postInit(message) {
 
   let participantsToPost = []
   for (const participant in activeInitiative.participants) {
+    let participantValue = activeInitiative.participants[participant].value
+    if (activeInitiative.participants[participant].expression) {
+      participantValue = `${participantValue} (${activeInitiative.participants[participant].expression})`
+    }
     participantsToPost.push({
       name: participant,
-      value: activeInitiative.participants[participant]
+      value: participantValue
     })
   }
   participantsToPost = participantsToPost.sort((a,b) => {
@@ -86,6 +106,7 @@ async function postInit(message) {
 
   return message.channel.send(resultEmbed).then(async resultMessage => {
     //await resultMessage.react('🎲')
+    await resultMessage.react('⬆️')
     await resultMessage.react('☠️')
     //await resultMessage.react('🛑')
     activeInitiative.message = resultMessage
@@ -102,13 +123,6 @@ module.exports = {
         break
       case 1:
         const initValueOrCommand = args[0]
-
-        // direct setting an initative
-        if (!isNaN(initValueOrCommand)) {
-          const name = cache.checkCharacter(message.author.id) ? cache.getName(message.author.id) : msg.author.username
-          setParticipant(message, name, parseInt(initValueOrCommand))
-          return
-        }
         
         switch (initValueOrCommand) {
           case 'start':
@@ -117,20 +131,21 @@ module.exports = {
           case 'stop':
             initStop(message)
             break
+          default:
+            const name = cache.checkCharacter(message.author.id) ? cache.getName(message.author.id) : msg.author.username
+            setParticipant(message, name, initValueOrCommand)
         }
         break
       case 2:
         if (args[0] === 'remove') {
           removeParticipant(message, args[1])
-        }
-
-        if (!isNaN(args[1])) {
-          setParticipant(message, args[0], parseInt(args[1]))
+        } else {
+          setParticipant(message, args[0], args[1])
         }
         break
       case 3:
-        if (args[0] === 'set' && !isNaN(args[2])) {
-          setParticipant(message, args[1], parseInt(args[2]))
+        if (args[0] === 'set') {
+          setParticipant(message, args[1], args[2])
         }
         break
     }
@@ -138,6 +153,10 @@ module.exports = {
   onReaction: function (reaction, user) {
     const channelId = reaction.message.channel.id
     if (getActiveInitative(channelId) && getActiveInitative(channelId).message === reaction.message) {
+      if (reaction.emoji.name === '⬆️') {
+        const name = cache.checkCharacter(user.id) ? cache.getName(user.id) : user.username
+        setParticipant(reaction.message, name, "max")
+      }
       if (reaction.emoji.name === '☠️') {
         const name = cache.checkCharacter(user.id) ? cache.getName(user.id) : user.username
         removeParticipant(reaction.message, name)

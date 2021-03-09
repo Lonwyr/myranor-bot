@@ -18,14 +18,7 @@ module.exports = {
       if (parseInt(diceExpression).toString() === diceExpression) {  
         roll1d20Check(resultEmbed, diceExpression)
       } else {
-        const RE_DICE = /(?<amount>\d*)[W|w|D|d](?<size>\d*)(?<algebraic>[\+|\-]?)(?<modifier>\d*)/
-        const matchObj = RE_DICE.exec(diceExpression)
-        const amount = parseInt(matchObj.groups.amount) || 1
-        const size = parseInt(matchObj.groups.size) || 6
-        const algebraic = matchObj.groups.algebraic || '+'
-        const modifier = parseInt(matchObj.groups.modifier) || 0
-        const roll = diceRoller.sum(size, amount, algebraic, modifier)
-
+        const roll = diceRoller.rollExpression(diceExpression)
         resultEmbed.addField(roll.sum, `[${roll.results.join('+')}]${modifier !== 0 ? algebraic + modifier : ''}`, true)
         .setTitle('Würfelwurf '+ diceExpression)
       }

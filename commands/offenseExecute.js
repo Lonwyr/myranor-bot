@@ -56,14 +56,7 @@ module.exports = {
             }
 
             if (args.length > 1) {
-                const RE_DAMAGE = /(?<amount>\d*)[W|w|D|d](?<size>\d*)(?<algebraic>[\+|\-]?)(?<modifier>\d*)/;
-                const matchObj = RE_DAMAGE.exec(args[1])
-                const amount = parseInt(matchObj.groups.amount) || 1
-                const size = parseInt(matchObj.groups.size) || 6
-                const algebraic = matchObj.groups.algebraic || '+'
-                const modifier = parseInt(matchObj.groups.modifier) || 0
-                const damageRoll = diceRoller.sum(size, amount, algebraic, modifier)
-
+                const damageRoll = diceRoller.rollExpression(args[1])
                 resultEmbed.addField(`${damageRoll.sum} TP`, `[${damageRoll.results.join('+')}]${modifier !== 0 ? algebraic + modifier : ''}`, true)
             }
             
