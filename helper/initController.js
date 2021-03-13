@@ -2,6 +2,7 @@ const Discord = require('discord.js')
 const diceRoller = require('./../helper/diceRoller')
 const colors = require('./colors')
 const cache = require('./cache')
+const roll = require('./../helper/diceRoller')
 
 let activeInitatives = {}
 
@@ -46,8 +47,14 @@ async function setParticipant(message, name, initValueOrExpression) {
     expression = init.participants[name].expression
     if (initValueOrExpression === "max") {
       initValueOrExpression = diceRoller.max(expression)
-    } else if (!isNaN(initValueOrExpression) && (initValueOrExpression.startsWith("+") || initValueOrExpression.startsWith("-"))) {
-      initValueOrExpression = init.participants[name].value + parseInt(initValueOrExpression)
+    } else if (initValueOrExpression.startsWith("+") || initValueOrExpression.startsWith("-")) {
+      if (!isNaN(initValueOrExpression)) {
+        initValueOrExpression = init.participants[name].value + parseInt(initValueOrExpression)
+      } else {
+        const expression = initValueOrExpression.substring(1)
+        const diff = (initValueOrExpression.startsWith("+") ? 1 : -1) * roll.rollExpression(expression).sum
+        initValueOrExpression = init.participants[name].value + parseInt(initValueOrExpression)
+      }
     }
   } else if (parseInt(initValueOrExpression).toString() !== initValueOrExpression) {
     expression = initValueOrExpression
@@ -132,7 +139,7 @@ module.exports = {
             initStop(message)
             break
           default:
-            const name = cache.checkCharacter(message.author.id) ? cache.getName(message.author.id) : msg.author.username
+            const name = cache.checkCharacter(message.author.id) ? cache.getName(message.author.id) : message.author.username
             setParticipant(message, name, initValueOrCommand)
         }
         break

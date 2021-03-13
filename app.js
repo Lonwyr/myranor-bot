@@ -13,9 +13,6 @@ config.token = process.env.BOT_SECRET
 const bot = new Discord.Client()
 bot.commands = new Discord.Collection()
 
-
-console.log("use bot token: " + config.token)
-
 bot.login(config.token)
 
 Object.keys(botCommands).map(key => {
@@ -25,6 +22,7 @@ Object.keys(botCommands).map(key => {
 bot.on("ready", async () => {
   bot.user.setActivity(config.prefix + 'hilfe', { type: 'WATCHING' })
   await cache.load()
+  console.log("bot ready")
 })
 
 bot.on('message', msg => {
