@@ -28,23 +28,23 @@ bot.on("ready", async () => {
 })
 
 bot.on('message', msg => {
-  // import
-  if (msg.channel.type === 'dm' && msg.attachments.size > 0) {
-    charImporter.import(msg)
-  }
-
-  const args = msg.content.split(/[ |\,]+/)
-  const content = args.shift().toLowerCase()
-
-  if (!content.startsWith(config.prefix)) return
-
-  const command = content.slice(config.prefix.length) // remove the prelimiter
-
-  if (!bot.commands.has(command)) {
-    return
-  }
-
   try {
+    // import
+    if (msg.channel.type === 'dm' && msg.attachments.size > 0) {
+      charImporter.import(msg)
+    }
+
+    const args = msg.content.split(/[ |\,]+/)
+    const content = args.shift().toLowerCase()
+
+    if (!content.startsWith(config.prefix)) return
+
+    const command = content.slice(config.prefix.length) // remove the prelimiter
+
+    if (!bot.commands.has(command)) {
+      return
+    }
+
     bot.commands.get(command).execute(msg, args)
   } catch (error) {
     console.error(error)
