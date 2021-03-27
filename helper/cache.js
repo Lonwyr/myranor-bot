@@ -109,6 +109,9 @@ module.exports = {
             throw Error(`Du hast noch keinen Charakter gespeichert. **Flüster ihn mir einfach zu**.`)
         }
     },
+    checkSkill: function (userId, key) {
+        return !!cache[userId].skills[key]
+    },
     getSkill: function (userId, key) {
         if (cache[userId] && cache[userId].skills[key] !== undefined) {
             return cache[userId].skills[key]

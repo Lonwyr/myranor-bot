@@ -30,14 +30,21 @@ module.exports = {
                 }
 
                 name = cache.getName(userId)
-                const getter = config.type === 'skill' ? cache.getSkill : cache.getSpell
-                args.splice(3, 0, getter(userId, checkName))
+                if (config.type === 'skill') {
+                    args.splice(3, 0, cache.getSkill(userId, checkName))
+                } else if (config.type === 'spell') {
+                    args.splice(3, 0, cache.getSpell(userId, checkName))
+                }
             }
 
             const rolls = diceRoller.sum(20, 3).results
             const lucky = rolls.filter(roll => roll === 1).length >= 2
             const fumble = rolls.filter(roll => roll === 20).length >= 2
 
+            const pointsProvided = Number.isInteger(parseInt(args[3]))
+            let points = (pointsProvided ? parseInt(args[3]) : 0) + (config.specialization ? 2 : 0)
+            const modifierProvided = Number.isInteger(parseInt(args[4])) && parseInt(args[4]) !== 0
+            const modifier = modifierProvided ? parseInt(args[4]) : 0
 
             let resultEmbed = new Discord.MessageEmbed()
             .setColor(colors.neutral)
@@ -46,13 +53,17 @@ module.exports = {
                 resultEmbed.setTitle(`${config.description ? config.description : config.title}-Probe`)
                 .setDescription(`für <@${msg.author.id}>`)
             } else {
-                resultEmbed.setDescription(`${config.description ? config.description : config.title}${config.specialization ? ' (Spezialisierung)' : ''}-Probe für <@${msg.author.id}>`)
+                let valueSubstring = ''
+                if (pointsProvided) {
+                    valueSubstring += ` ${config.value} ${points}`
+                }
+                if (modifierProvided) {
+                    const modifierDescription = modifier > 0 ? 'Erschwernis' : 'Erleichterung'
+                    valueSubstring += ` (${modifier} ${modifierDescription})`
+                }
+                resultEmbed.setDescription(`${config.description ? config.description : config.title}${config.specialization ? ' (Spezialisierung)' : ''}-Probe mit ${valueSubstring} für <@${msg.author.id}>`)
             }
 
-            const pointsProvided = Number.isInteger(parseInt(args[3]))
-            let points = (pointsProvided ? parseInt(args[3]) : 0) + (config.specialization ? 2 : 0)
-            const modifierProvided = Number.isInteger(parseInt(args[4])) && parseInt(args[4]) !== 0
-            const modifier = modifierProvided ? parseInt(args[4]) : 0
 
             const extremeCheckPenalty = Math.max(modifier - points, 0)
             
@@ -67,7 +78,7 @@ module.exports = {
             )
     
             if (lucky) {
-                resultEmbed.setTitle(`${name ? name + ' erzielt e' : 'E'}inhervorragendes Ergebnis!`)
+                resultEmbed.setTitle(`${name ? name + ' erzielt e' : 'E'}in hervorragendes Ergebnis!`)
                 .setColor(colors.criticalSuccess)
             } else if (fumble) {
                 resultEmbed.setTitle(`${name ? name + ' patzt!' : 'Patzer!'}`)
@@ -77,13 +88,6 @@ module.exports = {
                 const att2diff = compare(att2, rolls[1], extremeCheckPenalty)
                 const att3diff = compare(att3, rolls[2], extremeCheckPenalty)
                 if (args.length >= 3 || checkName) {
-                    if (pointsProvided) {
-                        const pointsTitle = points + (modifierProvided ? ` (${modifier})` : '')
-                        const modifierDescription = modifier > 0 ? 'Erschwernis' : 'Erleichterung'
-                        const pointsDescription = config.value + (modifierProvided ? ' (' + modifierDescription +')' : '')
-                        resultEmbed.addField(pointsTitle, pointsDescription)
-                    }
-
                     if (extremeCheckPenalty > 0) points = 0
 
                     if (args.length === 3) {
