@@ -1,0 +1,138 @@
+{
+    "items": [{
+        "name": "wachehalten",
+        "description": "Wache Halten",
+        "attributes": ["MU", "IN", "KO"],
+        "skills": [{
+            "name": "selbstbeherrschung",
+            "factor": 1
+        }, {
+            "name": "sinnenschärfe",
+            "factor": 2
+        }],
+        "modifier": 1
+    }, {
+        "name": "kräutersuchen",
+        "description": "Kräuter suchen",
+        "attributes": ["MU", "IN", "FF"],
+        "skills": [{
+            "name": "wildnisleben",
+            "factor": 1
+        }, {
+            "name": "sinnenschärfe",
+            "factor": 1
+        }, {
+            "name": "pflanzenkunde",
+            "factor": 1
+        }]
+    }, {
+        "name": "pirschjagd",
+        "description": "Pirschjagd",
+        "attributes": ["MU", "IN", "GE"],
+        "skills": [{
+            "name": "wildnisleben",
+            "factor": 1
+        }, {
+            "name": "tierkunde",
+            "factor": 1
+        }, {
+            "name": "fährtensuchen",
+            "factor": 1
+        }, {
+            "name": "schleichen",
+            "factor": 1
+        }, {
+            "name": "GEHT NOCH NICHT. Ein TaW einer Fernkampfwaffe",
+            "factor": 1
+        }]
+    }, {
+        "name": "ansitzjagd",
+        "description": "Ansitzjagd",
+        "attributes": ["MU", "IN", "GE"],
+        "skills": [{
+            "name": "wildnisleben",
+            "factor": 1
+        }, {
+            "name": "tierkunde",
+            "factor": 1
+        }, {
+            "name": "fährtensuchen",
+            "factor": 1
+        }, {
+            "name": "sichverstecken",
+            "factor": 1
+        }, {
+            "name": "GEHT NOCH NICHT. Ein TaW einer Fernkampfwaffe",
+            "factor": 1
+        }]
+    }, {
+        "name": "nahrungsammeln",
+        "description": "Nahrung sammeln",
+        "attributes": ["MU", "IN", "FF"],
+        "skills": [{
+            "name": "wildnisleben",
+            "factor": 1
+        }, {
+            "name": "sinnenschärfe",
+            "factor": 1
+        }, {
+            "name": "pflanzenkunde",
+            "factor": 1
+        }]
+    }, {
+        "name": "therfallenaufstellen",
+        "description": "Tierfallen aufstellen",
+        "attributes": ["KL", "IN", "FF"],
+        "skills": [{
+            "name": "fallenstellen",
+            "factor": 2
+        }, {
+            "name": "tierkunde",
+            "factor": 1
+        }, {
+            "name": "fährtensuchen",
+            "factor": 1
+        }, {
+            "name": "wildnisleben",
+            "factor": 1
+        }],
+        "limits": [{
+            "name": "fallenstellen",
+            "factor": 1
+        }]
+    }, {
+        "name": "speerfischen",
+        "description": "Speerfischen",
+        "attributes": ["MU", "IN", "GE"],
+        "skills": [{
+            "name": "wildnisleben",
+            "factor": 1
+        }, {
+            "name": "tierkunde",
+            "factor": 1
+        }, {
+            "name": "selbstbeherrschung",
+            "factor": 1
+        }, {
+            "name": "wurfspeere",
+            "factor": 1
+        }]
+    }, {
+        "name": "hetzjagd",
+        "description": "Hetzjagd",
+        "attributes": ["MU", "IN", "GE"],
+        "skills": [{
+            "name": "wildnisleben",
+            "factor": 1
+        }, {
+            "name": "tierkunde",
+            "factor": 1
+        }, {
+            "name": "reiten",
+            "factor": 2
+        }, {
+            "name": "GEHT NOCH NICHT. Ein TaW einer Fernkampfwaffe",
+            "factor": 1
+        }]
+    }]
+}

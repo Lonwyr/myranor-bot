@@ -11,4 +11,6 @@ module.exports = Object.assign({
   zfw: require('./zfw'),
   switch: require('./switch'),
   init: require('./init')
-}, require('./specificSkillsAndSpells'));
+},
+require('./specificSkillsAndSpells'),
+require('./meta'));
