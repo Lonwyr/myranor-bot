@@ -20,7 +20,9 @@ sap.ui.define([
         return HttpHelper.getCharacter();
     }).then(character => {
       this.getModel('character').setData(character);
-    });
+    }).catch(() => {
+      this.byId('loginFailed').setVisible(true);
+    });;
     }
   });
 });

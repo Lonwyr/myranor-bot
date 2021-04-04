@@ -6,7 +6,21 @@
       <content>
         <Label for="tokeninput"/>
         <Input id="tokeninput" />
-        <Button text="load" press="loadData" />
+        <Button
+          text="load"
+          press="loadData" 
+          class="sapUiMediumMarginBottom" />
+        <MessageStrip
+          id="loginFailed"
+          text="{i18n>loginFailed}"
+          visible="false"
+          type="Error"
+          showIcon="true"
+          class="sapUiMediumMarginBottom" />
+        <MessageStrip
+          text="{i18n>httpWarning}"
+          showIcon="true"
+          class="sapUiMediumMarginBottom" />
       </content>
     </Page>
 </mvc:View>

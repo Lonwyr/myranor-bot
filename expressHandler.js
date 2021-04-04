@@ -1,17 +1,19 @@
 const express = require('express')
-const https = require('https')
+const http = require('http');
+//const https = require('https')
 const server = require('./server/main')
 
 module.exports = {
     init: function () {
-        var credentials = {
+        /*var credentials = {
             secureProtocol: 'SSLv23_method',
             secureOptions: require('constants').SSL_OP_NO_SSLv3,
             key: process.env.SERVER_KEY.replace(/\\n/g, '\n'),
             cert: process.env.SERVER_CRT.replace(/\\n/g, '\n')
-        }
+        }*/
         const app = express()
-        var httpsServer = https.createServer(credentials, app)
+        var httpServer = http.createServer(app)
+        //var httpsServer = https.createServer(credentials, app)
 
         // body parsing
         app.use(express.urlencoded({
@@ -41,8 +43,12 @@ module.exports = {
             server.getCharacter(req, res)
         })
         
-        httpsServer.listen(process.env.port, function(){
-            console.log(`express server running at port ${process.env.port}`)
+        /*httpsServer.listen(process.env.port, function(){
+            console.log(`HTTPS: express server running at port ${process.env.port}`)
+        })*/
+        
+        httpServer.listen(process.env.port, function(){
+            console.log(`HTTP: express server running at port ${process.env.port}`)
         })
     }
 }
