@@ -1,0 +1,51 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+    xmlns:uxap="sap.uxap"
+   xmlns:core="sap.ui.core" >
+    <uxap:ObjectPageSection title="{i18n>spells}">
+    <uxap:subSections>
+        <uxap:ObjectPageSubSection>
+            <uxap:blocks>
+                <Table
+                        inset="false"
+                        items="{character>/spells}" >
+                    <columns>
+                            <Column
+                                width="4em" />
+                            <Column
+                                width="12em">
+                                <Text text="{i18n>spell}" />
+                            </Column>
+                            <Column
+                                width="3em">
+                                <Text text="{i18n>value}" />
+                            </Column>
+                            <Column
+                                width="4em">
+                                <Text text="{i18n>category}" />
+                            </Column>
+                            <Column
+                                width="12em">
+                                <Text text="{i18n>attributes}" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Button text="{i18n>roll}" press="onRollSpell" />
+                                    <Text
+                                        text="{character>name}" />
+                                    <Text
+                                        text="{character>value}" />
+                                    <Text
+                                        text="{character>category}" />
+                                    <Text text="{= ${character>attributes/0} + ' / '+  ${character>attributes/1} + ' / ' + ${character>attributes/2}}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </uxap:blocks>
+            </uxap:ObjectPageSubSection>
+        </uxap:subSections>
+    </uxap:ObjectPageSection>
+</core:FragmentDefinition>

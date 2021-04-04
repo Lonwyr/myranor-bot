@@ -1,0 +1,27 @@
+ <mvc:View controllerName="com.lonwyr.MyranorBot.controller.Main"
+  displayBlock="true"
+		xmlns="sap.uxap"
+    xmlns:m="sap.m"
+    xmlns:core="sap.ui.core"
+	  xmlns:f="sap.f"
+  xmlns:mvc="sap.ui.core.mvc">
+  <m:Page title="{character>/name}">
+    <m:content>
+    	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
+        <headerTitle>
+          <ObjectPageHeader objectTitle="{character>/name}">
+            <actions>
+              <ObjectPageHeaderActionButton icon="sap-icon://synchronize" press="toggleTitle"
+                              text="toggle title" tooltip="synchronize"/>
+            </actions>
+          </ObjectPageHeader>
+        </headerTitle>
+        <sections>
+          <core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.Attributes' type='XML' />
+          <core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.Skills' type='XML' />
+          <core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.Spells' type='XML' />
+        </sections>
+      </ObjectPageLayout>
+    </m:content>
+  </m:Page>
+</mvc:View>

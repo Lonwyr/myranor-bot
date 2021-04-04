@@ -1,7 +1,8 @@
-CREATE TABLE public.activeslot
+CREATE TABLE public.settings
 (
     userid bigint,
     slot smallint,
+    channelId bigint,
     CONSTRAINT activeslot_pkey UNIQUE (userid)
 )
 
