@@ -8,13 +8,22 @@
             <uxap:blocks>
                 <Table
                         inset="false"
-                        items="{character>/skills}" >
+                        items="{
+                            path: 'character>/skills',
+                            sorter: {
+                                path: 'category',
+                                descending: false,
+                                group: true,
+                                comparator: '.compareSkills'
+                            },
+                            groupHeaderFactory: '.getGroupHeader'
+                        }" >
                     <columns>
                             <Column
                                 width="4em" />
                             <Column
                                 width="12em">
-                                <Text text="{i18n>talent}" />
+                                <Text text="{i18n>skill}" />
                             </Column>
                             <Column
                                 width="3em">
