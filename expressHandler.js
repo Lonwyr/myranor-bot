@@ -41,7 +41,7 @@ module.exports = {
             server.getCharacter(req, res)
         })
         
-        httpsServer.listen(port, function(){
+        httpsServer.listen(process.env.port, function(){
             console.log(`express server running at port ${process.env.port}`)
         })
     }
