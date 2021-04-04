@@ -43,12 +43,12 @@ module.exports = {
             server.getCharacter(req, res)
         })
         
-        /*httpsServer.listen(process.env.port, function(){
-            console.log(`HTTPS: express server running at port ${process.env.port}`)
+        /*httpsServer.listen(process.env.PORT, function(){
+            console.log(`HTTPS: express server running at port ${process.env.PORT}`)
         })*/
         
-        httpServer.listen(process.env.port, function(){
-            console.log(`HTTP: express server running at port ${process.env.port}`)
+        httpServer.listen(process.env.PORT, function(){
+            console.log(`HTTP: express server running at port ${process.env.PORT}`)
         })
     }
 }
