@@ -43,7 +43,7 @@ module.exports = {
             server.getCharacter(req, res)
         })
 
-        const PORT = process.env.PORT;
+        const PORT = process.env.PORT || 3000
 
         /*httpsServer.listen(process.env.PORT, function(){
             console.log(`HTTPS: express server running at port ${process.env.PORT}`)
