@@ -42,13 +42,15 @@ module.exports = {
         app.get('/myranorbot/character', function (req, res) {
             server.getCharacter(req, res)
         })
-        
+
+        const PORT = process.env.PORT || 3000;
+
         /*httpsServer.listen(process.env.PORT, function(){
             console.log(`HTTPS: express server running at port ${process.env.PORT}`)
         })*/
         
-        httpServer.listen(process.env.PORT, function(){
-            console.log(`HTTP: express server running at port ${process.env.PORT}`)
+        httpServer.listen(PORT, function(){
+            console.log(`HTTP: express server running at port ${PORT}`)
         })
     }
 }
