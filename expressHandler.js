@@ -1,13 +1,11 @@
 const express = require('express')
-const fs = require('fs');
 const https = require('https')
 const server = require('./server/main')
 
 const port = 8443
 
 module.exports = {
-    init: function () {   
-        /*     
+    init: function () {
         var credentials = {
             secureProtocol: 'SSLv23_method',
             secureOptions: require('constants').SSL_OP_NO_SSLv3,
@@ -47,6 +45,6 @@ module.exports = {
         
         httpsServer.listen(port, function(){
             console.log(`express server running at port ${port}`)
-        })*/
+        })
     }
 }

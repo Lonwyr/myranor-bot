@@ -9,10 +9,10 @@ module.exports = {
     const channelId = msg.channel.id
     
     await cache.setChannel(userId, channelId)
-    msg.reply(`Dieser Channel ist nun das Ziel von Würfen aus der App.`)
+    //msg.reply(`Dieser Channel ist nun das Ziel von Würfen aus der App.`)
 
-    const pw = cache.createAppPassword(userId)
+    const pw = await cache.createAppPassword(userId)
 
-    msg.author.send(`dein Passwort: ${pw}`)
+    msg.author.send(`Du kannst nun die App https://myranor-bot.herokuapp.com/index.html nutzten dein Passwort: ${pw}`)
   }
 }

@@ -14,8 +14,7 @@ sap.ui.define([
     loadData: function () {
       const inputValue = this.byId("tokeninput").getValue();
       HttpHelper.validateUserToken(inputValue).then(result => {
-        //HttpHelper.setUserToken(inputValue);
-        HttpHelper.setUserToken("219427709908942848");
+        HttpHelper.setUserToken(inputValue);
         this.onNavBack();
       }).then(() => {
         return HttpHelper.getCharacter();
