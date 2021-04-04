@@ -28,6 +28,7 @@ function extractSkills(characterSkills) {
         if (dataEntry) {
             objects.push({
                 id: name,
+                category: dataEntry.category,
                 name: dataEntry.description,
                 attributes: dataEntry.attributes,
                 value: characterSkills[name]

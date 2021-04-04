@@ -24,9 +24,12 @@
                         <items>
                             <ColumnListItem>
                                 <cells>
-                                    <Button text="{i18n>roll}" press="onRollAttribute" />
+                                    <Button text="{i18n>roll}" enabled="false" press="onRollAttribute" />
                                     <Text
-                                        text="{character>name}" />
+                                        text="{
+                                            path: 'character>name',
+                                            formatter: '.formatAttributeName'
+                                        }" />
                                     <Text
                                         text="{character>value}" />
                                 </cells>

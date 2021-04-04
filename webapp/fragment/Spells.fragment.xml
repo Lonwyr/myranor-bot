@@ -8,21 +8,25 @@
             <uxap:blocks>
                 <Table
                         inset="false"
-                        items="{character>/spells}" >
+                        items="{
+                            path: 'character>/spells',
+                            sorter: {
+                                path: 'category',
+                                descending: false,
+                                group: true
+                            },
+                            groupHeaderFactory: '.getGroupHeader'
+                        }">
                     <columns>
                             <Column
                                 width="4em" />
                             <Column
                                 width="12em">
-                                <Text text="{i18n>spell}" />
+                                <Text text="{i18n>source}" />
                             </Column>
                             <Column
                                 width="3em">
                                 <Text text="{i18n>value}" />
-                            </Column>
-                            <Column
-                                width="4em">
-                                <Text text="{i18n>category}" />
                             </Column>
                             <Column
                                 width="12em">
@@ -37,8 +41,6 @@
                                         text="{character>name}" />
                                     <Text
                                         text="{character>value}" />
-                                    <Text
-                                        text="{character>category}" />
                                     <Text text="{= ${character>attributes/0} + ' / '+  ${character>attributes/1} + ' / ' + ${character>attributes/2}}" />
                                 </cells>
                             </ColumnListItem>

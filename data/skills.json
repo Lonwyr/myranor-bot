@@ -1,406 +1,507 @@
 {
     "items": [{
         "name": "akrobatik",
+        "category": "Körperlich",
         "description": "Akrobatik",
         "attributes": ["MU", "GE", "KO"]
     }, {
         "name": "athletik",
+        "category": "Körperlich",
         "description": "Athletik",
         "attributes": ["GE", "KO", "KK"]
     }, {
         "name": "fliegen",
+        "category": "Körperlich",
         "description": "Fliegen",
         "attributes": ["MU", "IN", "GE"]
     }, {
         "name": "freiesfliegen",
+        "category": "Körperlich",
         "description": "Freies Fliegen",
         "attributes": ["MU", "GE", "KK"]
     }, {
         "name": "gauklerei",
+        "category": "Körperlich",
         "description": "Gauklerei",
         "attributes": ["MU", "CH", "FF"]
     }, {
         "name": "klettern",
+        "category": "Körperlich",
         "description": "Klettern",
         "attributes": ["MU", "IN", "GE"]
     }, {
         "name": "körperbeherrschung",
+        "category": "Körperlich",
         "description": "Körperbeherrschung",
         "attributes": ["MU", "IN", "GE"]
     }, {
         "name": "reiten",
+        "category": "Körperlich",
         "description": "Reiten",
         "attributes": ["CH", "GE", "KK"]
     }, {
         "name": "skifahren",
+        "category": "Körperlich",
         "description": "Skifahren",
         "attributes": ["GE", "GE", "KO"]
     }, {
         "name": "schleichen",
+        "category": "Körperlich",
         "description": "Schleichen",
         "attributes": ["MU", "IN", "GE"]
     }, {
         "name": "schwimmen",
+        "category": "Körperlich",
         "description": "Schwimmen",
         "attributes": ["GE", "KO", "KK"]
     }, {
         "name": "selbstbeherrschung",
+        "category": "Körperlich",
         "description": "Selbstbeherrschung",
         "attributes": ["MU", "KO", "KK"]
     }, {
         "name": "sichverstecken",
+        "category": "Körperlich",
         "description": "Sich Verstecken",
         "attributes": ["MU", "IN", "GE"]
     }, {
         "name": "singen",
+        "category": "Körperlich",
         "description": "Singen",
         "attributes": ["IN", "CH", "CH"]
     }, {
         "name": "sinnenschärfe",
+        "category": "Körperlich",
         "description": "Sinnenschärfe",
         "attributes": ["KL", "IN", "IN"]
     }, {
         "name": "stimmenimmitieren",
+        "category": "Körperlich",
         "description": "Stimmen Immitieren",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "tanzen",
+        "category": "Körperlich",
         "description": "Tanzen",
         "attributes": ["CH", "GE", "GE"]
     }, {
         "name": "taschendiebstahl",
+        "category": "Körperlich",
         "description": "Taschendiebstahl",
         "attributes": ["MU", "IN", "FF"]
     }, {
         "name": "zechen",
+        "category": "Körperlich",
         "description": "Zechen",
         "attributes": ["IN", "KO", "KK"]
     }, {
         "name": "betören",
+        "category": "Gesellschaftlich",
         "description": "Betören",
         "attributes": ["IN", "CH", "CH"]
     }, {
         "name": "etikette",
+        "category": "Gesellschaftlich",
         "description": "Etikette",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "gassenwissen",
+        "category": "Gesellschaftlich",
         "description": "Gassenwissen",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "lehren",
+        "category": "Gesellschaftlich",
         "description": "Lehren",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "menschenkenntnis",
+        "category": "Gesellschaftlich",
         "description": "Menschenkenntnis",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "schauspielerei",
+        "category": "Gesellschaftlich",
         "description": "Schauspielerei",
         "attributes": ["MU", "KL", "CH"]
     }, {
         "name": "schriftlicherausdruck",
+        "category": "Gesellschaftlich",
         "description": "Schriftlicher Ausdruck",
         "attributes": ["KL", "IN", "IN"]
     }, {
         "name": "sichverkleiden",
+        "category": "Gesellschaftlich",
         "description": "Sich Verkleiden",
         "attributes": ["MU", "CH", "GE"]
     }, {
         "name": "überreden",
+        "category": "Gesellschaftlich",
         "description": "Überreden",
         "attributes": ["MU", "IN", "CH"]
     }, {
         "name": "überzeugen",
+        "category": "Gesellschaftlich",
         "description": "Überzeugen",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "fährtensuche",
+        "category": "Natur",
         "description": "Fährtensuche",
         "attributes": ["KL", "IN", "KO"]
     }, {
         "name": "fallenstellen",
+        "category": "Natur",
         "description": "Fallenstellen",
         "attributes": ["KL", "FF", "KK"]
     }, {
         "name": "fesselnentfesseln",
+        "category": "Natur",
         "description": "Fesseln/Entfesseln",
         "attributes": ["FF", "GE", "KK"]
     }, {
         "name": "fischenangeln",
+        "category": "Natur",
         "description": "Fischen/Angeln",
         "attributes": ["IN", "FF", "KK"]
     }, {
         "name": "orientierung",
+        "category": "Natur",
         "description": "Orientierung",
         "attributes": ["KL", "IN", "IN"]
     }, {
         "name": "wettervorhersage",
+        "category": "Natur",
         "description": "Wettervorhersage",
         "attributes": ["KL", "IN", "IN"]
     }, {
         "name": "wildnisleben",
+        "category": "Natur",
         "description": "Wildnisleben",
         "attributes": ["IN", "GE", "KO"]
     }, {
         "name": "anatomie",
+        "category": "Wissen",
         "description": "Anatomie",
         "attributes": ["MU", "KL", "FF"]
     }, {
         "name": "brettwürfelspiele",
+        "category": "Wissen",
         "description": "Brett-/Würfelspiele",
         "attributes": ["KL", "KL", "IN"]
     }, {
         "name": "geographie",
+        "category": "Wissen",
         "description": "Geographie",
         "attributes": ["KL", "KL", "IN"]
     }, {
         "name": "geschichtswissen",
+        "category": "Wissen",
         "description": "Geschichtswissen",
         "attributes": ["KL", "KL", "IN"]
     }, {
         "name": "gesteinkunde",
+        "category": "Wissen",
         "description": "Gesteinkunde",
         "attributes": ["KL", "IN", "FF"]
     }, {
         "name": "götterundkulte",
+        "category": "Wissen",
         "description": "Götter/Kulte",
         "attributes": ["KL", "KL", "IN"]
     }, {
         "name": "heraldik",
+        "category": "Wissen",
         "description": "Heraldik",
         "attributes": ["KL", "KL", "FF"]
     }, {
         "name": "hüttenkunde",
+        "category": "Wissen",
         "description": "Hüttenkunde",
         "attributes": ["KL", "IN", "KO"]
     }, {
         "name": "kriegskunst",
+        "category": "Wissen",
         "description": "Kriegskunst",
         "attributes": ["MU", "KL", "CH"]
     }, {
         "name": "magiekunde",
+        "category": "Wissen",
         "description": "Magiekunde",
         "attributes": ["KL", "KL", "IN"]
     }, {
         "name": "mechanik",
+        "category": "Wissen",
         "description": "Mechanik",
         "attributes": ["KL", "KL", "FF"]
     }, {
         "name": "pflanzenkunde",
+        "category": "Wissen",
         "description": "Pflanzenkunde",
         "attributes": ["KL", "IN", "FF"]
     }, {
         "name": "philosophie",
+        "category": "Wissen",
         "description": "Philosophie",
         "attributes": ["KL", "KL", "IN"]
     }, {
         "name": "rechnen",
+        "category": "Wissen",
         "description": "Rechnen",
         "attributes": ["KL", "KL", "IN"]
     }, {
         "name": "rechtskunde",
+        "category": "Wissen",
         "description": "Rechtskunde",
         "attributes": ["KL", "KL", "IN"]
     }, {
         "name": "sagenundlegenden",
+        "category": "Wissen",
         "description": "Sagen/Legenden",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "schätzen",
+        "category": "Wissen",
         "description": "Schätzen",
         "attributes": ["KL", "IN", "IN"]
     }, {
         "name": "sprachenkunde",
+        "category": "Wissen",
         "description": "Sprachenkunde",
         "attributes": ["KL", "KL", "IN"]
     }, {
         "name": "sternenkunde",
+        "category": "Wissen",
         "description": "Sternenkunde",
         "attributes": ["KL", "KL", "IN"]
     }, {
         "name": "tierkunde",
+        "category": "Wissen",
         "description": "Tierkunde",
         "attributes": ["MU", "KL", "IN"]
     }, {
         "name": "sprache",
+        "category": "Sprachen",
         "description": "Sprache",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "abrichten",
+        "category": "Handwerklich",
         "description": "Abrichten",
         "attributes": ["MU", "IN", "CH"]
     }, {
         "name": "ackerbau",
+        "category": "Handwerklich",
         "description": "Ackerbau",
         "attributes": ["IN", "FF", "KO"]
     }, {
         "name": "alchemie",
+        "category": "Handwerklich",
         "description": "Alchemie",
         "attributes": ["MU", "KL", "FF"]
     }, {
         "name": "bergbau",
+        "category": "Handwerklich",
         "description": "Bergbau",
         "attributes": ["IN", "KO", "KK"]
     }, {
         "name": "bogenbau",
+        "category": "Handwerklich",
         "description": "Bogenbau",
         "attributes": ["KL", "IN", "FF"]
     }, {
         "name": "bootefahren",
+        "category": "Handwerklich",
         "description": "Boote fahren",
         "attributes": ["GE", "KO", "KK"]
     }, {
         "name": "brauer",
+        "category": "Handwerklich",
         "description": "Brauer",
         "attributes": ["KL", "FF", "KK"]
     }, {
         "name": "fahrzeuglenken",
+        "category": "Handwerklich",
         "description": "Fahrzeug lenken",
         "attributes": ["IN", "CH", "FF"]
     }, {
         "name": "falschspiel",
+        "category": "Handwerklich",
         "description": "Falschspiel",
         "attributes": ["MU", "CH", "FF"]
     }, {
         "name": "feinmechanik",
+        "category": "Handwerklich",
         "description": "Feinmechanik",
         "attributes": ["KL", "FF", "FF"]
     }, {
         "name": "feuersteinbearbeitung",
+        "category": "Handwerklich",
         "description": "Feuersteinbearbeitung",
         "attributes": ["KL", "FF", "FF"]
     }, {
         "name": "fleischer",
+        "category": "Handwerklich",
         "description": "Fleischer",
         "attributes": ["KL", "FF", "KK"]
     }, {
         "name": "fluggerätsteuern",
+        "category": "Handwerklich",
         "description": "Fluggerät steuern",
         "attributes": ["MI", "IN", "FF"]
     }, {
         "name": "gerberkürschner",
+        "category": "Handwerklich",
         "description": "Gerberkürschner",
         "attributes": ["KL", "FF", "KO"]
     }, {
         "name": "glaskunst",
+        "category": "Handwerklich",
         "description": "Glaskunst",
         "attributes": ["FF", "FF", "KO"]
     }, {
         "name": "grobschmied",
+        "category": "Handwerklich",
         "description": "Grobschmied",
         "attributes": ["FF", "KO", "KK"]
     }, {
         "name": "handel",
+        "category": "Handwerklich",
         "description": "Handel",
         "attributes": ["KL", "IN", "CH"]
     }, {
         "name": "hauswirtschaft",
+        "category": "Handwerklich",
         "description": "Hauswirtschaft",
         "attributes": ["IN", "CH", "FF"]
     }, {
         "name": "heilkundegift",
+        "category": "Handwerklich",
         "description": "Heilkunde: Gift",
         "attributes": ["MU", "KL", "IN"]
     }, {
         "name": "heilkundekrankheit",
+        "category": "Handwerklich",
         "description": "Heilkunde: Krankheit",
         "attributes": ["MU", "KL", "CH"]
     }, {
         "name": "heilkundeseele",
+        "category": "Handwerklich",
         "description": "Heilkunde: Seele",
         "attributes": ["IN", "CH", "CH"]
     }, {
         "name": "heilkundewunden",
+        "category": "Handwerklich",
         "description": "Heilkunde: Wunden",
         "attributes": ["KL", "CH", "FF"]
     }, {
         "name": "holzbearbeitung",
+        "category": "Handwerklich",
         "description": "Holzbearbeitung",
         "attributes": ["KL", "FF", "KK"]
     }, {
         "name": "kartographie",
+        "category": "Handwerklich",
         "description": "Kartographie",
         "attributes": ["KL", "KL", "FF"]
     }, {
         "name": "kochen",
+        "category": "Handwerklich",
         "description": "Kochen",
         "attributes": ["KL", "IN", "FF"]
     }, {
         "name": "kristallzucht",
+        "category": "Handwerklich",
         "description": "Kristallzucht",
         "attributes": ["KL", "IN", "FF"]
     }, {
         "name": "lederarbeiten",
+        "category": "Handwerklich",
         "description": "Lederarbeiten",
         "attributes": ["KL", "FF", "FF"]
     }, {
         "name": "malenzeichnen",
+        "category": "Handwerklich",
         "description": "Malen/Zeichnen",
         "attributes": ["KL", "IN", "FF"]
     }, {
         "name": "maurer",
+        "category": "Handwerklich",
         "description": "Maurer",
         "attributes": ["FF", "GE", "KK"]
     }, {
         "name": "musizieren",
+        "category": "Handwerklich",
         "description": "Musizieren",
         "attributes": ["IN", "CH", "FF"]
     }, {
         "name": "schlösserknacken",
+        "category": "Handwerklich",
         "description": "Schlösser knacken",
         "attributes": ["IN", "FF", "FF"]
     }, {
         "name": "schnapsbrennen",
+        "category": "Handwerklich",
         "description": "Schnaps brennen",
         "attributes": ["KL", "IN", "FF"]
     }, {
         "name": "schneider",
+        "category": "Handwerklich",
         "description": "Schneider",
         "attributes": ["KL", "FF", "FF"]
     }, {
         "name": "seefahrt",
+        "category": "Handwerklich",
         "description": "Seefahrt",
         "attributes": ["FF", "GE", "KK"]
     }, {
         "name": "steinmetz",
+        "category": "Handwerklich",
         "description": "Steinmetz",
         "attributes": ["FF", "FF", "KK"]
     }, {
         "name": "steinschneiderjuwelier",
+        "category": "Handwerklich",
         "description": "Steinschneider/juwelier",
         "attributes": ["IN", "FF", "FF"]
     }, {
         "name": "stoffefärben",
+        "category": "Handwerklich",
         "description": "Stoffefärben",
         "attributes": ["KL", "FF", "KK"]
     }, {
         "name": "tätowieren",
+        "category": "Handwerklich",
         "description": "Tätowieren",
         "attributes": ["IN", "FF", "FF"]
     }, {
         "name": "töpfern",
+        "category": "Handwerklich",
         "description": "Töpfern",
         "attributes": ["KL", "FF", "FF"]
     }, {
         "name": "fiehzucht",
+        "category": "Handwerklich",
         "description": "Fiehzucht",
         "attributes": ["KL", "IN", "KK"]
     }, {
         "name": "webekunst",
+        "category": "Handwerklich",
         "description": "Webekunst",
         "attributes": ["FF", "FF", "KK"]
     }, {
         "name": "winzer",
+        "category": "Handwerklich",
         "description": "Winzer",
         "attributes": ["KL", "FF", "KK"]
     }, {
         "name": "zimmermann",
+        "category": "Handwerklich",
         "description": "Zimmermann",
         "attributes": ["KL", "FF", "KK"]
     }, {
         "name": "liturgiekenntnis",
+        "category": "Handwerklich",
         "description": "Liturgiekenntnis",
         "attributes": ["MU", "IN", "CH"]
     }]
