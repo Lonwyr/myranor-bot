@@ -10,7 +10,7 @@ module.exports = Object.assign({
   taw: require('./taw'),
   zfw: require('./zfw'),
   switch: require('./switch'),
+  lockchannel: require('./lockchannel'),
   init: require('./init')
 },
-require('./specificSkillsAndSpells'),
-require('./meta'));
+require('./specificSkillsAndSpells'));

@@ -1,0 +1,40 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+    xmlns:uxap="sap.uxap"
+   xmlns:core="sap.ui.core" >
+    <uxap:ObjectPageSection title="{i18n>attributes}">
+    <uxap:subSections>
+        <uxap:ObjectPageSubSection>
+            <uxap:blocks>
+                <Table
+                        inset="false"
+                        items="{character>/attributes}" >
+                    <columns>
+                            <Column
+                                width="4em" />
+                            <Column
+                                width="12em">
+                                <Text text="{i18n>attribute}" />
+                            </Column>
+                            <Column
+                                width="12em">
+                                <Text text="{i18n>value}" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Button text="{i18n>roll}" press="onRollAttribute" />
+                                    <Text
+                                        text="{character>name}" />
+                                    <Text
+                                        text="{character>value}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </uxap:blocks>
+            </uxap:ObjectPageSubSection>
+        </uxap:subSections>
+    </uxap:ObjectPageSection>
+</core:FragmentDefinition>

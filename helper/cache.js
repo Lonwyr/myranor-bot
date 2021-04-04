@@ -39,6 +39,54 @@ module.exports = {
         
         cache[userId] = char
     },
+    setChannel: async function (userId, channelId) {
+        const client = await pool.connect()
+        try {                
+            const setChannelQuery = {
+                text: `INSERT INTO activeslot (userid, channelId)
+                VALUES($1, $2) 
+                ON CONFLICT (userid) 
+                DO 
+                UPDATE SET channelId = $2`,
+                values: [userId, channelId]
+            }
+            await client.query(setChannelQuery)
+        } finally {
+            client.release()
+        }
+    },
+    createAppPassword: async function (userId) {
+        const client = await pool.connect()
+        const password = '12345'
+        try {                
+            const setPasswordQuery = {
+                text: `INSERT INTO activeslot (userid, appPassword)
+                VALUES($1, $2) 
+                ON CONFLICT (userid) 
+                DO 
+                UPDATE SET appPassword = $2`,
+                values: [userId, password]
+            }
+            return password
+        } finally {
+            client.release()
+        }
+    },
+    getChannel: async function (userId) {
+        const client = await pool.connect()
+        try {                
+            const getChannelQuery = {
+                text: `SELECT channelId
+                FROM activeslot
+                WHERE userid = $1`,
+                values: [userId]
+            }
+            const result = await client.query(getChannelQuery)
+            return result.rows.length && result.rows[0]
+        } finally {
+            client.release()
+        }
+    },
     load: async function () {
         const client = await pool.connect()
         console.info('Loading characters from DB')
@@ -85,13 +133,21 @@ module.exports = {
             }
             await client.query(activateSlotQuery)
 
-                return this.getName(userId)
+            return this.getName(userId)
         } finally {
             client.release()
         }
     },
     checkCharacter: function (userId) {
         return !!cache[userId]
+    },
+    getCharacter: function (userId) {
+        if (cache[userId]) {
+            return cache[userId]
+        } else {
+            console.log(`Character for ${userId} is not stored.`)
+            throw Error(`Character for ${userId} is not stored.`)
+        }
     },
     getAttribute: function (userId, key) {
         if (cache[userId] && cache[userId].attributes[key] !== undefined) {
