@@ -75,15 +75,8 @@
       },
       "routes": [
         {
-          "name": "RouteApp",
-          "pattern": "",
-          "target": [
-            "TargetApp"
-          ]
-        },
-        {
           "name": "RouteMain",
-          "pattern": "main",
+          "pattern": "",
           "target": [
             "TargetMain"
           ]
@@ -97,12 +90,6 @@
         }
       ],
       "targets": {
-        "TargetApp": {
-          "viewType": "XML",
-          "viewLevel": 1,
-          "viewId": "app",
-          "viewName": "App"
-        },
         "TargetMain": {
           "viewType": "XML",
           "viewLevel": 1,

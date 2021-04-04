@@ -57,7 +57,7 @@ module.exports = {
     },
     createAppPassword: async function (userId) {
         const client = await pool.connect()
-        const password = '12345'
+        const password = Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2);
         try {                
             const setPasswordQuery = {
                 text: `INSERT INTO activeslot (userid, appPassword)
@@ -67,7 +67,23 @@ module.exports = {
                 UPDATE SET appPassword = $2`,
                 values: [userId, password]
             }
+            await client.query(setPasswordQuery)
             return password
+        } finally {
+            client.release()
+        }
+    },
+    getUserIdByAppPassword: async function (password) {
+        const client = await pool.connect()
+        try {                
+            const getUserIdByAppPasswordQuery = {
+                text: `SELECT userid
+                FROM activeslot
+                WHERE appPassword = $1`,
+                values: [password]
+            }
+            const result = await client.query(getUserIdByAppPasswordQuery)
+            return result.rows.length && result.rows[0].userid
         } finally {
             client.release()
         }

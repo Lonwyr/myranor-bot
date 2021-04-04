@@ -2,7 +2,8 @@ CREATE TABLE public.settings
 (
     userid bigint,
     slot smallint,
-    channelId bigint,
+    channelid bigint,
+    apppasword character(32),
     CONSTRAINT activeslot_pkey UNIQUE (userid)
 )
 

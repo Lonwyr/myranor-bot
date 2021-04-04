@@ -9,6 +9,7 @@ module.exports = {
     const channelId = msg.channel.id
     
     await cache.setChannel(userId, channelId)
+
     msg.reply(`Dieser Channel ist nun das Ziel von Würfen aus der App.`)
 
     const pw = cache.createAppPassword(userId)
