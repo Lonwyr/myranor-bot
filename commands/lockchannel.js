@@ -12,7 +12,7 @@ module.exports = {
 
     msg.reply(`Dieser Channel ist nun das Ziel von Würfen aus der App.`)
 
-    const pw = cache.createAppPassword(userId)
+    const pw = await cache.createAppPassword(userId)
 
     msg.author.send(`Du kannst nun die App ${process.env.url}/index.html nutzten. Dein Passwort: ${pw}`)
   }
