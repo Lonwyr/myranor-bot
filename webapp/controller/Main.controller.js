@@ -1,9 +1,11 @@
 sap.ui.define([
   "com/lonwyr/MyranorBot/controller/BaseController",
+  "sap/ui/core/Fragment",
   "sap/m/GroupHeaderListItem",
   "com/lonwyr/MyranorBot/utils/Roller"
 ], function(
     Controller,
+    Fragment,
     GroupHeaderListItem,
     Roller
   ) {
@@ -18,19 +20,21 @@ sap.ui.define([
     "HANDWERKLICH": 6
   }
 
+  let popoverPromise
+
   function getProperty (clickEvent) {
-    const bindingContext = clickEvent.getSource().getBindingContext("character");
-    return bindingContext.getProperty();
+    const bindingContext = clickEvent.getSource().getBindingContext("character")
+    return bindingContext.getProperty()
   }
 
   function getAttributes(clickEvent, checkAttributes) {
-    const attributes = clickEvent.getSource().getBindingContext("character").getModel().getProperty("/attributes");
+    const attributes = clickEvent.getSource().getBindingContext("character").getModel().getProperty("/attributes")
     return checkAttributes.map(checkAttribute => {
       return {
         name: checkAttribute,
         value: attributes.find(attribute => attribute.name === checkAttribute).value
       }
-    });
+    })
   }
 
   return Controller.extend("com.lonwyr.MyranorBot.controller.Main", {
@@ -41,7 +45,7 @@ sap.ui.define([
       return new GroupHeaderListItem({
 				title: group.key,
 				upperCase: false
-			});
+			})
     },
     compareSkills: function (a, b) {
       const comparision = skillCategories[a] - skillCategories[b]
@@ -57,30 +61,51 @@ sap.ui.define([
       return 0
     },
     onRollAttribute: function (clickEvent) {
-      const attribute = getProperty(clickEvent);
-      return Roller.checkAttribute(attribute);
+      const attribute = getProperty(clickEvent)
+      return Roller.checkAttribute(attribute)
     },
-    onRollSkill: function (clickEvent) {
-      const skill = getProperty(clickEvent);
+    openSkillPopover: function (clickEvent) {
+      const button = clickEvent.getSource()
+      const skill = getProperty(clickEvent)
       const checkParameters = {
         id: skill.id,
         name: skill.name,
         value: skill.value,
         modifier: 0,
         attributes: getAttributes(clickEvent, skill.attributes)
-      };
-      return Roller.checkSkill(checkParameters);
+      }
+      this.getModel("check").setData(checkParameters)
+
+      // create popover
+			if (!popoverPromise) {
+				popoverPromise = Fragment.load({
+					id: this.oView.getId(),
+					name: "com.lonwyr.MyranorBot.fragment.RollSkillPopover",
+					controller: this
+				}).then(oPopover => {
+					this.oView.addDependent(oPopover)
+					return oPopover
+				})
+			}
+			popoverPromise.then(function(oPopover) {
+				oPopover.openBy(button)
+			})
+    },
+    onRollSkill: function () {
+      popoverPromise.then(oPopover => oPopover.close())
+      return Roller.checkSkill(this.getModel("check").getData())
     },
     onRollSpell: function (clickEvent) {
-      const spell = getProperty(clickEvent);
+      const spell = getProperty(clickEvent)
       const checkParameters = {
         id: spell.id,
         name: spell.name,
         value: spell.value,
         modifier: 0,
+        specialization: false,
         attributes: getAttributes(clickEvent, spell.attributes)
-      };
-      return Roller.checkSpell(checkParameters);
+      }
+      return Roller.checkSpell(checkParameters)
     }
   });
 });

@@ -16,11 +16,7 @@ sap.ui.define([
         this.getRouter().navTo("RouteLogin");
       }
     },
-
-    byId: function (sId) {
-      return this.getView().byId(sId);
-    },
-
+    
     /**
      * Convenience method for getting the view model by name in every controller of the application.
      * @public

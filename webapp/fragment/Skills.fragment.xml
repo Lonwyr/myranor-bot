@@ -37,7 +37,7 @@
                         <items>
                             <ColumnListItem>
                                 <cells>
-                                    <Button text="{i18n>roll}" press="onRollSkill" />
+                                    <Button text="{i18n>roll}" press="openSkillPopover" />
                                     <Text
                                         text="{character>name}" />
                                     <Text
