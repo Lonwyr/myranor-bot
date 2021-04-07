@@ -19,7 +19,7 @@ function generate3d20message(checkResult, checkData, checkType, userid) {
   const pointsDescription = checkData.value ? `mit ${valueAbb} ${checkData.value}${modifierString}` : ''
   let resultEmbed = new Discord.MessageEmbed()
       .setColor(colors.neutral)
-      .setDescription(`${checkName}-Probe${checkData.specialization ? ' (mit ' + config.specialization-Spezialisierung+ ')' : ''} ${pointsDescription} für <@${userid}>`)
+      .setDescription(`${checkName}-Probe${checkData.specialization ? ' (mit Spezialisierung)' : ''} ${pointsDescription} für <@${userid}>`)
 
 
   function createField(result, value, attributeName) {

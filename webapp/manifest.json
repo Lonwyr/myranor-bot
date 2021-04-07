@@ -55,6 +55,9 @@
       },
       "character": {
         "type": "sap.ui.model.json.JSONModel"
+      },
+      "check": {
+        "type": "sap.ui.model.json.JSONModel"
       }
     },
     "resources": {

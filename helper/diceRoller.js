@@ -34,7 +34,7 @@ function roll3d20check(data) {
   
   let attributes = data.attributes
   const modifier = data.modifier || 0
-  const value = data.value
+  const value = data.value + (data.specialization ? 2 : 0)
   const extremeCheckPenalty = Math.max(modifier - value, 0)
 
 
