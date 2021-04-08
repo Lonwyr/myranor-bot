@@ -7,22 +7,35 @@ sap.ui.define([
   ) {
   "use strict";
 
-  return Controller.extend("com.lonwyr.MyranorBot.controller.Main", {
+  const loginTokenKey = 'com.lonwyr.myranorBot.loginToken';
+
+  function validateTokenAndLoadCharacter(token) {
+    return HttpHelper.validateUserToken(token).then(result => {
+      HttpHelper.setUserToken(token);
+      this.onNavBack();
+    }).then(() => {
+      window.localStorage.setItem(loginTokenKey, token);
+      return HttpHelper.getCharacter();
+    }).then(character => {
+      this.getModel('character').setData(character);
+    });
+  };
+
+  return Controller.extend("com.lonwyr.MyranorBot.controller.Login", {
     onInit: function () {
+      const loginToken = window.localStorage.getItem(loginTokenKey);
+      if (loginToken) {
+        validateTokenAndLoadCharacter.call(this, loginToken).catch(() => {
+          window.localStorage.removeItem(loginTokenKey)
+        })
+      }
       // do not trigger the Base init to navigate to the login
     },
     loadData: function () {
       const inputValue = this.byId("tokeninput").getValue();
-      HttpHelper.validateUserToken(inputValue).then(result => {
-        HttpHelper.setUserToken(inputValue);
-        this.onNavBack();
-      }).then(() => {
-        return HttpHelper.getCharacter();
-    }).then(character => {
-      this.getModel('character').setData(character);
-    }).catch(() => {
-      this.byId('loginFailed').setVisible(true);
-    });;
+      validateTokenAndLoadCharacter.call(this, inputValue).catch(() => {
+        this.byId('loginFailed').setVisible(true);
+      });
     }
   });
 });

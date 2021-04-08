@@ -14,6 +14,6 @@ module.exports = {
 
     const pw = await cache.createAppPassword(userId)
 
-    msg.author.send(`Du kannst nun die App ${process.env.url}/index.html nutzten. Dein Passwort: ${pw}`)
+    msg.author.send(`Du kannst nun die App ${process.env.url}/index.html nutzten. Dein Token: ${pw}`)
   }
 }
