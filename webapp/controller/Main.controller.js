@@ -21,6 +21,7 @@ sap.ui.define([
   }
 
   let popoverPromise
+  let resultDialogPromise
 
   function getProperty (clickEvent) {
     const bindingContext = clickEvent.getSource().getBindingContext("character")
@@ -93,7 +94,23 @@ sap.ui.define([
     },
     onRollSkill: function () {
       popoverPromise.then(oPopover => oPopover.close())
-      return Roller.checkSkill(this.getModel("check").getData())
+      return Roller.checkSkill(this.getModel("check").getData()).then((result) => {
+        this.getModel("check").setProperty("/result", JSON.parse(result));
+
+        if (!resultDialogPromise) {
+          resultDialogPromise = Fragment.load({
+            id: this.oView.getId(),
+            name: "com.lonwyr.MyranorBot.fragment.RollResultDialog",
+            controller: this
+          }).then(oDialog => {
+            this.oView.addDependent(oDialog)
+            return oDialog
+          })
+        }
+        resultDialogPromise.then(function(oDialog) {
+          oDialog.open()
+        })
+      })
     },
     onRollSpell: function (clickEvent) {
       const spell = getProperty(clickEvent)
@@ -106,6 +123,15 @@ sap.ui.define([
         attributes: getAttributes(clickEvent, spell.attributes)
       }
       return Roller.checkSpell(checkParameters)
+    },
+    formatResultDialogState: function (status) {
+        switch (status) {
+          case "success":
+            return ValueState.Success
+        }
+    },
+    closeResultDialog: function () {
+      resultDialogPromise.then(dialog => dialog.close());
     }
   });
 });

@@ -1,0 +1,39 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog
+		type="Message"
+		state="{= ${check>/result/pointsLeft} >= 0 ? 'Success' : 'Error'}"
+		title="{= ${check>/name} + ' (' + ${check>/value} + ' ' + ${i18n>tap} + '): ' + ${check>/result/pointsLeft} + ' ' + ${i18n>tapleft}}">
+		<List>
+			<ObjectListItem
+				title="{check>/attributes/0/name}" 
+				number="{check>/result/attributes/0/result}"
+				numberState="{= ${check>/result/attributes/0/result} > ${check>/result/attributes/0/value} ? 'Warning' : 'Success'}"
+				numberUnit="{= '/' + ${check>/result/attributes/0/value}}" />
+			<ObjectListItem
+				title="{check>/attributes/1/name}" 
+				number="{check>/result/attributes/1/result}"
+				numberState="{= ${check>/result/attributes/1/result} > ${check>/result/attributes/1/value} ? 'Warning' : 'Success'}"
+				numberUnit="{= '/' + ${check>/result/attributes/1/value}}" />
+			<ObjectListItem
+				title="{check>/attributes/2/name}" 
+				number="{check>/result/attributes/2/result}"
+				numberState="{= ${check>/result/attributes/2/result} > ${check>/result/attributes/2/value} ? 'Warning' : 'Success'}"
+				numberUnit="{= '/' + ${check>/result/attributes/2/value}}" />
+		</List>
+        <MessageStrip
+          text="{i18n>rollWasSentToChat}"
+          showIcon="true" />
+		<beginButton>
+			<Button
+				type="Emphasized"
+				text="{i18n>ok}"
+				press=".closeResultDialog" />
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>
+
+
+
+	
