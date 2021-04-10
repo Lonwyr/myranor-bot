@@ -44,46 +44,46 @@ module.exports = {
                 .setColor(colors.failure)
             }
         } else if (Number.isInteger(atValue)) {
-        const hit = attackRoll === 1 || (attackRoll <= atValue)
-        
-        if (hit) {
-            if (attackRoll === 1 && confirmationRoll <= atValue) {
-                resultEmbed.setTitle('Glückliche Attacke!')
-                .setColor(colors.criticalSuccess)
-            } else {
-                resultEmbed.setTitle('erfolgreiche Attacke')
-                .setColor(colors.success)
-            }
-
-            if (args.length > 1) {
-                const damageRoll = diceRoller.rollExpression(args[1])
-                resultEmbed.addField(`${damageRoll.sum} TP`, `[${damageRoll.results.join('+')}]${modifier !== 0 ? algebraic + modifier : ''}`, true)
-            }
+            const hit = attackRoll === 1 || (attackRoll <= atValue)
             
-            const sizeDifference = args[2] !== undefined ? args[2] : '0'
-            const hitTable = trefferzonen[sizeDifference]
-            const zoneRoll = diceRoller.roll(20)
-            let targetZone
-            let targetZoneLimit = 21
-            for (const [zone, limit] of Object.entries(hitTable)) {
-                if (limit >= zoneRoll && limit < targetZoneLimit) {
-                    targetZone = zone
-                    targetZoneLimit = limit
+            if (hit) {
+                if (attackRoll === 1 && confirmationRoll <= atValue) {
+                    resultEmbed.setTitle('Glückliche Attacke!')
+                    .setColor(colors.criticalSuccess)
+                } else {
+                    resultEmbed.setTitle('erfolgreiche Attacke')
+                    .setColor(colors.success)
                 }
+
+                if (args.length > 1) {
+                    const damageRoll = diceRoller.rollExpression(args[1])
+                    resultEmbed.addField(`${damageRoll.sum} TP`, `[${damageRoll.results.join('+')}]${modifier !== 0 ? algebraic + modifier : ''}`, true)
+                }
+                
+                const sizeDifference = args[2] !== undefined ? args[2] : '0'
+                const hitTable = trefferzonen[sizeDifference]
+                const zoneRoll = diceRoller.roll(20)
+                let targetZone
+                let targetZoneLimit = 21
+                for (const [zone, limit] of Object.entries(hitTable)) {
+                    if (limit >= zoneRoll && limit < targetZoneLimit) {
+                        targetZone = zone
+                        targetZoneLimit = limit
+                    }
+                }
+                
+                let zoneMessage = targetZone
+                if (targetZone === 'Arme' || targetZone === 'Beine') {
+                    zoneMessage = zoneMessage + (zoneRoll % 2 ? ' (links)' : ' (rechts)')
+                } 
+                resultEmbed.addField(zoneMessage, `[${zoneRoll}] Trefferzone; Größendifferenz: ${sizeDifference}`, true)
+            } else {
+                resultEmbed.setTitle('Attacke verfehlt')
+                .setColor(colors.failure)
             }
-            
-            let zoneMessage = targetZone
-            if (targetZone === 'Arme' || targetZone === 'Beine') {
-                zoneMessage = zoneMessage + (zoneRoll % 2 ? ' (links)' : ' (rechts)')
-            } 
-            resultEmbed.addField(zoneMessage, `[${zoneRoll}] Trefferzone; Größendifferent: ${sizeDifference}`, true)
-        } else {
-            resultEmbed.setTitle('Attacke verfehlt')
-            .setColor(colors.failure)
-        }
         } else if (attackRoll === 1) {
-            resultEmbed.setTitle('potentiell geglücklte Attacke?')
-            .setColor(colors.criticalSuccess)
+        resultEmbed.setTitle('potentiell geglücklte Attacke?')
+        .setColor(colors.criticalSuccess)
         }
 
         msg.channel.send(resultEmbed)
