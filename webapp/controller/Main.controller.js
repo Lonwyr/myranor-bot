@@ -2,11 +2,13 @@ sap.ui.define([
   "com/lonwyr/MyranorBot/controller/BaseController",
   "sap/ui/core/Fragment",
   "sap/m/GroupHeaderListItem",
+  "sap/m/MessageToast",
   "com/lonwyr/MyranorBot/utils/Roller"
 ], function(
     Controller,
     Fragment,
     GroupHeaderListItem,
+    MessageToast,
     Roller
   ) {
   "use strict";
@@ -22,6 +24,7 @@ sap.ui.define([
 
   let popoverPromise
   let resultDialogPromise
+  let impressumPromise
 
   function getProperty (clickEvent) {
     const bindingContext = clickEvent.getSource().getBindingContext("character")
@@ -123,12 +126,35 @@ sap.ui.define([
         attributes: getAttributes(clickEvent, spell.attributes)
       }
       return Roller.checkSpell(checkParameters)
-    },
+    },/*
+    onSlotSelectionChange: function () {
+      const selectedSlot = this.byId('slotSelection').getSelectedKey();
+      MessageToast.show(selectedSlot);
+      // TODO: switch slot
+    },*/
     formatResultDialogState: function (status) {
         switch (status) {
           case "success":
             return ValueState.Success
         }
+    },
+    openImpressum: function (clickEvent) {
+      const button = clickEvent.getSource()
+      
+      // create popover
+			if (!impressumPromise) {
+				impressumPromise = Fragment.load({
+					id: this.oView.getId(),
+					name: "com.lonwyr.MyranorBot.fragment.Impressum",
+					controller: this
+				}).then(oPopover => {
+					this.oView.addDependent(oPopover)
+					return oPopover
+				})
+			}
+			impressumPromise.then(function(oPopover) {
+				oPopover.openBy(button)
+			})
     },
     closeResultDialog: function () {
       resultDialogPromise.then(dialog => dialog.close());
