@@ -10,10 +10,9 @@ module.exports = {
     
     await cache.setChannel(userId, channelId)
 
-    msg.reply(`Dieser Channel ist nun das Ziel von Würfen aus der App.`)
+    msg.react('✅')
 
     const pw = await cache.createAppPassword(userId)
-
     msg.author.send(`Du kannst nun die App ${process.env.url}/index.html nutzten. Dein Token: ${pw}`)
   }
 }

@@ -1,27 +1,45 @@
  <mvc:View controllerName="com.lonwyr.MyranorBot.controller.Main"
   displayBlock="true"
-		xmlns="sap.uxap"
-    xmlns:m="sap.m"
+		xmlns:uxap="sap.uxap"
+    xmlns="sap.m"
     xmlns:core="sap.ui.core"
 	  xmlns:f="sap.f"
   xmlns:mvc="sap.ui.core.mvc">
-  <m:Page title="{character>/name}">
-    <m:content>
-    	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
-        <headerTitle>
-          <ObjectPageHeader objectTitle="{character>/name}">
-            <actions>
-              <ObjectPageHeaderActionButton icon="sap-icon://synchronize" press="toggleTitle"
+  <Page title="{character>/name}">
+    <content>
+    	<uxap:ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
+        <uxap:headerTitle>
+          <uxap:ObjectPageHeader objectTitle="{character>/name}">
+            <uxap:actions>
+              <uxap:ObjectPageHeaderActionButton icon="sap-icon://synchronize" press="toggleTitle"
                               text="toggle title" tooltip="synchronize"/>
-            </actions>
-          </ObjectPageHeader>
-        </headerTitle>
-        <sections>
+            </uxap:actions>
+          </uxap:ObjectPageHeader>
+        </uxap:headerTitle>
+        <uxap:sections>
           <core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.Attributes' type='XML' />
           <core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.Skills' type='XML' />
           <core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.Spells' type='XML' />
-        </sections>
-      </ObjectPageLayout>
-    </m:content>
-  </m:Page>
+        </uxap:sections>
+      </uxap:ObjectPageLayout>
+    </content>
+    <footer>
+			<OverflowToolbar>
+        <!--Label text="{i18n>slot}" />
+        <SegmentedButton id="slotSelection" selectedKey="{character>/slot}" selectionChange=".onSlotSelectionChange">
+          <items>
+            <SegmentedButtonItem text="1" key="1" />
+            <SegmentedButtonItem text="2" key="2" />
+            <SegmentedButtonItem text="3" key="3" />
+          </items>
+        </SegmentedButton>
+				<ToolbarSpacer/>
+        <Text text="" /-->
+				<ToolbarSpacer/>
+				<Button
+					text="{i18n>impressum}"
+					press=".openImpressum" />
+			</OverflowToolbar>
+		</footer>
+  </Page>
 </mvc:View>
