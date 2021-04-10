@@ -3,8 +3,7 @@
 	xmlns:core="sap.ui.core">
 	<Popover
 		title="{check>/name}"
-		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
-		placement="Bottom">
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer">
         <InputListItem label="{i18n>specialization}" >
 		    <CheckBox selected="{check>/specialization}" />
         </InputListItem>
