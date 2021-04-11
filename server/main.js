@@ -25,11 +25,18 @@ module.exports = {
             res.send()
         }
     },
-    getCharacter: async (req, res) => {
+    start: async (req, res) => {
         const userid = await getUserIdByUserToken(req, res)
         if (userid) {
             const character = botHandler.getCharacter(userid)
-            res.send(character)
+            const channel = await botHandler.getChannel(userid)
+            res.send({
+                character: character,
+                settings: {
+                    slots: await cache.getSlotInfo(userid),
+                    channel: `${channel.guild.name} - ${channel.name}`
+                }
+            })
         }
     },
     checkAttribute: async (req, res) => {
@@ -44,13 +51,13 @@ module.exports = {
         if (userid) {
             const skillData = req.body
             const result = diceRoller.rollSkillOrSpell(skillData, "skill", userid)
-            const channelData = await cache.getChannel(userid)
-            if (!channelData) {
+            const channelid = await cache.getChannel(userid)
+            if (!channelid) {
                 res.status = 409
                 res.send("No channel locked")
                 return
             }
-            botHandler.sendChannelMessage(channelData.channelid, result.message)
+            botHandler.sendChannelMessage(channelid, result.message)
             res.send(result.checkResult)
         }
     },

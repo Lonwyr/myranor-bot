@@ -8,6 +8,14 @@ const initController = require('./helper/initController')
 
 const bot = new Discord.Client()
 
+async function getChannelById(channelid) {
+    let channel = bot.channels.cache.get(channelid)
+    if (!channel) {
+        channel = await bot.channels.fetch(channelid)
+    }
+    return channel;
+} 
+
 module.exports = {
     init: function() {
         config.token = process.env.BOT_SECRET
@@ -60,11 +68,16 @@ module.exports = {
         }
         user.send(message)
     },
-    sendChannelMessage: async function (channelid, message) {
-        let channel = bot.channels.cache.get(channelid)
-        if (!channel) {
-            channel = await bot.channels.fetch(channelid)
+    getChannel: async function (userid) {
+        const channelid = await cache.getChannel(userid)
+        if (channelid) {
+            return getChannelById(channelid)
+        } else {
+            throw new Error("no channel set")
         }
+    },
+    sendChannelMessage: async function (channelid, message) {
+        const channel = getChannelById(channelid)
         channel.send(message)
     },
     getCharacter: function (userid) {

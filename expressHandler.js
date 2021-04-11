@@ -39,8 +39,8 @@ module.exports = {
         app.post('/myranorbot/check/spell', function (req, res) {
             server.checkSpell(req, res)
         })
-        app.get('/myranorbot/character', function (req, res) {
-            server.getCharacter(req, res)
+        app.get('/myranorbot/start', function (req, res) {
+            server.start(req, res)
         })
 
         const PORT = process.env.PORT || 3000

@@ -58,6 +58,9 @@
       },
       "check": {
         "type": "sap.ui.model.json.JSONModel"
+      },
+      "settings": {
+        "type": "sap.ui.model.json.JSONModel"
       }
     },
     "resources": {

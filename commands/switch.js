@@ -3,7 +3,7 @@ const cache = require('../helper/cache')
 module.exports = {
   name: 'switch',
   description: 'switches the active character slot',
-  help: '**slot 1** **slot 2** und **Slot** wechselt den charakter-slot. Ohne Wert verrate ich dir den aktuell Aktiven Charakter.',
+  help: '**1** **2** und **3** wechselt den Charakter-Slot. Ohne Wert verrate ich dir den aktuell Aktiven Charakter.',
   execute: async function(msg, args) {
     const userId = msg.author.id
     const slot = args[0]
