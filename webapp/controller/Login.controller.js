@@ -15,9 +15,10 @@ sap.ui.define([
       this.onNavBack();
     }).then(() => {
       window.localStorage.setItem(loginTokenKey, token);
-      return HttpHelper.getCharacter();
-    }).then(character => {
-      this.getModel('character').setData(character);
+      return HttpHelper.getStart();
+    }).then(start => {
+      this.getModel('character').setData(start.character);
+      this.getModel('settings').setData(start.settings);
     });
   };
 

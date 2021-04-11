@@ -98,7 +98,7 @@ module.exports = {
                 values: [userId]
             }
             const result = await client.query(getChannelQuery)
-            return result.rows.length && result.rows[0]
+            return result.rows.length && result.rows[0].channelid
         } finally {
             client.release()
         }
@@ -116,6 +116,37 @@ module.exports = {
                 cache[row.userid] = JSON.parse(row.character)
             }
             console.info('Characters loaded from DB')
+        } finally {
+            client.release()
+        }
+    },
+    getSlotInfo: async function (userId) {
+        const client = await pool.connect()
+        try {
+            const getSlots = {
+                text: `
+                    SELECT slot
+                    FROM characters
+                    WHERE userid = $1
+                `,
+                values: [userId]
+            }
+            const getSlotsResult = await client.query(getSlots)
+          
+            const getActiveSlot = {
+                text: `
+                    SELECT slot
+                    FROM activeslot
+                    WHERE userid = $1`,
+                values: [userId]
+            }
+            const getActiveSlotResult = await client.query(getActiveSlot)
+
+            return {
+                activeSlot: getActiveSlotResult.rows && getActiveSlotResult.rows[0].slot,
+                usedSlots: getSlotsResult.rows.map(row => row.slot),
+                availableSlots: [1,2,3]
+            }
         } finally {
             client.release()
         }

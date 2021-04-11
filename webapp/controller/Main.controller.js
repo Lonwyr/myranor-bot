@@ -138,6 +138,9 @@ sap.ui.define([
             return ValueState.Success
         }
     },
+    formatSlotButtonVisibility: function (slots, slotNr) {
+      return slots && slots.includes(slotNr);
+    },
     openImpressum: function (clickEvent) {
       const button = clickEvent.getSource()
       

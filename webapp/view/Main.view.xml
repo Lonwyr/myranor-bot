@@ -25,16 +25,19 @@
     </content>
     <footer>
 			<OverflowToolbar>
-        <!--Label text="{i18n>slot}" />
-        <SegmentedButton id="slotSelection" selectedKey="{character>/slot}" selectionChange=".onSlotSelectionChange">
+        <Label text="{i18n>slot}" />
+        <SegmentedButton id="slotSelection" selectedKey="{settings>/slots/activeSlot}" selectionChange=".onSlotSelectionChange" items="{settings>/slots/availableSlots}">
           <items>
-            <SegmentedButtonItem text="1" key="1" />
-            <SegmentedButtonItem text="2" key="2" />
-            <SegmentedButtonItem text="3" key="3" />
+            <SegmentedButtonItem
+              text="{settings>}"
+              key="{settings>}"
+              enabled="false"
+              visible="{parts:[{path: 'settings>/slots/usedSlots'}, {path: 'settings>'}], formatter: '.formatSlotButtonVisibility'}" />
           </items>
         </SegmentedButton>
 				<ToolbarSpacer/>
-        <Text text="" /-->
+        <Label text="{i18n>channel}" />
+        <Text text="{settings>/channel}" />
 				<ToolbarSpacer/>
 				<Button
 					text="{i18n>impressum}"
