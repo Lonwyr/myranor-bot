@@ -1,11 +1,13 @@
 sap.ui.define([
   "com/lonwyr/MyranorBot/controller/BaseController",
+  "com/lonwyr/MyranorBot/controller/Combat",
   "sap/ui/core/Fragment",
   "sap/m/GroupHeaderListItem",
   "sap/m/MessageToast",
   "com/lonwyr/MyranorBot/utils/Roller"
 ], function(
     Controller,
+    CombatController,
     Fragment,
     GroupHeaderListItem,
     MessageToast,
@@ -22,9 +24,9 @@ sap.ui.define([
     "HANDWERKLICH": 6
   }
 
-  let popoverPromise
-  let resultDialogPromise
-  let impressumPromise
+  let popoverPromise;
+  let resultDialogPromise;
+  let impressumPromise;
 
   function getProperty (clickEvent) {
     const bindingContext = clickEvent.getSource().getBindingContext("character")
@@ -41,7 +43,7 @@ sap.ui.define([
     })
   }
 
-  return Controller.extend("com.lonwyr.MyranorBot.controller.Main", {
+  return Controller.extend("com.lonwyr.MyranorBot.controller.Main", Object.assign({
     formatAttributeName: function (attribute) {
       return this.getResourceBundle("i18n").getText(attribute);
     },
@@ -103,7 +105,7 @@ sap.ui.define([
         if (!resultDialogPromise) {
           resultDialogPromise = Fragment.load({
             id: this.oView.getId(),
-            name: "com.lonwyr.MyranorBot.fragment.RollResultDialog",
+            name: "com.lonwyr.MyranorBot.fragment.Roll3D20ResultDialog",
             controller: this
           }).then(oDialog => {
             this.oView.addDependent(oDialog)
@@ -162,5 +164,5 @@ sap.ui.define([
     closeResultDialog: function () {
       resultDialogPromise.then(dialog => dialog.close());
     }
-  });
+  }, CombatController));
 });

@@ -11,7 +11,7 @@ module.exports = {
     const config = {
         abb: 'AT',
         title: 'Nahkampfangriff',
-        fumbles: meeleFumbles
+        type: 'meele'
     }
     offenseExecute.execute(msg, args, config)
   }

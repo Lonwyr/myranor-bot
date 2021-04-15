@@ -77,7 +77,7 @@ module.exports = {
         }
     },
     sendChannelMessage: async function (channelid, message) {
-        const channel = getChannelById(channelid)
+        const channel = await getChannelById(channelid)
         channel.send(message)
     },
     getCharacter: function (userid) {

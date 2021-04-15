@@ -59,6 +59,9 @@
       "check": {
         "type": "sap.ui.model.json.JSONModel"
       },
+      "combat": {
+        "type": "com.lonwyr.MyranorBot.model.CombatModel"
+      },
       "settings": {
         "type": "sap.ui.model.json.JSONModel"
       }

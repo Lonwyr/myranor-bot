@@ -10,16 +10,17 @@
     	<uxap:ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
         <uxap:headerTitle>
           <uxap:ObjectPageHeader objectTitle="{character>/name}">
-            <uxap:actions>
+            <!--uxap:actions>
               <uxap:ObjectPageHeaderActionButton icon="sap-icon://synchronize" press="toggleTitle"
                               text="toggle title" tooltip="synchronize"/>
-            </uxap:actions>
+            </uxap:actions-->
           </uxap:ObjectPageHeader>
         </uxap:headerTitle>
         <uxap:sections>
           <core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.Attributes' type='XML' />
           <core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.Skills' type='XML' />
           <core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.Spells' type='XML' />
+          <core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.Combat' type='XML' />
         </uxap:sections>
       </uxap:ObjectPageLayout>
     </content>
