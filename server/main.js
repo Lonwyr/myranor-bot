@@ -67,5 +67,20 @@ module.exports = {
             botHandler.sendDM(userid, "hi")
             res.send("ok")
         }
+    },
+    checkAttack: async (req, res) => {
+        const userid = await getUserIdByUserToken(req, res)
+        if (userid) {
+            const attackData = req.body
+            const result = diceRoller.rollAttack(attackData, userid)
+            const channelid = await cache.getChannel(userid)
+            if (!channelid) {
+                res.status = 409
+                res.send("No channel locked")
+                return
+            }
+            botHandler.sendChannelMessage(channelid, result.message)
+            res.send(result.checkResult)
+        }
     }
 }

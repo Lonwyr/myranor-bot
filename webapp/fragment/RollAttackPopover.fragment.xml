@@ -1,0 +1,21 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover
+		title="{check>/name}"
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer">
+        <InputListItem label="{i18n>modificator}" >
+            <Input
+                value="{check>/modifier}"
+                type="Number" />
+        </InputListItem>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+					text="{i18n>roll}"
+					press=".onRollAttack" />
+			</OverflowToolbar>
+		</footer>
+	</Popover>
+</core:FragmentDefinition>

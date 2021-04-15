@@ -13,7 +13,10 @@ sap.ui.define([
             return HttpHelper.checkSkill(properties);
         },
         checkSpell: function (properties) {
-            return checkSpell.checkSpell(properties);
+            return HttpHelper.checkSpell(properties);
+        },
+        checkAttack: function (properties) {
+            return HttpHelper.checkAttack(properties);
         }
     }
 })

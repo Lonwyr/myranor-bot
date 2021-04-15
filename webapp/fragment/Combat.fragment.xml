@@ -1,0 +1,137 @@
+<core:FragmentDefinition
+    controllerName='com.lonwyr.MyranorBot.controller.Combat'
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:uxap="sap.uxap"
+    xmlns:core="sap.ui.core" >
+    <uxap:ObjectPageSection title="{i18n>combat}">
+        <uxap:subSections>
+            <uxap:ObjectPageSubSection title="{i18n>meele}">
+                <uxap:blocks>
+                    <VBox>
+                        <MessageStrip text="{i18n>combatNotSavedWithCharacter}" />
+                        <Table
+                                visible="{= !${combat>/editMeeleWeapons}}"
+                                items="{combat>/meeleWeapons}" >
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <content>
+                                    <ToolbarSpacer />
+                                        <Button icon="sap-icon://edit" press=".switchMeeleToEdit" />
+                                    </content>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column>
+                                    <Text text="{i18n>name}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>at}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>pa}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>tp}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>bf}" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{combat>name}"/>
+                                        <Button text="{combat>at}" press=".openAttackPopover" />
+                                        <Button text="{combat>pa}" enabled="false" press=".openParryPopover" />
+                                        <Text text="{combat>tp}" />
+                                        <Text text="{combat>bf}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                        <Table
+                                mode="Delete"
+                                delete=".removeMeeleWeapon"
+                                visible="{combat>/editMeeleWeapons}"
+                                items="{combat>/meeleWeapons}" >
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <content>
+                                        <ToolbarSpacer />
+                                        <Button icon="sap-icon://add" press=".addMeeleWeapon" />
+                                        <Button icon="sap-icon://save" press=".switchMeeleToView" />
+                                    </content>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column>
+                                    <Text text="{i18n>name}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>at}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>pa}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>tp}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>bf}" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Input value="{combat>name}"/>
+                                        <Input type="Number" value="{combat>at}" />
+                                        <Input type="Number" value="{combat>pa}" />
+                                        <Input value="{combat>tp}" />
+                                        <Input type="Number" value="{combat>bf}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </VBox> 
+                </uxap:blocks>
+            </uxap:ObjectPageSubSection>
+            <!--uxap:ObjectPageSubSection title="{i18n>ranged}">
+                <uxap:blocks>
+                    <Table
+                            inset="false"
+                            items="{combat>/rangedAttacks}" >
+                        <columns>
+                            <Column
+                                width="4em" />
+                            <Column
+                                width="12em">
+                                <Text text="{i18n>skill}" />
+                            </Column>
+                            <Column
+                                width="3em">
+                                <Text text="{i18n>value}" />
+                            </Column>
+                            <Column
+                                width="12em">
+                                <Text text="{i18n>attributes}" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Button text="{i18n>roll}" press="openSkillPopover" />
+                                    <Text
+                                        text="{combat>name}" />
+                                    <Text
+                                        text="{combat>value}" />
+                                    <Text text="{= ${combat>attributes/0} + ' / '+  ${combat>attributes/1} + ' / ' + ${combat>attributes/2}}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </uxap:blocks>
+            </uxap:ObjectPageSubSection-->
+        </uxap:subSections>
+    </uxap:ObjectPageSection>
+</core:FragmentDefinition>

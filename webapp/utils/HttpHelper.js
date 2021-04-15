@@ -58,6 +58,9 @@ sap.ui.define([
         checkSpell: function (content) {
             return sendPost(`check/spell`, content);
         },
+        checkAttack: function (content) {
+            return sendPost(`check/attack`, content);
+        },
         getStart: function () {
             return sendGet('start').then(function (startString) {
                 return JSON.parse(startString);

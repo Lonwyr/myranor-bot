@@ -39,6 +39,9 @@ module.exports = {
         app.post('/myranorbot/check/spell', function (req, res) {
             server.checkSpell(req, res)
         })
+        app.post('/myranorbot/check/attack', function (req, res) {
+            server.checkAttack(req, res)
+        })
         app.get('/myranorbot/start', function (req, res) {
             server.start(req, res)
         })
