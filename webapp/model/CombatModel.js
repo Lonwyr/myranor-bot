@@ -43,6 +43,19 @@ sap.ui.define([
             this.setProperty("/meeleWeapons", aMeeleWeapons);
             this.storeCombat(slot);
         },
+        addRangedWeapon: function (slot) {
+            var aRangedWeapons = this.getProperty("/rangedWeapons");
+            aRangedWeapons.push({
+                name: "",
+                at: 10,
+                type: "ranged",
+                tp: "1W6+4",
+                bf: 2
+            });
+
+            this.setProperty("/rangedWeapons", aRangedWeapons);
+            this.storeCombat(slot);
+        },
         removeWeapon: function (path) {
             let aWeapons = this.getProperty(path.substring(0, path.lastIndexOf("/")));
             const index = parseInt(path.substring(path.lastIndexOf("/")+1));

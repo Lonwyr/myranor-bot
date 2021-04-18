@@ -7,10 +7,10 @@
     <uxap:ObjectPageSection title="{i18n>combat}">
         <uxap:subSections>
             <uxap:ObjectPageSubSection title="{i18n>meele}">
-        <uxap:actions>
-            <Button visible="{= !${combat>/editMeeleWeapons}}" icon="sap-icon://edit" press=".switchMeeleToEdit" />
-            <Button visible="{= ${combat>/editMeeleWeapons}}" icon="sap-icon://save" press=".switchMeeleToView" />
-        </uxap:actions>
+                <uxap:actions>
+                    <Button visible="{= !${combat>/editMeeleWeapons}}" icon="sap-icon://edit" press=".switchMeeleToEdit" />
+                    <Button visible="{= ${combat>/editMeeleWeapons}}" icon="sap-icon://save" press=".switchMeeleToView" />
+                </uxap:actions>
                 <uxap:blocks>
                     <VBox>
                         <VBox visible="{= !${combat>/editMeeleWeapons}}">
@@ -71,7 +71,7 @@
                             </HBox>
                             <Table
                                     mode="Delete"
-                                    delete=".removeMeeleWeapon"
+                                    delete=".removeWeapon"
                                     items="{combat>/meeleWeapons}" >
                                 <headerToolbar>
                                     <OverflowToolbar>
@@ -111,45 +111,88 @@
                                 </items>
                             </Table>
                         </VBox>
+                    </VBox>
+                </uxap:blocks>
+            </uxap:ObjectPageSubSection>
+            <uxap:ObjectPageSubSection title="{i18n>ranged}">
+                <uxap:actions>
+                    <Button visible="{= !${combat>/editRangedWeapons}}" icon="sap-icon://edit" press=".switchRangedToEdit" />
+                    <Button visible="{= ${combat>/editRangedWeapons}}" icon="sap-icon://save" press=".switchRangedToView" />
+                </uxap:actions>
+                <uxap:blocks>
+                    <VBox>
+                        <VBox visible="{= !${combat>/editRangedWeapons}}">
+                            <Table
+                                    items="{combat>/rangedWeapons}" >
+                                <columns>
+                                    <Column>
+                                        <Text text="{i18n>name}" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="{i18n>fk}" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="{i18n>tp}" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="{i18n>bf}" />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <Text text="{combat>name}"/>
+                                            <Button text="{combat>at}" press=".openAttackPopover" />
+                                            <Text text="{combat>tp}" />
+                                            <Text text="{combat>bf}" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </VBox>
+                        <VBox visible="{= ${combat>/editRangedWeapons}}">
+                            <MessageStrip text="{i18n>combatNotSavedWithCharacter}" />
+                            <Table
+                                    mode="Delete"
+                                    delete=".removeWeapon"
+                                    items="{combat>/rangedWeapons}" >
+                                <headerToolbar>
+                                    <OverflowToolbar>
+                                        <content>
+                                            <ToolbarSpacer />
+                                            <Button icon="sap-icon://add" press=".addRangedWeapon" />
+                                        </content>
+                                    </OverflowToolbar>
+                                </headerToolbar>
+                                <columns>
+                                    <Column>
+                                        <Text text="{i18n>name}" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="{i18n>fk}" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="{i18n>tp}" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="{i18n>bf}" />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <Input value="{combat>name}"/>
+                                            <Input type="Number" value="{combat>at}" />
+                                            <Input value="{combat>tp}" />
+                                            <Input type="Number" value="{combat>bf}" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </VBox>
                     </VBox> 
                 </uxap:blocks>
             </uxap:ObjectPageSubSection>
-            <!--uxap:ObjectPageSubSection title="{i18n>ranged}">
-                <uxap:blocks>
-                    <Table
-                            inset="false"
-                            items="{combat>/rangedAttacks}" >
-                        <columns>
-                            <Column
-                                width="4em" />
-                            <Column
-                                width="12em">
-                                <Text text="{i18n>skill}" />
-                            </Column>
-                            <Column
-                                width="3em">
-                                <Text text="{i18n>value}" />
-                            </Column>
-                            <Column
-                                width="12em">
-                                <Text text="{i18n>attributes}" />
-                            </Column>
-                        </columns>
-                        <items>
-                            <ColumnListItem>
-                                <cells>
-                                    <Button text="{i18n>roll}" press="openSkillPopover" />
-                                    <Text
-                                        text="{combat>name}" />
-                                    <Text
-                                        text="{combat>value}" />
-                                    <Text text="{= ${combat>attributes/0} + ' / '+  ${combat>attributes/1} + ' / ' + ${combat>attributes/2}}" />
-                                </cells>
-                            </ColumnListItem>
-                        </items>
-                    </Table>
-                </uxap:blocks>
-            </uxap:ObjectPageSubSection-->
         </uxap:subSections>
     </uxap:ObjectPageSection>
 </core:FragmentDefinition>
