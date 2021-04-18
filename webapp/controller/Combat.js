@@ -9,6 +9,8 @@ sap.ui.define([
 
   let attackPopoverPromise;
   let attackResultDialogPromise;
+  let defensePopoverPromise;
+  let defenseResultDialogPromise;
  
   function getProperty (clickEvent) {
     const bindingContext = clickEvent.getSource().getBindingContext("combat")
@@ -29,21 +31,47 @@ sap.ui.define([
       this.getModel("combat").addMeeleWeapon(activeSlot);
     },
     removeMeeleWeapon: function (event) {
-      const activeSlot = this.getModel("settings").getProperty("/slots/activeSlot");
       const listItem = event.getParameter("listItem");
       const path = listItem.getBindingContext("combat").getPath();
 
-      this.getModel("combat").removeWeapon(path, activeSlot);
+      this.getModel("combat").removeWeapon(path);
+    },
+    openDodgePopover: function (clickEvent) {
+      const button = clickEvent.getSource()
+      const checkParameters = {
+        name: "Ausweichen",
+        modifier: 0,
+        type: "dodge",
+        value: parseInt(this.getModel("combat").getProperty("/dodge"))
+      }
+      this.getModel("check").setData(checkParameters)
+
+     // create popover
+			if (!defensePopoverPromise) {
+				defensePopoverPromise = Fragment.load({
+					id: this.oView.getId(),
+					name: "com.lonwyr.MyranorBot.fragment.RollDefensePopover",
+					controller: this
+				}).then(oPopover => {
+					this.oView.addDependent(oPopover)
+					return oPopover
+				})
+			}
+			defensePopoverPromise.then(function(oPopover) {
+				oPopover.openBy(button)
+			})
     },
     openAttackPopover: function (clickEvent) {
       const button = clickEvent.getSource()
-      const attack = getProperty(clickEvent)
+      const weapon = getProperty(clickEvent)
       const checkParameters = {
-        name: attack.name,
-        type: attack.type,
-        value: parseInt(attack.at),
-        tp: attack.tp,
-        sizeDifference: this.getModel("combat").getProperty("/sizeDifference")
+        name: weapon.name,
+        type: weapon.type,
+        value: parseInt(weapon.at),
+        tp: weapon.tp,
+        sizeClass: this.getModel("combat").getProperty("/sizeClass"),
+        modifier: 0,
+        sizeTarget: 0
       }
       this.getModel("check").setData(checkParameters)
 
@@ -63,8 +91,12 @@ sap.ui.define([
 			})
     },
     onRollAttack: function () {
-      attackPopoverPromise.then(oPopover => oPopover.close())
-      return Roller.checkAttack(this.getModel("check").getData()).then((result) => {
+      attackPopoverPromise.then(oPopover => oPopover.close());
+      let checkData = this.getModel("check").getData();
+      checkData.modifier = parseInt(checkData.modifier) || 0
+      checkData.sizeDifference = checkData.sizeClass - (checkData.sizeTarget || 0)
+      checkData.value = checkData.value - checkData.modifier
+      return Roller.checkAttack(checkData).then((result) => {
         this.getModel("check").setProperty("/result", JSON.parse(result));
 
         if (!attackResultDialogPromise) {
@@ -82,15 +114,68 @@ sap.ui.define([
         })
       })
     },
-    formatAttackResultDialogState: function (result) {
-      if (["ciritcalHit", "potentialCriticalHit", "hit"].includes(result)) {
-        return "Success";
-      } else {
-        return "Error";
-      }
+    formatDamageRoll: function (results = [], tp) {
+    const re = /[+-]\d*/g;
+    const mod = tp.match(re)[0];
+    return `[${results.join('+')}]${mod}`;
+
     },
     closeAttackResultDialog: function () {
       attackResultDialogPromise.then(dialog => dialog.close());
+    },
+    openDefensePopover: function (clickEvent) {
+      const button = clickEvent.getSource()
+      const weapon = getProperty(clickEvent)
+      const checkParameters = {
+        name: weapon.name,
+        type: weapon.type,
+        value: parseInt(weapon.pa)
+      }
+      this.getModel("check").setData(checkParameters)
+
+      // create popover
+			if (!defensePopoverPromise) {
+				defensePopoverPromise = Fragment.load({
+					id: this.oView.getId(),
+					name: "com.lonwyr.MyranorBot.fragment.RollDefensePopover",
+					controller: this
+				}).then(oPopover => {
+					this.oView.addDependent(oPopover)
+					return oPopover
+				})
+			}
+			defensePopoverPromise.then(function(oPopover) {
+				oPopover.openBy(button)
+			})
+    },
+    onRollDefense: function () {
+      defensePopoverPromise.then(oPopover => oPopover.close())
+      let checkData = this.getModel("check").getData();
+      checkData.modifier = parseInt(checkData.modifier) || 0
+      checkData.value = checkData.value - checkData.modifier
+      return Roller.checkDefense(checkData).then((result) => {
+        this.getModel("check").setProperty("/result", JSON.parse(result));
+
+        if (!defenseResultDialogPromise) {
+          defenseResultDialogPromise = Fragment.load({
+            id: this.oView.getId(),
+            name: "com.lonwyr.MyranorBot.fragment.RollDefenseResultDialog",
+            controller: this
+          }).then(oDialog => {
+            this.oView.addDependent(oDialog)
+            return oDialog
+          })
+        }
+        defenseResultDialogPromise.then(function(oDialog) {
+          oDialog.open()
+        })
+      })
+    },
+    closeDefenseResultDialog: function () {
+      defenseResultDialogPromise.then(dialog => dialog.close());
+    },
+    formatFumbleRoll: function (results) {
+      return results ? `[${results.join('+')}]` : '';
     }
   }
 });

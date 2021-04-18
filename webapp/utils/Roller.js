@@ -17,6 +17,9 @@ sap.ui.define([
         },
         checkAttack: function (properties) {
             return HttpHelper.checkAttack(properties);
+        },
+        checkDefense: function (properties) {
+            return HttpHelper.checkDefense(properties);
         }
     }
 })

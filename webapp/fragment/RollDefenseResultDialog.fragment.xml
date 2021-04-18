@@ -3,12 +3,12 @@
 	xmlns:core="sap.ui.core">
 	<Dialog
 		type="Message"
-		title="{= ${check>/name} + ' (AT ' + ${check>/value} + ')'}">
+		title="{check>/name}">
 		<List>
 			<ObjectListItem
-				title="{= ${check>/type} === 'meele' ? 'AT' : 'FK'}" 
-				number="{check>/result/attackRoll}"
-				numberState="{= ${check>/result/attackRoll} > ${check>/value} ? 'Warning' : 'Success'}"
+				title="{= ${check>/type} === 'meele' ? 'PA' : 'AW'}" 
+				number="{check>/result/defenseRoll}"
+				numberState="{= ${check>/result/defenseRoll} > ${check>/value} ? 'Warning' : 'Success'}"
 				numberUnit="{= '/' + ${check>/value}}" />
 			<ObjectListItem
 				visible="{= !!${check>/result/confirmationRoll}}"
@@ -16,16 +16,6 @@
 				number="{check>/result/confirmationRoll}"
 				numberState="{= ${check>/result/confirmationRoll} > ${check>/value} ? 'Warning' : 'Success'}"
 				numberUnit="{= '/' + ${check>/value}}" />
-			<ObjectListItem
-				visible="{= ${check>/result/damageRoll/sum} !== undefined}"
-				title="{i18n>damage}" 
-				number="{= ${check>/result/damageRoll/sum} + ' TP'}"
-				numberUnit="{parts: ['check>/result/damageRoll/results', 'check>/tp'], formatter: '.formatDamageRoll'}" />
-			<ObjectListItem
-				visible="{= !!${check>/result/hitZoneName}}"
-				title="{i18n>targetZone}" 
-				number="{check>/result/hitZoneName}"
-				numberUnit="{check>/result/hitZoneRoll}" />
 			<ObjectListItem
 				visible="{= !!${check>/result/fumbleRoll}}"
 				title="{i18n>fumble}" 
@@ -44,11 +34,10 @@
 			<Button
 				type="Emphasized"
 				text="{i18n>ok}"
-				press=".closeAttackResultDialog" />
+				press=".closeDefenseResultDialog" />
 		</beginButton>
 	</Dialog>
 </core:FragmentDefinition>
-
 
 
 	

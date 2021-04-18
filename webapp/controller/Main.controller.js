@@ -99,7 +99,9 @@ sap.ui.define([
     },
     onRollSkill: function () {
       popoverPromise.then(oPopover => oPopover.close())
-      return Roller.checkSkill(this.getModel("check").getData()).then((result) => {
+      let checkData = this.getModel("check").getData();
+      checkData.modifier = parseInt(checkData.modifier) || 0
+      return Roller.checkSkill(checkData).then((result) => {
         this.getModel("check").setProperty("/result", JSON.parse(result));
 
         if (!resultDialogPromise) {
