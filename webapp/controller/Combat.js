@@ -30,11 +30,23 @@ sap.ui.define([
       const activeSlot = this.getModel("settings").getProperty("/slots/activeSlot");
       this.getModel("combat").addMeeleWeapon(activeSlot);
     },
-    removeMeeleWeapon: function (event) {
+    removeWeapon: function (event) {
       const listItem = event.getParameter("listItem");
       const path = listItem.getBindingContext("combat").getPath();
 
       this.getModel("combat").removeWeapon(path);
+    },
+    switchRangedToEdit: function () {
+      this.getModel("combat").setProperty("/editRangedWeapons", true);
+    },
+    switchRangedToView: function () {
+      this.getModel("combat").setProperty("/editRangedWeapons", false);
+      const activeSlot = this.getModel("settings").getProperty("/slots/activeSlot");
+      this.getModel("combat").storeCombat(activeSlot);
+    },
+    addRangedWeapon: function () {
+      const activeSlot = this.getModel("settings").getProperty("/slots/activeSlot");
+      this.getModel("combat").addRangedWeapon(activeSlot);
     },
     openDodgePopover: function (clickEvent) {
       const button = clickEvent.getSource()
