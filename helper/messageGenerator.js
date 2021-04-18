@@ -141,7 +141,67 @@ function generateAttackMessage(checkResult, checkData, userid) {
   return resultEmbed
 }
 
+function generateDefenseMessage(checkResult, checkData, userid) {
+  let modifierString = ''
+  if (checkData.modifier > 0) {
+      modifierString = ` (erschwert um ${checkData.modifier})`
+  } else if (checkData.modifier < 0) {
+    modifierString = ` (erleichtert um ${-1 * checkData.modifier})`
+  }
+
+  let resultEmbed = new Discord.MessageEmbed()
+    .setDescription(`${checkData.name}${modifierString} für <@${userid}>`)
+
+  const abb = checkData.type === 'meele' ? 'PA' : 'AW'    
+  const atDescription = Number.isInteger(checkData.value) ? '/' + checkData.value : abb + '-Wert'
+
+  if (checkResult.confirmationRoll) {
+    resultEmbed.addFields(
+      { name: checkResult.defenseRoll, value: atDescription, inline: true },
+      { name: checkResult.confirmationRoll, value: 'Prüfwurf' }
+    )
+  } else {
+      resultEmbed.addField(checkResult.defenseRoll, atDescription)
+  }
+
+  const name = cache.checkCharacter(userid) ? cache.getName(userid) : ''
+
+  switch (checkResult.status) {
+    case 'criticalDefended':
+      const criticalDefendedTitleString = checkData.type === 'meele' ? 'erzielt eine glückliche Parade' : 'weicht glücklich aus'
+        resultEmbed.setTitle(`${name} ${criticalDefendedTitleString}!`)
+          .setColor(colors.criticalSuccess)
+        break
+    case 'potentialCriticalDefended':
+      const potentialCriticalDefendedTitleString = checkData.type === 'meele' ? 'erzielt potentiell eine glückliche Parade' : 'weicht potentiell glücklich aus'
+        resultEmbed.setTitle(`${name} ${potentialCriticalDefendedTitleString}!`)
+          .setColor(colors.criticalSuccess)
+        break
+    case 'defended':
+      const defendedTitleString = checkData.type === 'meele' ? 'parriert' : 'weicht aus'
+        resultEmbed.setTitle(`${name} ${defendedTitleString}`)
+          .setColor(colors.success)
+        break
+    case 'criticalHit':
+        resultEmbed.setTitle(`${name} wird getroffen und patzt!`)
+          .setColor(colors.criticalFailure)
+          .addField(`${checkResult.fumbleRoll.title}: ${checkResult.fumbleRoll.description}`, ' [' + checkResult.fumbleRoll.roll.results.join('+') + '] Patzer-Wurf')
+        break
+    case 'hit':
+        resultEmbed.setTitle(`${name} wird getroffen`)
+          .setColor(colors.failure)
+        break
+    default:
+        resultEmbed.setTitle('Verteidigung')
+          .setColor(colors.neutral)
+        break
+  }
+
+  return resultEmbed
+}
+
 module.exports = {
   generate3d20message: generate3d20message,
-  generateAttackMessage: generateAttackMessage
+  generateAttackMessage: generateAttackMessage,
+  generateDefenseMessage: generateDefenseMessage
 }

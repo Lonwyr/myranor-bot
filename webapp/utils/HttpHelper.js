@@ -61,6 +61,9 @@ sap.ui.define([
         checkAttack: function (content) {
             return sendPost(`check/attack`, content);
         },
+        checkDefense: function (content) {
+            return sendPost(`check/defense`, content);
+        },
         getStart: function () {
             return sendGet('start').then(function (startString) {
                 return JSON.parse(startString);

@@ -1,6 +1,7 @@
 const messageGenerator = require('./messageGenerator')
 const Discord = require('discord.js')
 const rollAttack = require('./roller/attack')
+const rollDefense = require('./roller/defense')
 const roll3d20check = require('./roller/3d20check')
 const sum = require('./roller/sum')
 const roll = require('./roller/roll')
@@ -23,17 +24,16 @@ module.exports = {
     }
   },
   rollAttack: function (checkData, userid) {
-    // no size difference in case of a non-meele attack
-    if (checkData.type !== 'meele') {
-      checkData.sizeDifference = 0;
-    }
-    if (checkData.modifier) {
-      ckeckData.value = checkData.value - checkData.modifier
-    }
-    
     const checkResult = rollAttack(checkData)
     return {
         message: messageGenerator.generateAttackMessage(checkResult, checkData, userid),
+        checkResult: checkResult
+    }
+  },
+  rollDefense: function (checkData, userid) {
+    const checkResult = rollDefense(checkData)
+    return {
+        message: messageGenerator.generateDefenseMessage(checkResult, checkData, userid),
         checkResult: checkResult
     }
   }

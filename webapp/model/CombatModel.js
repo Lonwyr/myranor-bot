@@ -12,7 +12,8 @@ sap.ui.define([
       rangedWeapons: [],
       editRangedWeapons: false,
       selectedRangedWeapon: undefined,
-      dodge: 0
+      dodge: 0,
+      sizeClass: 0
   };
 
     return JSONModel.extend("com.lonwyr.MyranorBot.model.CombatModel", {
@@ -42,7 +43,7 @@ sap.ui.define([
             this.setProperty("/meeleWeapons", aMeeleWeapons);
             this.storeCombat(slot);
         },
-        removeWeapon: function (path, slot) {
+        removeWeapon: function (path) {
             let aWeapons = this.getProperty(path.substring(0, path.lastIndexOf("/")));
             const index = parseInt(path.substring(path.lastIndexOf("/")+1));
             aWeapons.splice(index, 1);

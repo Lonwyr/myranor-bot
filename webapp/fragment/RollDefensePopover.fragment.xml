@@ -9,24 +9,12 @@
                 value="{check>/modifier}"
                 type="Number" />
         </InputListItem>
-        <InputListItem label="{i18n>sizeClassTarget}" >
-			<Select
-					selectedKey="{check>/sizeTarget}">
-				<core:Item key="-3" text="{i18n>size-3}" />
-				<core:Item key="-2" text="{i18n>size-2}" />
-				<core:Item key="-1" text="{i18n>size-1}" />
-				<core:Item key="0" text="{i18n>size0}" />
-				<core:Item key="1" text="{i18n>size1}" />
-				<core:Item key="2" text="{i18n>size2}" />
-				<core:Item key="3" text="{i18n>size3}" />
-			</Select>
-        </InputListItem>
 		<footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>
 				<Button
 					text="{i18n>roll}"
-					press=".onRollAttack" />
+					press=".onRollDefense" />
 			</OverflowToolbar>
 		</footer>
 	</Popover>

@@ -42,6 +42,9 @@ module.exports = {
         app.post('/myranorbot/check/attack', function (req, res) {
             server.checkAttack(req, res)
         })
+        app.post('/myranorbot/check/defense', function (req, res) {
+            server.checkDefense(req, res)
+        })
         app.get('/myranorbot/start', function (req, res) {
             server.start(req, res)
         })
