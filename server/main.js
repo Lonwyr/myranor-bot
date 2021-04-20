@@ -42,8 +42,16 @@ module.exports = {
     checkAttribute: async (req, res) => {
         const userid = await getUserIdByUserToken(req, res)
         if (userid) {
-            botHandler.sendDM(userid, "hi")
-            res.send("ok")
+            const attributeData = req.body
+            const result = diceRoller.rollAttribute(attributeData, userid)
+            const channelid = await cache.getChannel(userid)
+            if (!channelid) {
+                res.status = 409
+                res.send("No channel locked")
+                return
+            }
+            botHandler.sendChannelMessage(channelid, result.message)
+            res.send(result.checkResult)
         }
     },
     checkSkill: async (req, res) => {

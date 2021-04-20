@@ -1,16 +1,16 @@
 sap.ui.define([
   "com/lonwyr/MyranorBot/controller/BaseController",
+  "com/lonwyr/MyranorBot/controller/Attributes",
   "com/lonwyr/MyranorBot/controller/Combat",
   "sap/ui/core/Fragment",
   "sap/m/GroupHeaderListItem",
-  "sap/m/MessageToast",
   "com/lonwyr/MyranorBot/utils/Roller"
 ], function(
     Controller,
+    AttributesController,
     CombatController,
     Fragment,
     GroupHeaderListItem,
-    MessageToast,
     Roller
   ) {
   "use strict";
@@ -166,5 +166,5 @@ sap.ui.define([
     closeResultDialog: function () {
       resultDialogPromise.then(dialog => dialog.close());
     }
-  }, CombatController));
+  }, AttributesController, CombatController));
 });

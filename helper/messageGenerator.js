@@ -2,6 +2,50 @@ const cache = require('./../helper/cache')
 const Discord = require('discord.js')
 const colors = require('./../helper/colors')
 
+function generate1d20message(checkResult, checkData, userid) {
+  let modifierString = ''
+  if (checkData.modifier > 0) {
+      modifierString = ` (erschwert um ${checkData.modifier})`
+  } else if (checkData.modifier < 0) {
+    modifierString = ` (erleichtert um ${-1 * checkData.modifier})`
+  }
+
+  let resultEmbed = new Discord.MessageEmbed()
+    .setDescription(`${checkData.name}${modifierString} für <@${userid}>`)
+
+  if (checkResult.confirmationRoll) {
+    resultEmbed.addFields(
+      { name: checkResult.roll, value: `/${checkData.value}`, inline: true },
+      { name: checkResult.confirmationRoll, value: 'Prüfwurf' }
+    )
+  } else {
+      resultEmbed.addField(checkResult.roll, `/${checkData.value}`)
+  }
+
+
+  const name = cache.checkCharacter(userid) ? cache.getName(userid) : ''
+  switch(checkResult.status) {
+    case 'lucky':
+      resultEmbed.setTitle(`${name} erzielt ein hervorragendes Ergebnis!`)
+        .setColor(colors.criticalSuccess)
+      break
+    case 'fumble':
+      resultEmbed.setTitle(`${name} patzt!`)
+        .setColor(colors.criticalFailure)
+      break
+    case 'success':
+      resultEmbed.setTitle(`${name} hat Erfolg`)
+        .setColor(colors.success)
+      break
+    case 'fail':
+      resultEmbed.setTitle(`${name} scheitert`)
+        .setColor(colors.failure)
+      break
+  }
+
+  return resultEmbed
+}
+
 function generate3d20message(checkResult, checkData, checkType, userid) {
   const attribute1 = checkResult.attributes[0];
   const attribute2 = checkResult.attributes[1];
@@ -201,6 +245,7 @@ function generateDefenseMessage(checkResult, checkData, userid) {
 }
 
 module.exports = {
+  generate1d20message: generate1d20message,
   generate3d20message: generate3d20message,
   generateAttackMessage: generateAttackMessage,
   generateDefenseMessage: generateDefenseMessage

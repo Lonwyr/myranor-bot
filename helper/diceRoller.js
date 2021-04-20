@@ -2,6 +2,7 @@ const messageGenerator = require('./messageGenerator')
 const Discord = require('discord.js')
 const rollAttack = require('./roller/attack')
 const rollDefense = require('./roller/defense')
+const roll1d20check = require('./roller/1d20check')
 const roll3d20check = require('./roller/3d20check')
 const sum = require('./roller/sum')
 const roll = require('./roller/roll')
@@ -15,6 +16,13 @@ module.exports = {
   max: (expression) => {
     [size, amount, algebraic, modifier] = decypherRollExpression(expression)
     return algebraic == '+' ? size * amount + modifier : size * amount - modifier
+  },
+  rollAttribute: (checkData, userid) => {
+    const checkResult = roll1d20check(checkData)
+    return {
+        message: messageGenerator.generate1d20message(checkResult, checkData, userid),
+        checkResult: checkResult
+    }
   },
   rollSkillOrSpell: (checkData, checkType, userid) => {
     const checkResult = roll3d20check(checkData)
