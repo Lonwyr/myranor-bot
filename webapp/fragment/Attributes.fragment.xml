@@ -24,7 +24,7 @@
                         <items>
                             <ColumnListItem>
                                 <cells>
-                                    <Button text="{i18n>roll}" enabled="false" press="onRollAttribute" />
+                                    <Button text="{i18n>roll}"  press="openAttributePopover" />
                                     <Text
                                         text="{
                                             path: 'character>name',

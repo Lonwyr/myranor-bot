@@ -3,7 +3,7 @@
 	xmlns:core="sap.ui.core">
 	<Dialog
 		type="Message"
-		title="{= ${check>/name} + ' (AT ' + ${check>/value} + ')'}">
+		title="{check>/name}">
 		<List>
 			<ObjectListItem
 				title="{= ${check>/type} === 'meele' ? 'AT' : 'FK'}" 
