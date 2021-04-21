@@ -3,7 +3,7 @@
 	xmlns:core="sap.ui.core">
 	<Dialog
 		type="Message"
-		title="{check>/name}">
+		title="{path: 'check>/name', formatter: '.formatAttributeTitle'}" >
 		<List>
 			<ObjectListItem
 				title="{check>/name}" 

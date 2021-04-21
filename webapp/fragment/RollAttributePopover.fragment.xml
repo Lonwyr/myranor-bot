@@ -2,7 +2,7 @@
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
 	<Popover
-		title="{check>/name}"
+		title="{path: 'check>/name', formatter: '.formatAttributeTitle'}"
 		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer">
         <InputListItem label="{i18n>modificator}" >
             <Input

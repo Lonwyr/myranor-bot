@@ -24,16 +24,24 @@
                                     <Column>
                                         <Text text="{i18n>name}" />
                                     </Column>
-                                    <Column>
+                                    <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true">
                                         <Text text="{i18n>at}" />
                                     </Column>
-                                    <Column>
+                                    <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true">
                                         <Text text="{i18n>pa}" />
                                     </Column>
-                                    <Column>
+                                    <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true">
                                         <Text text="{i18n>tp}" />
                                     </Column>
-                                    <Column>
+                                    <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true">
                                         <Text text="{i18n>bf}" />
                                     </Column>
                                 </columns>
@@ -85,16 +93,24 @@
                                     <Column>
                                         <Text text="{i18n>name}" />
                                     </Column>
-                                    <Column>
+                                    <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true">
                                         <Text text="{i18n>at}" />
                                     </Column>
-                                    <Column>
+                                    <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true">
                                         <Text text="{i18n>pa}" />
                                     </Column>
-                                    <Column>
+                                    <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true">
                                         <Text text="{i18n>tp}" />
                                     </Column>
-                                    <Column>
+                                    <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true">
                                         <Text text="{i18n>bf}" />
                                     </Column>
                                 </columns>
@@ -125,16 +141,24 @@
                             <Table
                                     items="{combat>/rangedWeapons}" >
                                 <columns>
-                                    <Column>
+                                    <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true">
                                         <Text text="{i18n>name}" />
                                     </Column>
-                                    <Column>
+                                    <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true">
                                         <Text text="{i18n>fk}" />
                                     </Column>
-                                    <Column>
+                                    <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true">
                                         <Text text="{i18n>tp}" />
                                     </Column>
-                                    <Column>
+                                    <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true">
                                         <Text text="{i18n>bf}" />
                                     </Column>
                                 </columns>
@@ -168,13 +192,19 @@
                                     <Column>
                                         <Text text="{i18n>name}" />
                                     </Column>
-                                    <Column>
+                                    <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true">
                                         <Text text="{i18n>fk}" />
                                     </Column>
-                                    <Column>
+                                    <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true">
                                         <Text text="{i18n>tp}" />
                                     </Column>
-                                    <Column>
+                                    <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true">
                                         <Text text="{i18n>bf}" />
                                     </Column>
                                 </columns>

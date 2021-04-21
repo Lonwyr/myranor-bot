@@ -20,29 +20,35 @@
                         }" >
                     <columns>
                             <Column
-                                width="4em" />
-                            <Column
                                 width="12em">
                                 <Text text="{i18n>skill}" />
                             </Column>
                             <Column
+				                minScreenWidth="Tablet"
+				                demandPopin="true"
                                 width="3em">
                                 <Text text="{i18n>value}" />
                             </Column>
                             <Column
+				                minScreenWidth="Tablet"
+				                demandPopin="true"
                                 width="12em">
                                 <Text text="{i18n>attributes}" />
                             </Column>
+                            <Column
+                                vAlign="Center"
+                                hAlign="Center"
+                                width="4em" />
                         </columns>
                         <items>
                             <ColumnListItem>
                                 <cells>
-                                    <Button text="{i18n>roll}" press="openSkillPopover" />
                                     <Text
                                         text="{character>name}" />
                                     <Text
                                         text="{character>value}" />
                                     <Text text="{= ${character>attributes/0} + ' / '+  ${character>attributes/1} + ' / ' + ${character>attributes/2}}" />
+                                    <Button text="{i18n>roll}" press="openSkillPopover" />
                                 </cells>
                             </ColumnListItem>
                         </items>

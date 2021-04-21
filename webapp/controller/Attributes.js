@@ -16,6 +16,9 @@ sap.ui.define([
   }
 
   return {
+    formatAttributeTitle: function (attribute) {
+      return this.getResourceBundle().getText(attribute);
+    },
     openAttributePopover: function (clickEvent) {
       const button = clickEvent.getSource()
       const attribute = getProperty(clickEvent)
