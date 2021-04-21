@@ -11,20 +11,23 @@
                         items="{character>/attributes}" >
                     <columns>
                             <Column
-                                width="4em" />
-                            <Column
                                 width="12em">
                                 <Text text="{i18n>attribute}" />
                             </Column>
                             <Column
+				                minScreenWidth="Tablet"
+				                demandPopin="true"
                                 width="12em">
                                 <Text text="{i18n>value}" />
                             </Column>
+                            <Column
+                                vAlign="Center"
+                                hAlign="Center"
+                                width="4em" />
                         </columns>
                         <items>
                             <ColumnListItem>
                                 <cells>
-                                    <Button text="{i18n>roll}"  press="openAttributePopover" />
                                     <Text
                                         text="{
                                             path: 'character>name',
@@ -32,6 +35,7 @@
                                         }" />
                                     <Text
                                         text="{character>value}" />
+                                    <Button text="{i18n>roll}"  press="openAttributePopover" />
                                 </cells>
                             </ColumnListItem>
                         </items>
