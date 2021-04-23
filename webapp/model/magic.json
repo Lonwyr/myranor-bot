@@ -1,0 +1,210 @@
+{
+    "instructions": [],
+    "spellParameters": {
+        "castingTime": [{
+            "id": "1",
+            "description": "1 Stunde",
+            "modificator": -1
+        }, {
+            "id": "2",
+            "description": "6 SR",
+            "modificator": 0
+        }, {
+            "id": "3",
+            "description": "1 SR",
+            "modificator": 1
+        }, {
+            "id": "4",
+            "description": "20 Aktionen",
+            "modificator": 2
+        }, {
+            "id": "5",
+            "description": "10 Aktionen",
+            "modificator": 3
+        }, {
+            "id": "6",
+            "description": "5 Aktionen",
+            "modificator": 4
+        }, {
+            "id": "7",
+            "description": "3 Aktionen",
+            "modificator": 5
+        }, {
+            "id": "8",
+            "description": "2 Aktionen",
+            "modificator": 6
+        }, {
+            "id": "9",
+            "description": "1 Aktion",
+            "modificator": 7
+        }],
+        "targets": [{
+            "id": "1",
+            "description": "Einzelwesen",
+            "modificator": -1
+        }, {
+            "id": "2",
+            "description": "Einzelobjekt",
+            "modificator": 0
+        }, {
+            "id": "3",
+            "description": "ZfW Wesen",
+            "modificator": 0
+        }, {
+            "id": "4",
+            "description": "Zone mit 1 Schritt Radius",
+            "modificator": 1
+        }, {
+            "id": "5",
+            "description": "ZfW Objekte",
+            "modificator": 2
+        }, {
+            "id": "6",
+            "description": "3x ZfW Wesen",
+            "modificator": 2
+        }, {
+            "id": "7",
+            "description": "Zone mit ZfW Schritt Radius",
+            "modificator": 3
+        }, {
+            "id": "8",
+            "description": "3x ZfW Objekte",
+            "modificator": 3
+        }, {
+            "id": "9",
+            "description": "Zone mit 3x ZfW Schritt Radius",
+            "modificator": 4
+        }, {
+            "id": "10",
+            "description": "beliebig viele Wesen",
+            "modificator": 5
+        }, {
+            "id": "11",
+            "description": "beliebig viele Objekte",
+            "modificator": 6
+        }, {
+            "id": "12",
+            "description": "beliebig große Zone",
+            "modificator": 7
+        }],
+        "range": [{
+            "id": "1",
+            "description": "Selbst",
+            "modificator": -1
+        }, {
+            "id": "2",
+            "description": "Berührung",
+            "modificator": 0
+        }, {
+            "id": "3",
+            "description": "1 Schritt",
+            "modificator": 1
+        }, {
+            "id": "4",
+            "description": "3 Schritt",
+            "modificator": 2
+        }, {
+            "id": "5",
+            "description": "7 Schritt",
+            "modificator": 3
+        }, {
+            "id": "6",
+            "description": "21 Schritt",
+            "modificator": 4
+        }, {
+            "id": "7",
+            "description": "49 Schritt",
+            "modificator": 5
+        }, {
+            "id": "8",
+            "description": "Horizont",
+            "modificator": 6
+        }, {
+            "id": "9",
+            "description": "Außer Sicht",
+            "modificator": 7
+        }],
+        "maxDuration": [{
+            "id": "1",
+            "description": "ZfP* Aktionen",
+            "modificator": -1
+        }, {
+            "id": "2",
+            "description": "50 KR",
+            "modificator": 0
+        }, {
+            "id": "3",
+            "description": "ZfP* SR",
+            "modificator": 1
+        }, {
+            "id": "4",
+            "description": "augenblicklich (n)",
+            "modificator": 1
+        }, {
+            "id": "5",
+            "description": "ZfP* Stunden",
+            "modificator": 2
+        }, {
+            "id": "6",
+            "description": "ZfP*/3 Tage",
+            "modificator": 3
+        }, {
+            "id": "7",
+            "description": "1 None",
+            "modificator": 4
+        }, {
+            "id": "8",
+            "description": "1 Oktal",
+            "modificator": 5
+        }, {
+            "id": "9",
+            "description": "1 Jahr",
+            "modificator": 6
+        }, {
+            "id": "10",
+            "description": "permanent",
+            "modificator": 7
+        }, {
+            "id": "11",
+            "description": "augenblicklich (p)",
+            "modificator": 7
+        }],
+        "structure": [{
+            "id": "1",
+            "description": "extrem einfach",
+            "modificator": -1
+        }, {
+            "id": "2",
+            "description": "sehr einfach",
+            "modificator": 0
+        }, {
+            "id": "3",
+            "description": "einfach",
+            "modificator": 1
+        }, {
+            "id": "4",
+            "description": "schwer",
+            "modificator": 2
+        }, {
+            "id": "5",
+            "description": "sehr schwer",
+            "modificator": 3
+        }, {
+            "id": "6",
+            "description": "extrem schwer",
+            "modificator": 4
+        }, {
+            "id": "7",
+            "description": "komplex",
+            "modificator": 5
+        }, {
+            "id": "8",
+            "description": "sehr komplex",
+            "modificator": 6
+        }, {
+            "id": "9",
+            "description": "extrem komplex",
+            "modificator": 7
+        }]
+    }
+}

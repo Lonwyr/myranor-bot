@@ -36,7 +36,7 @@
                                 <Text text="{i18n>attributes}" />
                             </Column>
                             <Column
-                                vAlign="Center"
+                                vAlign="Middle"
                                 hAlign="Center"
                                 width="4em" />
                         </columns>

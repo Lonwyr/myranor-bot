@@ -9,7 +9,7 @@
             <uxap:ObjectPageSubSection title="{i18n>meele}">
                 <uxap:actions>
                     <Button visible="{= !${combat>/editMeeleWeapons}}" icon="sap-icon://edit" press=".switchMeeleToEdit" />
-                    <Button visible="{= ${combat>/editMeeleWeapons}}" icon="sap-icon://save" press=".switchMeeleToView" />
+                    <Button visible="{combat>/editMeeleWeapons}" icon="sap-icon://save" press=".switchMeeleToView" />
                 </uxap:actions>
                 <uxap:blocks>
                     <VBox>
@@ -133,7 +133,7 @@
             <uxap:ObjectPageSubSection title="{i18n>ranged}">
                 <uxap:actions>
                     <Button visible="{= !${combat>/editRangedWeapons}}" icon="sap-icon://edit" press=".switchRangedToEdit" />
-                    <Button visible="{= ${combat>/editRangedWeapons}}" icon="sap-icon://save" press=".switchRangedToView" />
+                    <Button visible="{combat>/editRangedWeapons}" icon="sap-icon://save" press=".switchRangedToView" />
                 </uxap:actions>
                 <uxap:blocks>
                     <VBox>

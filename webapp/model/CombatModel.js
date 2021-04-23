@@ -19,8 +19,8 @@ sap.ui.define([
     return JSONModel.extend("com.lonwyr.MyranorBot.model.CombatModel", {
         loadCombat: function (slot) {
             try {
-                const combaData = window.localStorage.getItem(combatKey + slot);
-                this.setData(JSON.parse(combaData) || emptyCombat);
+                const combatData = window.localStorage.getItem(combatKey + slot);
+                this.setData(JSON.parse(combatData) || emptyCombat);
             } catch {
                 this.setData(emptyCombat);
             }

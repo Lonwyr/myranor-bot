@@ -21,7 +21,7 @@
                                 <Text text="{i18n>value}" />
                             </Column>
                             <Column
-                                vAlign="Center"
+                                vAlign="Middle"
                                 hAlign="Center"
                                 width="4em" />
                         </columns>

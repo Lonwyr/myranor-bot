@@ -58,13 +58,12 @@ function extractSpells(characterSpells) {
 
 module.exports = {
     export: function (character) {
-        let characterExport = {
+        return {
             name: character.name,
             attributes: extractAttributes(character.attributes),
             skills: extractSkills(character.skills),
-            spells: extractSpells(character.spells)
+            spells: extractSpells(character.spells),
+            instructions: character.instructions
         }
-
-        return characterExport
     }
 }
