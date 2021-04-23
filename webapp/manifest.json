@@ -8,7 +8,13 @@
       "version": "1.0.0"
     },
     "title": "{{appTitle}}",
-    "description": "{{appDescription}}"
+    "description": "{{appDescription}}",
+    "dataSources": {
+			"magic": {
+				"uri": "model/magic.json",
+				"type": "JSON"
+			}
+		}
   },
   "sap.ui": {
     "technology": "UI5",
@@ -61,6 +67,19 @@
       },
       "combat": {
         "type": "com.lonwyr.MyranorBot.model.CombatModel"
+      },
+      "magic": {
+        "type": "sap.ui.model.json.JSONModel",
+				"dataSource": "magic"
+      },
+      "spells": {
+        "type": "com.lonwyr.MyranorBot.model.SpellsModel"
+      },
+      "newSpell": {
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "editSpell": {
+        "type": "sap.ui.model.json.JSONModel"
       },
       "settings": {
         "type": "sap.ui.model.json.JSONModel"

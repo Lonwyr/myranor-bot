@@ -5,49 +5,106 @@
     <uxap:ObjectPageSection title="{i18n>spells}">
     <uxap:subSections>
         <uxap:ObjectPageSubSection>
+            <uxap:actions>
+                <Button visible="{= !${spells>/editSpells}}" icon="sap-icon://edit" press=".switchSpellsToEdit" />
+                <Button visible="{spells>/editSpells}" icon="sap-icon://save" press=".switchSpellsToView" />
+            </uxap:actions>
             <uxap:blocks>
-                <Table
-                        inset="false"
-                        items="{
-                            path: 'character>/spells',
-                            sorter: {
-                                path: 'category',
-                                descending: false,
-                                group: true
-                            },
-                            groupHeaderFactory: '.getGroupHeader'
-                        }">
-                    <columns>
+                    <Table
+                            inset="false"
+                            items="{spells>/spells}">
+                        <headerToolbar>
+                            <OverflowToolbar>
+                                <content>
+                                    <ToolbarSpacer />
+                                    <Button visible="{spells>/editSpells}" icon="sap-icon://add" press=".openAddSpellDialog" />
+                                </content>
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        <columns>
                             <Column
                                 width="12em">
-                                <Text text="{i18n>source}" />
+                                <Text text="{i18n>name}" />
                             </Column>
                             <Column
-				                minScreenWidth="Tablet"
-				                demandPopin="true"
-                                width="3em">
-                                <Text text="{i18n>value}" />
+                                demandPopin="true"
+                                minScreenWidth="1200px"
+                                hAlign="Center"
+                                width="4em">
+                                <Text text="{i18n>castingTime}" />
                             </Column>
                             <Column
-				                minScreenWidth="Tablet"
-				                demandPopin="true"
-                                width="12em">
-                                <Text text="{i18n>attributes}" />
+                                demandPopin="true"
+                                minScreenWidth="1200px"
+                                hAlign="Center"
+                                width="4em">
+                                <Text text="{i18n>targets}" />
                             </Column>
                             <Column
-                                vAlign="Center"
+                                demandPopin="true"
+                                minScreenWidth="1200px"
+                                hAlign="Center"
+                                width="4em">
+                                <Text text="{i18n>range}" />
+                            </Column>
+                            <Column
+                                demandPopin="true"
+                                minScreenWidth="1200px"
+                                hAlign="Center"
+                                width="4em">
+                                <Text text="{i18n>maxDuration}" />
+                            </Column>
+                            <Column
+                                demandPopin="true"
+                                minScreenWidth="1200px"
+                                hAlign="Center"
+                                width="4em">
+                                <Text text="{i18n>structure}" />
+                            </Column>
+                            <Column
+                                vAlign="Middle"
                                 hAlign="Center"
                                 width="4em" />
+                            <Column
+                                demandPopin="true"
+                                minScreenWidth="10000px"
+                                width="12em">
+                                <Text text="{i18n>description}" />
+                            </Column>
                         </columns>
                         <items>
                             <ColumnListItem>
                                 <cells>
-                                    <Text
-                                        text="{character>name}" />
-                                    <Text
-                                        text="{character>value}" />
-                                    <Text text="{= ${character>attributes/0} + ' / '+  ${character>attributes/1} + ' / ' + ${character>attributes/2}}" />
-                                    <Button text="{i18n>roll}" press="onRollSpell" />
+                                    <ObjectHeader
+                                        title="{spells>name}"
+                                        number="{parts: [{path: 'spells>source'}, {path: 'character>/spells'}, {path: 'spells>specialization'}], formatter: '.formatZfW'}"
+                                        class="sapUiResponsivePadding--header" >
+                                        <statuses>
+                                            <ObjectStatus
+                                                title="{i18n>modificator}"
+                                                text="{parts: [
+                                                    {path: 'spells>parameters'},
+						                            {path: 'magic>/spellParameters'},
+                                                    {path: 'spells>modificators'}
+                                                ], formatter: '.calculateSpellModificator'}" />
+                                        </statuses>
+                                        <ObjectAttribute 
+                                            title="{i18n>source}"
+                                            text="{parts: [{path: 'spells>source'}, {path: 'character>/spells'}], formatter: '.formatSpellName' }" />
+                                        <ObjectAttribute 
+                                            title="{i18n>instruction}"
+                                            text="{spells>instruction}" />
+                                    </ObjectHeader>
+                                    <Text text="{parts: [{path: 'spells>parameters/castingTime'}, {path: 'magic>/spellParameters/castingTime'}], formatter: '.formatSpellParameter'}" />
+                                    <Text text="{parts: [{path: 'spells>parameters/targets'}, {path: 'magic>/spellParameters/targets'}], formatter: '.formatSpellParameter'}" />
+                                    <Text text="{parts: [{path: 'spells>parameters/range'}, {path: 'magic>/spellParameters/range'}], formatter: '.formatSpellParameter'}" />
+                                    <Text text="{parts: [{path: 'spells>parameters/maxDuration'}, {path: 'magic>/spellParameters/maxDuration'}], formatter: '.formatSpellParameter'}" />
+                                    <Text text="{parts: [{path: 'spells>parameters/structure'}, {path: 'magic>/spellParameters/structure'}], formatter: '.formatSpellParameter'}" />
+                                    <HBox>
+                                        <Button enabled="false" text="{i18n>roll}" press=".onRollSpell" visible="{= !${spells>/editSpells}}" />
+                                        <Button icon="sap-icon://edit" press=".onEditSpell" visible="{spells>/editSpells}" />
+                                    </HBox>
+                                    <Text text="{spells>description}" />
                                 </cells>
                             </ColumnListItem>
                         </items>

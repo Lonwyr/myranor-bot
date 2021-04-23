@@ -42,6 +42,15 @@ function extractSkillsAndSpells(list) {
     return json
 }
 
+function extractInstructions(list) {
+    const instructionSf = list.find(sf => sf._attributes.name === "Instruktion")
+    if (instructionSf) {
+        return instructionSf.auswahl.map(instruction => instruction._attributes.name)
+    }
+
+    return []
+}
+
 module.exports = {
     import: function (msg) {
         let slot = 1
@@ -70,11 +79,13 @@ module.exports = {
                     const attributes = char.eigenschaften.eigenschaft
                     const skills = char.talentliste.talent
                     const spells = char.zauberliste.zauber
+                    const sf = char.sf.sonderfertigkeit
 
                     charJson = {
                         name: char._attributes.name,
                         attributes: extractAttributes(attributes),
-                        skills: extractSkillsAndSpells(skills)
+                        skills: extractSkillsAndSpells(skills),
+                        instructions: extractInstructions(sf)
                     }
 
                     charJson.spells = extractSkillsAndSpells(spells)

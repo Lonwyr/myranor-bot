@@ -2,6 +2,7 @@ sap.ui.define([
   "com/lonwyr/MyranorBot/controller/BaseController",
   "com/lonwyr/MyranorBot/controller/Attributes",
   "com/lonwyr/MyranorBot/controller/Combat",
+  "com/lonwyr/MyranorBot/controller/Spells",
   "sap/ui/core/Fragment",
   "sap/m/GroupHeaderListItem",
   "com/lonwyr/MyranorBot/utils/Roller"
@@ -9,6 +10,7 @@ sap.ui.define([
     Controller,
     AttributesController,
     CombatController,
+    SpellsController,
     Fragment,
     GroupHeaderListItem,
     Roller
@@ -166,5 +168,5 @@ sap.ui.define([
     closeResultDialog: function () {
       resultDialogPromise.then(dialog => dialog.close());
     }
-  }, AttributesController, CombatController));
+  }, AttributesController, CombatController, SpellsController));
 });

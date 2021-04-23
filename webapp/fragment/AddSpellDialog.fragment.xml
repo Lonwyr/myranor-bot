@@ -1,0 +1,76 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog
+		type="Message"
+		title="{i18n>addSpell}" >
+			<VBox class="sapUiSmallMargin">
+				<Title text="{i18n>name}"/>
+				<Input value="{newSpell>/name}" class="sapUiSmallMarginBottom" />
+				<Title text="{i18n>source}"/>
+				<Select selectedKey="{newSpell>/source}" items="{character>/spells}"  class="sapUiSmallMarginBottom" width="100%" >
+					<core:Item key="{character>id}" text="{= ${character>name} + ' (' + ${character>category} + ')' + ' ZfW ' + ${character>value}}" />
+				</Select>
+				<Title text="{i18n>instruction}"/>
+				<Select selectedKey="{newSpell>/instruction}" items="{character>/instructions}" class="sapUiSmallMarginBottom" width="100%" >
+					<core:Item key="{character>}" text="{character>}" />
+				</Select>
+				<Title text="{i18n>specialization}"/>
+				<CheckBox selected="{newSpell>/specialization}" width="100%" class="sapUiSmallMarginBottom" />
+				<Title text="{i18n>description}"/>
+				<TextArea value="{newSpell>/description}" width="100%" class="sapUiSmallMarginBottom" />
+				<Title text="{i18n>formulaQuality}"/>
+				<Slider value="{newSpell>/quality}" min="0" max="7" enableTickmarks="true" step="1" class="sapUiSmallMarginBottom" />
+			</VBox>
+		<List>
+			<InputListItem label="{i18n>castingTime}">
+				<Select selectedKey="{newSpell>/parameters/castingTime}" items="{magic>/spellParameters/castingTime}" change=".updateSpellModificator" >
+					<core:Item key="{magic>id}" text="{= ${magic>description} + ' (' + ${magic>modificator} + ')'}" />
+				</Select>
+			</InputListItem>
+			<InputListItem label="{i18n>targets}">
+				<Select selectedKey="{newSpell>/parameters/targets}" items="{magic>/spellParameters/targets}" change=".updateSpellModificator" >
+					<core:Item key="{magic>id}" text="{= ${magic>description} + ' (' + ${magic>modificator} + ')'}" />
+				</Select>
+			</InputListItem>
+			<InputListItem label="{i18n>range}">
+				<Select selectedKey="{newSpell>/parameters/range}" items="{magic>/spellParameters/range}" change=".updateSpellModificator" >
+					<core:Item key="{magic>id}" text="{= ${magic>description} + ' (' + ${magic>modificator} + ')'}" />
+				</Select>
+			</InputListItem>
+			<InputListItem label="{i18n>maxDuration}">
+				<Select selectedKey="{newSpell>/parameters/maxDuration}" items="{magic>/spellParameters/maxDuration}" change=".updateSpellModificator" >
+					<core:Item key="{magic>id}" text="{= ${magic>description} + ' (' + ${magic>modificator} + ')'}" />
+				</Select>
+			</InputListItem>
+			<InputListItem label="{i18n>structure}">
+				<Select selectedKey="{newSpell>/parameters/structure}" items="{magic>/spellParameters/structure}" change=".updateSpellModificator" >
+					<core:Item key="{magic>id}" text="{= ${magic>description} + ' (' + ${magic>modificator} + ')'}" />
+				</Select>
+			</InputListItem>
+			<InputListItem label="{i18n>permanentModificators}">
+				<Input type="Number" value="{newSpell>/modificators/0/value}" change=".updateSpellModificator" />
+			</InputListItem>
+		</List>
+			<ObjectListItem
+				title="{i18n>modificator}"
+				number="{
+					parts: [
+						{path: 'newSpell>/parameters'},
+						{path: 'magic>/spellParameters'},
+						{path: 'newSpell>/modificators'}
+					], 
+					formatter: '.calculateSpellModificator'
+				}" />
+		<beginButton>
+			<Button
+				type="Emphasized"
+				text="{i18n>ok}"
+				press=".closeAddSpellDialog" />
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>
+
+
+
+	

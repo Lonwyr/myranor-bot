@@ -20,6 +20,7 @@ sap.ui.define([
       this.getModel('character').setData(start.character);
       this.getModel('settings').setData(start.settings);
       this.getModel('combat').loadCombat(start.settings.slots.activeSlot);
+      this.getModel('spells').loadSpells(start.settings.slots.activeSlot);
     });
   };
 
