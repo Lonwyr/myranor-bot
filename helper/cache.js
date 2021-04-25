@@ -107,11 +107,7 @@ module.exports = {
         const client = await pool.connect()
         console.info('Loading characters from DB')
         try {
-            const result = await client.query(`
-                SELECT c.userid, character FROM characters c inner join activeslot a ON c.userid = a.userid
-                UNION
-                SELECT userid, character FROM characters c WHERE slot = '1' AND userid NOT IN (SELECT userid FROM activeslot)
-            `)
+            const result = await client.query(`SELECT c.userid, character FROM characters c inner join activeslot a ON c.userid = a.userid`)
             for (row of result.rows) {
                 cache[row.userid] = JSON.parse(row.character)
             }

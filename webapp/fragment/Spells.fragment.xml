@@ -2,7 +2,7 @@
    xmlns="sap.m"
     xmlns:uxap="sap.uxap"
    xmlns:core="sap.ui.core" >
-    <uxap:ObjectPageSection title="{i18n>spells}">
+    <uxap:ObjectPageSection title="{i18n>spells}" visible="{= ${character>/spells/length}> 0}">
     <uxap:subSections>
         <uxap:ObjectPageSubSection>
             <uxap:actions>
