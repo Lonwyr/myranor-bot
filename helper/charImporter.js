@@ -1,6 +1,7 @@
 const convert = require('xml-js')
 const request = require('request')
 const cache = require('./cache')
+const { ReactionManager } = require('discord.js')
 
 const attributeAbbs = {
     "Mut": "MU",
@@ -51,6 +52,92 @@ function extractInstructions(list) {
     return []
 }
 
+function extractSpontaneousCasting(list) {
+    const parametersMap = {
+        Reichweite: 'range',
+        Struktur: 'structure',
+        Wirkungsdauer: 'maxDuration',
+        Zauberdauer: 'castingTime',
+        Zielobjekt: 'targets',
+        Influxion: 'influxion',
+        Instruktion: 'instruction',
+        Invokation: 'invocation',
+        Inspiration: 'inspiration',
+        Dämonisch: 'demonic',
+        Elementar: 'elemental',
+        Naturwesen: 'spirits',
+        Stellar: 'stellar',
+        Totenwesen: 'specter'
+                
+    }
+
+    let spontaneousCasting = {
+        categories: {
+            inspiration: false,
+            invocation: false,
+            instruction: false,
+            influxion: false
+        },
+        parameters: {
+            range: 0,
+            castingTime: 0,
+            maxDuration: 0,
+            structure: 0,
+            targets: 0
+        },
+        invocation: {
+            demonic: 0,
+            elemental: 0,
+            spirits: 0,
+            stellar: 0,
+            specter: 0
+        },
+        inspiration: {
+            demonic: 0,
+            elemental: 0,
+            spirits: 0,
+            stellar: 0,
+            specter: 0
+        }
+    }
+    const spontaneousCastingSf = list.find(sf => sf._attributes.name === "Spontanzauberer")
+    if (spontaneousCastingSf) {
+        spontaneousCastingSf.auswahl
+            .map(selection => selection._attributes.name)
+            .forEach(category => {
+                spontaneousCasting.categories[parametersMap[category]] = true
+            })
+    }
+
+    const spontaneousCastingParameterSf = list.find(item => item._attributes.name === "Spontanzaubererei")
+    if (spontaneousCastingParameterSf) {
+        spontaneousCastingParameterSf.auswahl.forEach(parameterSf => {
+            const parameterName = parametersMap[parameterSf.wahl[1]._attributes.value]
+            spontaneousCasting.parameters[parameterName] = parseInt(parameterSf.wahl[0]._attributes.value)
+        })
+    }
+
+    const geniusSummoningSfs = list.find(item => item._attributes.name === "Geniusbeschwörung")
+    if (geniusSummoningSfs) {
+        geniusSummoningSfs.auswahl.forEach(geniusSummoningSf => {
+            const sphere = parametersMap[geniusSummoningSf.wahl[0]._attributes.value]
+            const discipline = parametersMap[geniusSummoningSf.wahl[1]._attributes.value]
+            spontaneousCasting[discipline][sphere] = 1
+        })
+    }
+
+    const archonSummoningSfs = list.find(item => item._attributes.name === "Geniusbeschwörung")
+    if (archonSummoningSfs) {
+        archonSummoningSfs.auswahl.forEach(archonSummoningSf => {
+            const sphere = parametersMap[archonSummoningSf.wahl[0]._attributes.value]
+            const discipline = parametersMap[archonSummoningSf.wahl[1]._attributes.value]
+            spontaneousCasting[discipline][sphere] = 2
+        })
+    }
+
+    return spontaneousCasting
+}
+
 module.exports = {
     import: function (msg) {
         let slot = 1
@@ -85,7 +172,8 @@ module.exports = {
                         name: char._attributes.name,
                         attributes: extractAttributes(attributes),
                         skills: extractSkillsAndSpells(skills),
-                        instructions: extractInstructions(sf)
+                        instructions: extractInstructions(sf),
+                        spontaneousCasting: extractSpontaneousCasting(sf)
                     }
 
                     charJson.spells = extractSkillsAndSpells(spells)

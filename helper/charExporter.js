@@ -63,7 +63,8 @@ module.exports = {
             attributes: extractAttributes(character.attributes),
             skills: extractSkills(character.skills),
             spells: extractSpells(character.spells),
-            instructions: character.instructions
+            instructions: character.instructions,
+            spontaneousCasting: character.spontaneousCasting
         }
     }
 }
