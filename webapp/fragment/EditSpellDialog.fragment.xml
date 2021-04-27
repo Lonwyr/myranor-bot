@@ -12,7 +12,7 @@
 					<core:Item key="{character>id}" text="{= ${character>name} + ' (' + ${character>category} + ')' + ' ZfW ' + ${character>value}}" />
 				</Select>
 				<Title text="{i18n>instruction}"/>
-				<Select selectedKey="{editSpell>/instruction}" items="{character>/instructions}" class="sapUiSmallMarginBottom" width="100%" >
+				<Select selectedKey="{editSpell>/instruction}" items="{character>/instructions}" class="sapUiSmallMarginBottom" width="100%" change=".rebindInstructionDependentSpellParameters('editSpell', true)" >
 					<core:Item key="{character>}" text="{character>}" />
 				</Select>
 				<Title text="{i18n>specialization}"/>
@@ -20,7 +20,7 @@
 				<Title text="{i18n>description}"/>
 				<TextArea value="{editSpell>/description}" width="100%" class="sapUiSmallMarginBottom" />
 				<Title text="{i18n>formulaQuality}"/>
-				<Slider value="{editSpell>/quality}" min="0" max="7" enableTickmarks="true" step="1" class="sapUiSmallMarginBottom" />
+				<Slider value="{editSpell>/quality}" min="0" max="7" enableTickmarks="true" step="1" class="sapUiSmallMarginBottom" change=".updateEditSpellModificator" />
 			</VBox>
 		<List>
 			<InputListItem label="{i18n>castingTime}">
@@ -29,7 +29,7 @@
 				</Select>
 			</InputListItem>
 			<InputListItem label="{i18n>targets}">
-				<Select selectedKey="{editSpell>/parameters/targets}" items="{magic>/spellParameters/targets}" change=".updateEditSpellModificator" >
+				<Select id="editSpell_targets" selectedKey="{editSpell>/parameters/targets}" items="{magic>/spellParameters/targets}" change=".updateEditSpellModificator" >
 					<core:Item key="{magic>id}" text="{= ${magic>description} + ' (' + ${magic>modificator} + ')'}" />
 				</Select>
 			</InputListItem>
@@ -39,14 +39,13 @@
 				</Select>
 			</InputListItem>
 			<InputListItem label="{i18n>maxDuration}">
-				<Select selectedKey="{editSpell>/parameters/maxDuration}" items="{magic>/spellParameters/maxDuration}" change=".updateEditSpellModificator" >
+				<Select id="editSpell_maxDuration" selectedKey="{editSpell>/parameters/maxDuration}" items="{magic>/spellParameters/maxDuration}" change=".updateEditSpellModificator" >
 					<core:Item key="{magic>id}" text="{= ${magic>description} + ' (' + ${magic>modificator} + ')'}" />
 				</Select>
 			</InputListItem>
 			<InputListItem label="{i18n>structure}">
-				<Select selectedKey="{editSpell>/parameters/structure}" items="{magic>/spellParameters/structure}" change=".updateEditSpellModificator" >
-					<core:Item key="{magic>id}" text="{= ${magic>description} + ' (' + ${magic>modificator} + ')'}" />
-				</Select>
+				<Select id="editSpell_structure" selectedKey="{editSpell>/parameters/structure}" change=".updateEditSpellModificator" />
+				<!-- bound via coding on open / instruction selection -->
 			</InputListItem>
 			<InputListItem label="{i18n>permanentModificators}">
 				<Input type="Number" value="{editSpell>/modificators/0/value}" change=".updateEditSpellModificator" />
@@ -56,6 +55,7 @@
 				title="{i18n>modificator}"
 				number="{
 					parts: [
+						{path: 'editSpell>/quality'},
 						{path: 'editSpell>/parameters'},
 						{path: 'magic>/spellParameters'},
 						{path: 'editSpell>/modificators'}
