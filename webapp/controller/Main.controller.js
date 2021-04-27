@@ -120,18 +120,6 @@ sap.ui.define([
           oDialog.open()
         })
       })
-    },
-    onRollSpell: function (clickEvent) {
-      const spell = getProperty(clickEvent)
-      const checkParameters = {
-        id: spell.id,
-        name: spell.name,
-        value: spell.value,
-        modifier: 0,
-        specialization: false,
-        attributes: getAttributes(clickEvent, spell.attributes)
-      }
-      return Roller.checkSpell(checkParameters)
     },/*
     onSlotSelectionChange: function () {
       const selectedSlot = this.byId('slotSelection').getSelectedKey();
