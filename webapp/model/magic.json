@@ -1,5 +1,498 @@
 {
-    "instructions": [],
+    "instructions":{
+        "Alpdruck": {
+			"requirements": [],
+			"structures": [{
+                "name": "schwer",
+                "modificator": "2"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature"]
+		},
+        "Albtraumwelt": {
+			"requirements": [],
+			"structures": [{
+                "name": "komplex",
+                "modificator": "5"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature"]
+		},
+        "Analyse": {
+			"requirements": [],
+			"structures": [{
+                "name": "extrem einach",
+                "modificator": "-1"
+            }, {
+                "name": "sehr einfach",
+                "modificator": "0"
+            }, {
+                "name": "einfach",
+                "modificator": "1"
+            }, {
+                "name": "schwer",
+                "modificator": "2"
+            }, {
+                "name": "sehr schwer",
+                "modificator": "3"
+            }, {
+                "name": "extrem schwer",
+                "modificator": "4"
+            }, {
+                "name": "komplex",
+                "modificator": "5"
+            }, {
+                "name": "sehr komplex",
+                "modificator": "6"
+            }, {
+                "name": "extrem komplex",
+                "modificator": "7"
+            }],
+			"durations": ["instantaneausNatrual"],
+			"targetsCategories": ["creature", "object", "zone"]
+		},
+        "Antimagie": {
+			"requirements": [],
+			"structures": [{
+                "name": "sehr einfach",
+                "modificator": "0"
+            }],
+			"durations": ["instantaneausNatrual"],
+			"targetsCategories": ["creature", "object", "zone"]
+		},
+        "Bann der Quelle": {
+			"requirements": [],
+			"structures": [{
+                "name": "sehr einfach",
+                "modificator": "0"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature", "object", "zone"]
+		},
+        "Beseelung der Quelle": {
+			"requirements": [],
+			"structures": [{
+                "name": "grundlegend",
+                "modificator": "0"
+            }, {
+                "name": "herausfordernd",
+                "modificator": "3"
+            }, {
+                "name": "anspruchsvoll",
+                "modificator": "6"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature", "object", "zone"]
+		},
+        "Beseelung der Umwelt": {
+			"requirements": [],
+			"structures": [{
+                "name": "grundlegend",
+                "modificator": "0"
+            }, {
+                "name": "herausfordernd",
+                "modificator": "3"
+            }, {
+                "name": "anspruchsvoll",
+                "modificator": "6"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["zone"]
+		},
+        "Beseelung des Geistes": {
+			"requirements": [],
+			"structures": [{
+                "name": "grundlegend",
+                "modificator": "0"
+            }, {
+                "name": "herausfordernd",
+                "modificator": "3"
+            }, {
+                "name": "anspruchsvoll",
+                "modificator": "6"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature"]
+		},
+        "Beseelung des Körpers": {
+			"requirements": [],
+			"structures": [{
+                "name": "grundlegend",
+                "modificator": "0"
+            }, {
+                "name": "herausfordernd",
+                "modificator": "3"
+            }, {
+                "name": "anspruchsvoll",
+                "modificator": "6"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature"]
+		},
+        "Beseelung des Objektes": {
+			"requirements": [],
+			"structures": [{
+                "name": "grundlegend",
+                "modificator": "0"
+            }, {
+                "name": "herausfordernd",
+                "modificator": "3"
+            }, {
+                "name": "anspruchsvoll",
+                "modificator": "6"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["object"]
+		},
+        "Elementare Manifestation": {
+			"requirements": [],
+			"structures": [{
+                "name": "simple geometrische Form",
+                "modificator": "0"
+            }, {
+                "name": "komplexe Form (z.B. Waffe)",
+                "modificator": "2"
+            }, {
+                "name": "sehr komplexe Form",
+                "modificator": "4"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["object"]
+		},
+        "Elementare Reinheit": {
+			"requirements": [],
+			"structures": [{
+                "name": "Änderung von 1 Stufe",
+                "modificator": "0"
+            }, {
+                "name": "Änderung von 2 Stufen",
+                "modificator": "2"
+            }, {
+                "name": "Änderung von 3 Stufen",
+                "modificator": "4"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature", "object", "zone"]
+		},
+        "Explosion": {
+			"requirements": [],
+			"structures": [{
+                "name": "AuP",
+                "modificator": "1"
+            }, {
+                "name": "StP",
+                "modificator": "3"
+            }, {
+                "name": "LeP und StP",
+                "modificator": "5"
+            }],
+			"durations": ["instantaneausNatrual"],
+			"targetsCategories": ["object"]
+		},
+        "Fixierung": {
+			"requirements": [],
+			"structures": [{
+                "name": "einfach",
+                "modificator": "1"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature", "object", "zone"]
+		},
+        "Geistillusion": {
+			"requirements": [],
+			"structures": [{
+                "name": "1 Sinn",
+                "modificator": "0"
+            }, {
+                "name": "bis zu 2 Sinne",
+                "modificator": "2"
+            }, {
+                "name": "bis zu 3 Sinne",
+                "modificator": "4"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature"]
+		},
+        "Heilung/Wiederherstellung": {
+			"requirements": [],
+			"structures": [{
+                "name": "AuP",
+                "modificator": "-1"
+            }, {
+                "name": "Erschöpfung, StP",
+                "modificator": "1"
+            }, {
+                "name": "BF, H, LeP, S, RS",
+                "modificator": "3"
+            }],
+			"durations": ["instantaneausNatrual"],
+			"targetsCategories": ["creature", "object"]
+		},
+        "Hellsicht": {
+			"requirements": [],
+			"structures": [{
+                "name": "1 Sinn",
+                "modificator": "0"
+            }, {
+                "name": "bis zu 2 Sinne",
+                "modificator": "2"
+            }, {
+                "name": "bis zu 3 Sinne",
+                "modificator": "4"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature", "object", "zone"]
+		},
+        "Illusion": {
+			"requirements": [],
+			"structures": [{
+                "name": "1 Sinn",
+                "modificator": "0"
+            }, {
+                "name": "bis zu 2 Sinne",
+                "modificator": "2"
+            }, {
+                "name": "bis zu 3 Sinne",
+                "modificator": "4"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature", "object", "zone"]
+		},
+        "Infektion": {
+			"requirements": [],
+			"structures": [{
+                "name": "bis Krankheit Stufe 5",
+                "modificator": "1"
+            }, {
+                "name": "bis Krankheit Stufe 10",
+                "modificator": "4"
+            }, {
+                "name": "bis Krankheit Stufe 20",
+                "modificator": "7"
+            }],
+			"durations": ["instantaneausNatrual"],
+			"targetsCategories": ["creature", "object", "zone"]
+		},
+        "Kommunikation": {
+			"requirements": [],
+			"structures": [{
+                "name": "sehr einfach",
+                "modificator": "0"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature", "object", "zone"]
+		},
+        "Kontrolle über Element": {
+			"requirements": [],
+			"structures": [{
+                "name": "grundlegend",
+                "modificator": "0"
+            }, {
+                "name": "herausfordernd",
+                "modificator": "3"
+            }, {
+                "name": "anspruchsvoll",
+                "modificator": "6"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature", "object", "zone"]
+		},
+        "Kontrolle über Gefühle": {
+			"requirements": [],
+			"structures": [{
+                "name": "grundlegend",
+                "modificator": "0"
+            }, {
+                "name": "herausfordernd",
+                "modificator": "3"
+            }, {
+                "name": "anspruchsvoll",
+                "modificator": "6"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature", "object", "zone"]
+		},
+        "Kontrolle über Wesen": {
+			"requirements": [],
+			"structures": [{
+                "name": "sehr komplex",
+                "modificator": "6"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature", "object", "zone"]
+		},
+        "Metamagie": {
+            "requirements": [],
+			"structures": [{
+                "name": "leicht",
+                "modificator": "5"
+            }, {
+                "name": "tiefgehend",
+                "modificator": "6"
+            }, {
+                "name": "stark",
+                "modificator": "7"
+            }],
+			"durations": ["timeframe"],
+            "targetsCategories": ["creature", "object", "zone"]
+        },
+        "Objektbewegung": {
+			"requirements": [],
+			"structures": [{
+                "name": "grundlegnd",
+                "modificator": "-1"
+            }, {
+                "name": "herausfordernd",
+                "modificator": "1"
+            }, {
+                "name": "anspruchsvoll",
+                "modificator": "3"
+            }],
+			"durations": ["timeframe", "instantaneausNatrual"],
+			"targetsCategories": ["object"]
+		},
+        "Regeneration": {
+			"requirements": [],
+			"structures": [{
+                "name": "AuP",
+                "modificator": "3"
+            }, {
+                "name": "Erschöpfung, StP",
+                "modificator": "5"
+            }, {
+                "name": "LeP",
+                "modificator": "6"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature", "object", "zone"]
+		},
+        "Reinigung": {
+			"requirements": [],
+			"structures": [{
+                "name": "Gift bis Stufe 5, Oberflächliches",
+                "modificator": "-1"
+            }, {
+                "name": "Gift bis Stufe 10, Internes",
+                "modificator": "3"
+            }, {
+                "name": "Gift bis Stufe 20",
+                "modificator": "7"
+            }],
+			"durations": ["instantaneausNatrual"],
+			"targetsCategories": ["creature", "object", "zone"]
+		},
+        "Schadenszauber": {
+			"requirements": ["Schadenszauber"],
+			"structures": [{
+                "name": "AuP",
+                "modificator": "1"
+            }, {
+                "name": "StP",
+                "modificator": "3"
+            }, {
+                "name": "LeP und StP",
+                "modificator": "5"
+            }],
+			"durations": ["instantaneausNatrual"],
+			"targetsCategories": ["creature", "object"]
+		},
+        "Schutz vor Quelle": {
+			"requirements": [],
+			"structures": [{
+                "name": "schwer",
+                "modificator": "2"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature", "object", "zone"]
+		},
+        "Transfer": {
+			"requirements": [],
+			"structures": [{
+                "name": "grundlegend",
+                "modificator": "0"
+            }, {
+                "name": "herausfordernd",
+                "modificator": "3"
+            }, {
+                "name": "anspruchsvoll",
+                "modificator": "6"
+            }],
+			"durations": ["timeframe", "instantaneausPermanent", "instantaneausNatrual"],
+			"targetsCategories": ["creature", "object", "zone"]
+		},
+        "Transformation": {
+			"requirements": [],
+			"structures": [{
+                "name": "extrem schwer",
+                "modificator": "4"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature", "object", "zone"]
+		},
+        "Transport an einen Ort": {
+			"requirements": [],
+			"structures": [{
+                "name": "sehr komplex",
+                "modificator": "6"
+            }],
+			"durations": ["instantaneausNatrual"],
+			"targetsCategories": ["creature", "object"]
+		},
+        "Transport durch Element": {
+			"requirements": [],
+			"structures": [{
+                "name": "sehr komplex",
+                "modificator": "6"
+            }],
+			"durations": ["instantaneausNatrual"],
+			"targetsCategories": ["creature", "object"]
+		},
+        "Traumbesuch": {
+			"requirements": [],
+			"structures": [{
+                "name": "extrem schwer",
+                "modificator": "4"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature"]
+		},
+        "Über Element gehen": {
+			"requirements": [],
+			"structures": [{
+                "name": "sehr schwer",
+                "modificator": "3"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature", "object"]
+		},
+        "Verhüllung": {
+			"requirements": [],
+			"structures": [{
+                "name": "sehr schwer",
+                "modificator": "3"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature", "object"]
+		},
+        "Verwandlung": {
+			"requirements": [],
+			"structures": [{
+                "name": "sehr komplex",
+                "modificator": "6"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature", "object"]
+		},
+        "Wahrnehmung der Quelle": {
+			"requirements": [],
+			"structures": [{
+                "name": "einfach",
+                "modificator": "1"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature"]
+		}
+    },
     "spellParameters": {
         "castingTime": [{
             "id": "1",
@@ -41,51 +534,63 @@
         "targets": [{
             "id": "1",
             "description": "Einzelwesen",
-            "modificator": -1
+            "modificator": -1,
+            "category": "creature"
         }, {
             "id": "2",
             "description": "Einzelobjekt",
-            "modificator": 0
+            "modificator": 0,
+            "category": "object"
         }, {
             "id": "3",
             "description": "ZfW Wesen",
-            "modificator": 0
+            "modificator": 0,
+            "category": "creature"
         }, {
             "id": "4",
             "description": "Zone mit 1 Schritt Radius",
-            "modificator": 1
+            "modificator": 1,
+            "category": "zone"
         }, {
             "id": "5",
             "description": "ZfW Objekte",
-            "modificator": 2
+            "modificator": 2,
+            "category": "object"
         }, {
             "id": "6",
             "description": "3x ZfW Wesen",
-            "modificator": 2
+            "modificator": 2,
+            "category": "creature"
         }, {
             "id": "7",
             "description": "Zone mit ZfW Schritt Radius",
-            "modificator": 3
+            "modificator": 3,
+            "category": "zone"
         }, {
             "id": "8",
             "description": "3x ZfW Objekte",
-            "modificator": 3
+            "modificator": 3,
+            "category": "object"
         }, {
             "id": "9",
             "description": "Zone mit 3x ZfW Schritt Radius",
-            "modificator": 4
+            "modificator": 4,
+            "category": "zone"
         }, {
             "id": "10",
             "description": "beliebig viele Wesen",
-            "modificator": 5
+            "modificator": 5,
+            "category": "creature"
         }, {
             "id": "11",
             "description": "beliebig viele Objekte",
-            "modificator": 6
+            "modificator": 6,
+            "category": "object"
         }, {
             "id": "12",
             "description": "beliebig große Zone",
-            "modificator": 7
+            "modificator": 7,
+            "category": "zone"
         }],
         "range": [{
             "id": "1",
@@ -126,48 +631,64 @@
         }],
         "maxDuration": [{
             "id": "1",
+            "category": "timeframe",
             "description": "ZfP* Aktionen",
             "modificator": -1
         }, {
             "id": "2",
+            "category": "timeframe",
             "description": "50 KR",
             "modificator": 0
         }, {
             "id": "3",
-            "description": "ZfP* SR",
+            "category": "timeframe",
+            "description": "1 SR",
             "modificator": 1
         }, {
             "id": "4",
-            "description": "augenblicklich (n)",
+            "category": "timeframe",
+            "description": "ZfP* SR",
             "modificator": 1
         }, {
             "id": "5",
+            "category": "timeframe",
             "description": "ZfP* Stunden",
             "modificator": 2
         }, {
             "id": "6",
+            "category": "timeframe",
             "description": "ZfP*/3 Tage",
             "modificator": 3
         }, {
             "id": "7",
+            "category": "timeframe",
             "description": "1 None",
             "modificator": 4
         }, {
             "id": "8",
+            "category": "timeframe",
             "description": "1 Oktal",
             "modificator": 5
         }, {
             "id": "9",
+            "category": "timeframe",
             "description": "1 Jahr",
             "modificator": 6
         }, {
             "id": "10",
+            "category": "timeframe",
             "description": "permanent",
             "modificator": 7
         }, {
             "id": "11",
+            "category": "instantaneausPermanent",
             "description": "augenblicklich (p)",
             "modificator": 7
+        }, {
+            "id": "12",
+            "category": "instantaneausNatrual",
+            "description": "augenblicklich (n)",
+            "modificator": 1
         }],
         "structure": [{
             "id": "1",

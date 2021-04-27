@@ -56,6 +56,7 @@
                             </Column>
                             <Column
                                 demandPopin="true"
+                                visible="{spells>/editSpells}"
                                 minScreenWidth="1200px"
                                 hAlign="Center"
                                 width="4em">
@@ -83,6 +84,7 @@
                                             <ObjectStatus
                                                 title="{i18n>modificator}"
                                                 text="{parts: [
+						                            {path: 'spells>quality'},
                                                     {path: 'spells>parameters'},
 						                            {path: 'magic>/spellParameters'},
                                                     {path: 'spells>modificators'}
@@ -103,6 +105,7 @@
                                     <HBox>
                                         <Button enabled="false" text="{i18n>roll}" press=".onRollSpell" visible="{= !${spells>/editSpells}}" />
                                         <Button icon="sap-icon://edit" press=".onEditSpell" visible="{spells>/editSpells}" />
+                                        <Button icon="sap-icon://delete" press=".onDeleteSpell" visible="{spells>/editSpells}" class="sapUiSmallMarginBegin" />
                                     </HBox>
                                     <Text text="{spells>description}" />
                                 </cells>

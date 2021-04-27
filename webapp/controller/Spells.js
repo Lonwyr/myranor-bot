@@ -1,8 +1,12 @@
 sap.ui.define([
   "sap/ui/core/Fragment",
+  "sap/ui/core/Item",
+	"sap/ui/model/Filter",
   "com/lonwyr/MyranorBot/utils/Roller"
 ], function(
     Fragment,
+    Item,
+    Filter,
     Roller
   ) {
   "use strict";
@@ -18,13 +22,48 @@ sap.ui.define([
 
   return {
     switchSpellsToView: function () {
-      this.getModel("spells").setProperty("/editSpells", false);
-      const activeSlot = this.getModel("settings").getProperty("/slots/activeSlot");
-      this.getModel("spells").storeSpells(activeSlot);
+      this.getModel("spells").setProperty("/editSpells", false)
+      const activeSlot = this.getModel("settings").getProperty("/slots/activeSlot")
+      this.getModel("spells").storeSpells(activeSlot)
     },
+
     switchSpellsToEdit: function () {
-      this.getModel("spells").setProperty("/editSpells", true);
+      this.getModel("spells").setProperty("/editSpells", true)
     },
+
+    rebindInstructionDependentSpellParameters: function (prefix, resetParameters) {
+      let model = this.getModel(prefix);
+      const instructionName = model.getProperty("/instruction");
+      const instructions = this.getModel("magic").getProperty("/instructions");
+      const instruction = instructions[instructionName];
+
+      const targetSelect = this.byId(prefix + "_targets");
+      let targetBinding = targetSelect.getBinding("items");
+      targetBinding.filter(new Filter("",
+        targetOption => instruction.targetsCategories.includes(targetOption.category)
+      ));
+
+      const maxDurationtSelect = this.byId(prefix + "_maxDuration");
+      let maxDurationBinding = maxDurationtSelect.getBinding("items");
+      maxDurationBinding.filter(new Filter("",
+        maxDurationOption => instruction.durations.includes(maxDurationOption.category)
+      ));
+
+      const structureSelect =  this.byId(prefix + "_structure");
+      const structuresBindingPath = `/instructions/${instructionName}/structures`;
+      structureSelect.bindItems({
+        path: structuresBindingPath,
+        model: "magic",
+        template: new Item({key:"{magic>modificator}", text:"{= ${magic>name} + ' (' + ${magic>modificator} + ')'}"})
+      });
+
+      if (resetParameters) {
+        model.parameters.target = model.getProperty(`${targetBinding.getPath()}/${targetBinding.aIndices[0]}`).id
+        model.prameters.maxDuration = model.getProperty(`${maxDurationBinding.getPath()}/${maxDurationBinding.aIndices[0]}`).id
+        model.parameters.target = model.getProperty(`${structuresBindingPath}/${targetBinding.aIndices[0]}`).id
+      }
+    },
+
     openAddSpellDialog: function () {
       const spells = this.getModel("character").getProperty("/spells");
       const instructions = this.getModel("character").getProperty("/instructions");
@@ -35,6 +74,8 @@ sap.ui.define([
         source: spells[0].id,
         quality: 0,
         specialization: false,
+        asp: 0,
+        pAsp: 0,
         parameters: {
           castingTime: "1",
           targets: "1",
@@ -60,31 +101,40 @@ sap.ui.define([
 					return oPopover
 				})
 			}
-			addSpellDialogPromise.then(function(oPopover) {
+			addSpellDialogPromise.then(oPopover => {
+        this.rebindInstructionDependentSpellParameters("newSpell")
 				oPopover.open()
 			})
     },
+
+    formatDurationVisibility: function (instruction, instructions ,id) {
+      debugger;
+    },
+
     updateSpellModificator: function () {
       this.getModel("newSpell").updateBindings(true);
     },
+
     formatSpellName: function (spell, characterSpells) {
       if (!spell ||!characterSpells) {
         return "";
       }
       return characterSpells.find(item => item.id === spell).name;
     },
+
     formatZfW: function (source, characterSources, specialization) {
-      if (!source || !characterSources || !specialization) {
+      if (!source || !characterSources || specialization === undefined) {
         return "";
       }
       return "ZfW " + (characterSources.find(item => item.id === source).value + (specialization ? 2 : 0));
     },
-    calculateSpellModificator: function (spellParameters, parameters, modificators) {
-      if (!spellParameters || !parameters || !modificators) {
+
+    calculateSpellModificator: function (formulaQuality, spellParameters, parameters, modificators) {
+      if (formulaQuality === undefined || !spellParameters || !parameters || modificators === undefined) {
         return 0;
       }
 
-      let modificator = 0
+      let modificator = -1 * formulaQuality
         for (const category in parameters) {
           const parameterItem = parameters[category].find(item => {return item.id === spellParameters[category]})
           modificator += parameterItem.modificator
@@ -92,17 +142,20 @@ sap.ui.define([
         modificator += modificators.reduce((a, b) => a + parseInt(b.value), 0)
         return modificator
     },
+
     formatSpellParameter: function (id, category) {
       if (!id || !category) {
         return "";
       }
       return category.find(item => {return item.id === id}).description
     },
+
     closeAddSpellDialog: function () {
       const newSpell = this.getModel("newSpell").getData();
       this.getModel("spells").addSpell(newSpell);
       addSpellDialogPromise.then(oPopover => oPopover.close());
     },
+
     onEditSpell: function (event) {
       const editSpellData = event.getSource().getBindingContext("spells").getProperty();
        // create popover
@@ -118,15 +171,26 @@ sap.ui.define([
 			}
 			editSpellDialogPromise.then(oPopover => {
          this.getModel("editSpell").setData(editSpellData);
+         this.rebindInstructionDependentSpellParameters("editSpell")
 				oPopover.open();
 			})
     },
+    onDeleteSpell: function (event) {
+      const deleteSpellPath = event.getSource().getBindingContext("spells").getPath();
+      this.getModel("spells").removeSpell(deleteSpellPath)
+    },
+
     closeEditSpellDialog: function () {
       editSpellDialogPromise.then(oPopover => oPopover.close());
     },
+
     updateEditSpellModificator: function () {
       this.getModel("editSpell").updateBindings(true);
       this.getModel("spells").updateBindings(true);
+    },
+
+    onRollSpell: function () {
+      
     }
   }
 });
