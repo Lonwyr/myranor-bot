@@ -13,11 +13,21 @@ sap.ui.define([
 
   let addSpellDialogPromise;
   let editSpellDialogPromise;
+  let spellPopoverPromise;
   let spellResultDialogPromise;
   
   function getProperty (clickEvent) {
     const bindingContext = clickEvent.getSource().getBindingContext("magic")
     return bindingContext.getProperty()
+  }
+
+  function getAttributes(characterAttributes, checkAttributes) {
+    return checkAttributes.map(checkAttribute => {
+      return {
+        name: checkAttribute,
+        value: characterAttributes.find(attribute => attribute.name === checkAttribute).value
+      }
+    })
   }
 
   return {
@@ -189,8 +199,66 @@ sap.ui.define([
       this.getModel("spells").updateBindings(true);
     },
 
-    onRollSpell: function () {
-      
+    openSpellPopover: function (clickEvent) {
+      const button = clickEvent.getSource()
+      const bindingContext = clickEvent.getSource().getBindingContext("spells")
+      const spell = bindingContext.getProperty()
+      const characterSource = this.getModel("character").getProperty("/spells").find(source => source.id === spell.source)
+
+      const checkData = {
+        name: spell.name, //`${spell.name} (${characterSource.name} - ${spell.instruction})`,
+        attributes: getAttributes(this.getModel("character").getProperty("/attributes"), characterSource.attributes),
+        value: characterSource.value,
+        spontaneousModificator: 0,
+        specialization: spell.specialization,
+        permanentModifier: this.calculateSpellModificator(spell.quality, spell.parameters, this.getModel("magic").getProperty("/spellParameters"), spell.modificators)
+      }
+
+      this.getModel("check").setData(checkData)
+      this.getModel("check").setProperty("/spontaneousModificator", 0)
+
+      // create popover
+			if (!spellPopoverPromise) {
+				spellPopoverPromise = Fragment.load({
+					id: this.oView.getId(),
+					name: "com.lonwyr.MyranorBot.fragment.RollSpellPopover",
+					controller: this
+				}).then(oPopover => {
+					this.oView.addDependent(oPopover)
+					return oPopover
+				})
+			}
+			spellPopoverPromise.then(function(oPopover) {
+				oPopover.openBy(button)
+			})
+    },
+
+    onRollSpell: function (clickEvent) {
+      spellPopoverPromise.then(oPopover => oPopover.close())
+      let checkData = Object.assign({}, this.getModel("check").getData());
+      checkData.modifier = parseInt(checkData.spontaneousModificator) + checkData.permanentModifier;
+
+      return Roller.checkSpell(checkData).then((result) => {
+        this.getModel("check").setProperty("/result", JSON.parse(result));
+
+        if (!spellResultDialogPromise) {
+          spellResultDialogPromise = Fragment.load({
+            id: this.oView.getId(),
+            name: "com.lonwyr.MyranorBot.fragment.RollSpellResultDialog",
+            controller: this
+          }).then(oDialog => {
+            this.oView.addDependent(oDialog)
+            return oDialog
+          })
+        }
+        spellResultDialogPromise.then(function(oDialog) {
+          oDialog.open()
+        })
+      })
+    },
+
+    closeSpellResultDialog: function () {
+      spellResultDialogPromise.then(dialog => dialog.close());
     }
   }
 });

@@ -103,7 +103,7 @@
                                     <Text text="{parts: [{path: 'spells>parameters/maxDuration'}, {path: 'magic>/spellParameters/maxDuration'}], formatter: '.formatSpellParameter'}" />
                                     <Text text="{parts: [{path: 'spells>parameters/structure'}, {path: 'magic>/spellParameters/structure'}], formatter: '.formatSpellParameter'}" />
                                     <HBox>
-                                        <Button enabled="false" text="{i18n>roll}" press=".onRollSpell" visible="{= !${spells>/editSpells}}" />
+                                        <Button text="{i18n>roll}" press=".openSpellPopover" visible="{= !${spells>/editSpells}}" />
                                         <Button icon="sap-icon://edit" press=".onEditSpell" visible="{spells>/editSpells}" />
                                         <Button icon="sap-icon://delete" press=".onDeleteSpell" visible="{spells>/editSpells}" class="sapUiSmallMarginBegin" />
                                     </HBox>
