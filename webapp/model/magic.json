@@ -691,39 +691,39 @@
             "modificator": 1
         }],
         "structure": [{
-            "id": "1",
+            "id": "-1",
             "description": "extrem einfach",
             "modificator": -1
         }, {
-            "id": "2",
+            "id": "0",
             "description": "sehr einfach",
             "modificator": 0
         }, {
-            "id": "3",
+            "id": "1",
             "description": "einfach",
             "modificator": 1
         }, {
-            "id": "4",
+            "id": "2",
             "description": "schwer",
             "modificator": 2
         }, {
-            "id": "5",
+            "id": "3",
             "description": "sehr schwer",
             "modificator": 3
         }, {
-            "id": "6",
+            "id": "4",
             "description": "extrem schwer",
             "modificator": 4
         }, {
-            "id": "7",
+            "id": "5",
             "description": "komplex",
             "modificator": 5
         }, {
-            "id": "8",
+            "id": "6",
             "description": "sehr komplex",
             "modificator": 6
         }, {
-            "id": "9",
+            "id": "7",
             "description": "extrem komplex",
             "modificator": 7
         }]
