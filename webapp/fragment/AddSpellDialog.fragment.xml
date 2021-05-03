@@ -2,26 +2,35 @@
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
 	<Dialog
-		type="Message"
-		title="{i18n>addSpell}" >
-			<VBox class="sapUiSmallMargin">
-				<Title text="{i18n>name}"/>
-				<Input value="{newSpell>/name}" class="sapUiSmallMarginBottom" />
-				<Title text="{i18n>source}"/>
-				<Select selectedKey="{newSpell>/source}" items="{character>/spells}"  class="sapUiSmallMarginBottom" width="100%" >
-					<core:Item key="{character>id}" text="{= ${character>name} + ' (' + ${character>category} + ')' + ' ZfW ' + ${character>value}}" />
-				</Select>
-				<Title text="{i18n>instruction}"/>
-				<Select selectedKey="{newSpell>/instruction}" items="{character>/instructions}" class="sapUiSmallMarginBottom" width="100%" change=".rebindInstructionDependentSpellParameters('newSpell', true)" >
-					<core:Item key="{character>}" text="{character>}" />
-				</Select>
-				<Title text="{i18n>specialization}"/>
-				<CheckBox selected="{newSpell>/specialization}" width="100%" class="sapUiSmallMarginBottom" />
-				<Title text="{i18n>description}"/>
-				<TextArea value="{newSpell>/description}" width="100%" class="sapUiSmallMarginBottom" />
-				<Title text="{i18n>formulaQuality}"/>
-				<Slider value="{newSpell>/quality}" min="0" max="7" enableTickmarks="true" step="1" class="sapUiSmallMarginBottom" change=".updateSpellModificator" />
-			</VBox>
+			type="Message"
+			title="{i18n>addSpell}">
+		<Panel headerText="{i18n>general}" class="sapUiSmallMarginTop">
+			<List>
+				<InputListItem label="{i18n>name}">
+					<Input value="{newSpell>/name}" />
+				</InputListItem>
+				<InputListItem label="{i18n>source}">
+					<Select selectedKey="{newSpell>/source}" items="{character>/spells}" width="100%" >
+						<core:Item key="{character>id}" text="{= ${character>name} + ' (' + ${character>category} + ')' + ' ZfW ' + ${character>value}}" />
+					</Select>
+				</InputListItem>
+				<InputListItem label="{i18n>instruction}">
+					<Select selectedKey="{newSpell>/instruction}" items="{character>/instructions}"  width="100%" change=".rebindInstructionDependentSpellParameters('newSpell', true)" >
+						<core:Item key="{character>}" text="{character>}" />
+					</Select>
+				</InputListItem>
+				<InputListItem label="{i18n>specialization}">
+					<CheckBox selected="{newSpell>/specialization}" width="100%" />
+				</InputListItem>
+			</List>
+				<Title text="{i18n>description}" />
+				<TextArea value="{newSpell>/description}" width="100%" />
+				<Title text="{i18n>formulaQuality}" />
+				<Slider value="{newSpell>/quality}" min="1" max="7" enableTickmarks="true" step="1" change=".updateSpellModificator">
+					<ResponsiveScale tickmarksBetweenLabels="1"/>
+				</Slider>
+		</Panel>
+		<Panel headerText="{i18n>parameters}" class="sapUiSmallMarginTop">
 		<List>
 			<InputListItem label="{i18n>castingTime}">
 				<Select selectedKey="{newSpell>/parameters/castingTime}" items="{magic>/spellParameters/castingTime}" change=".updateSpellModificator" >
@@ -44,24 +53,45 @@
 				</Select>
 			</InputListItem>
 			<InputListItem label="{i18n>structure}">
-				<Select id="newSpell_structure" selectedKey="{newSpell>/parameters/structure}" change=".updateSpellModificator" />
+				<Select id="newSpell_structure" selectedKey="{newSpell>/parameters/structure}" />
 				<!-- bound via coding on open / instruction selection -->
 			</InputListItem>
-			<InputListItem label="{i18n>permanentModificators}">
+			<!--InputListItem label="{i18n>permanentModificators}">
 				<Input type="Number" value="{newSpell>/modificators/0/value}" change=".updateSpellModificator" />
-			</InputListItem>
-		</List>
+			</InputListItem-->
 			<ObjectListItem
-				title="{i18n>modificator}"
+				title="{i18n>spellModificator}"
 				number="{
 					parts: [
-						{path: 'newSpell>/quality'},
 						{path: 'newSpell>/parameters'},
-						{path: 'magic>/spellParameters'},
-						{path: 'newSpell>/modificators'}
+						{path: 'magic>/spellParameters'}
 					], 
-					formatter: '.calculateSpellModificator'
+					formatter: '.calculateSpellParameters'
 				}" />
+				</List>
+		</Panel>
+		<Panel headerText="{i18n>modificators}" class="sapUiSmallMarginTop">
+			<List items="{newSpell>/modificators}" mode="Delete" delete=".removeParameterFormNewSpell" >
+				<headerToolbar>
+					<OverflowToolbar>
+						<ToolbarSpacer />
+						<Button icon="sap-icon://add" press=".addParameterToNewSpell" />
+					</OverflowToolbar>
+				</headerToolbar>
+				<items>
+					<CustomListItem>
+						<List>
+							<InputListItem label="{i18n>name}">
+									<Input value="{newSpell>name}" />
+							</InputListItem>
+							<InputListItem label="{i18n>value}">
+									<Input type="Number" value="{newSpell>value}" change=".updateNewSpellModificator" />
+							</InputListItem>
+						</List>
+					</CustomListItem>
+				</items>
+			</List>
+		</Panel>
 		<beginButton>
 			<Button
 				type="Emphasized"

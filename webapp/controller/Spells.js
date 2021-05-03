@@ -30,6 +30,31 @@ sap.ui.define([
     })
   }
 
+  function addParameter(model) {
+    let data = model.getData();
+    data.modificators.push({
+      name: "",
+      enabled: true,
+      value: 0
+    });
+    model.setData(data)
+  }
+
+  function removeParameter(event, modelName) {
+    var list = event.getSource(),
+    item = event.getParameter("listItem"),
+    path = item.getBindingContext(modelName).getPath(),
+    model = item.getBindingContext(modelName).getModel();
+
+    // after deletion put the focus back to the list
+    list.attachEventOnce("updateFinished", list.focus, list);
+
+    const mod = model.getProperty(path);
+    let mods = model.getProperty("/modificators");
+    mods = mods.filter(modListItem => modListItem !== mod)
+    model.setProperty("/modificators", mods)
+  }
+
   return {
     switchSpellsToView: function () {
       this.getModel("spells").setProperty("/editSpells", false)
@@ -91,12 +116,9 @@ sap.ui.define([
           targets: "1",
           range: "1",
           maxDuration: "1",
-          structure: "1"
+          structure: this.getModel("magic").getProperty("/instructions/" + instructions[0]).structures[0].modificator
         },
-        modificators: [{
-          name: "permanente Modifikatoren",
-          value: 0
-        }]
+        modificators: []
       }
       this.getModel("newSpell").setData(checkParameters)
 
@@ -117,11 +139,23 @@ sap.ui.define([
 			})
     },
 
-    formatDurationVisibility: function (instruction, instructions ,id) {
-      debugger;
+    addParameterToNewSpell: function () {
+      addParameter(this.getModel("newSpell"));
     },
 
-    updateSpellModificator: function () {
+    removeParameterFormNewSpell: function (event) {
+      removeParameter(event, "newSpell");
+    },
+
+    addParameterToEditSpell: function () {
+      addParameter(this.getModel("editSpell"));
+    },
+
+    removeParameterFormEditSpell: function (event) {
+      removeParameter(event, "editSpell");
+    },
+
+    updateNewSpellModificator: function () {
       this.getModel("newSpell").updateBindings(true);
     },
 
@@ -139,18 +173,25 @@ sap.ui.define([
       return "ZfW " + (characterSources.find(item => item.id === source).value + (specialization ? 2 : 0));
     },
 
+    calculateSpellParameters: function (spellParameters, parameters) {
+      let modificator = 0;
+      for (const category in parameters) {
+        const parameterItem = parameters[category].find(item => {return item.id === spellParameters[category]})
+        modificator += parameterItem.modificator
+      }
+
+      return modificator;
+    },
+
     calculateSpellModificator: function (formulaQuality, spellParameters, parameters, modificators) {
       if (formulaQuality === undefined || !spellParameters || !parameters || modificators === undefined) {
         return 0;
       }
 
       let modificator = -1 * formulaQuality
-        for (const category in parameters) {
-          const parameterItem = parameters[category].find(item => {return item.id === spellParameters[category]})
-          modificator += parameterItem.modificator
-        }
-        modificator += modificators.reduce((a, b) => a + parseInt(b.value), 0)
-        return modificator
+      modificator += this.calculateSpellParameters(spellParameters, parameters)
+      modificator += modificators.reduce((a, b) => a + b.enabled ? parseInt(b.value) : 0, 0)
+      return modificator
     },
 
     formatSpellParameter: function (id, category) {
@@ -209,9 +250,11 @@ sap.ui.define([
         name: spell.name, //`${spell.name} (${characterSource.name} - ${spell.instruction})`,
         attributes: getAttributes(this.getModel("character").getProperty("/attributes"), characterSource.attributes),
         value: characterSource.value,
+        modificators: spell.modificators,
+        quality: spell.quality,
+        spellModificator: this.calculateSpellParameters(spell.parameters, this.getModel("magic").getProperty("/spellParameters")),
         spontaneousModificator: 0,
-        specialization: spell.specialization,
-        permanentModifier: this.calculateSpellModificator(spell.quality, spell.parameters, this.getModel("magic").getProperty("/spellParameters"), spell.modificators)
+        specialization: spell.specialization
       }
 
       this.getModel("check").setData(checkData)
@@ -233,10 +276,15 @@ sap.ui.define([
 			})
     },
 
+    formatSpellModifierSwitchLabel: function (name, value) {
+      return `${name} (${value})`;
+    },
+
     onRollSpell: function (clickEvent) {
       spellPopoverPromise.then(oPopover => oPopover.close())
       let checkData = Object.assign({}, this.getModel("check").getData());
-      checkData.modifier = parseInt(checkData.spontaneousModificator) + checkData.permanentModifier;
+      checkData.modifier = parseInt(checkData.spontaneousModificator) + checkData.spellModificator - checkData.quality;
+      checkData.modifier += checkData.modificators.reduce((a, b) => a + (b.enabled ? parseInt(b.value) : 0), 0);
 
       return Roller.checkSpell(checkData).then((result) => {
         this.getModel("check").setProperty("/result", JSON.parse(result));
