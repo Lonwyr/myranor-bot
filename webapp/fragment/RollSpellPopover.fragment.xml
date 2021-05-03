@@ -5,6 +5,19 @@
 		title="{check>/name}"
 		placement="Left"
 		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer">
+        <DisplayListItem label="{i18n>spellModificator}" value="{check>/spellModificator}"/>
+        <DisplayListItem label="{i18n>formulaQuality}" value="{check>/quality}"/>
+		<List visible="{= ${check>/modificators/length} !== 0}" items="{check>/modificators}">
+			<InputListItem label="{
+				parts: [
+					{path: 'check>name'},
+					{path: 'check>value'}
+				], 
+				formatter: '.formatSpellModifierSwitchLabel'
+			}">
+				<Switch state="{check>enabled}" />
+			</InputListItem>
+		</List>
         <InputListItem label="{i18n>modificator}" >
             <Input
                 value="{check>/spontaneousModificator}"
