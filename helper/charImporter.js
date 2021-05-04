@@ -46,7 +46,7 @@ function extractSkillsAndSpells(list) {
 function extractInstructions(list) {
     const instructionSf = list.find(sf => sf._attributes.name === "Instruktion")
     if (instructionSf) {
-        return instructionSf.auswahl.map(instruction => instruction._attributes.name)
+        return instructionSf.auswahl.map(instruction => instruction._attributes.name.replace("/", " "))
     }
 
     return []

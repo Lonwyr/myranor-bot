@@ -213,7 +213,7 @@
 			"durations": ["timeframe"],
 			"targetsCategories": ["creature"]
 		},
-        "Heilung/Wiederherstellung": {
+        "Heilung Wiederherstellung": {
 			"requirements": [],
 			"structures": [{
                 "name": "AuP",
