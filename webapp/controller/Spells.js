@@ -248,7 +248,7 @@ sap.ui.define([
 
       const checkData = {
         name: spell.name, //`${spell.name} (${characterSource.name} - ${spell.instruction})`,
-        attributes: getAttributes(this.getModel("character").getProperty("/attributes"), characterSource.attributes),
+        attributes: characterSource.attributes,
         value: characterSource.value,
         modificators: spell.modificators,
         quality: spell.quality,
@@ -283,6 +283,8 @@ sap.ui.define([
     onRollSpell: function (clickEvent) {
       spellPopoverPromise.then(oPopover => oPopover.close())
       let checkData = Object.assign({}, this.getModel("check").getData());
+      const characterAttributes = this.getModel("character").getProperty("/attributes")
+      checkData.attributes = checkData.attributes.map(att => characterAttributes.find(characterAttribute => characterAttribute.name === att));
       checkData.modifier = parseInt(checkData.spontaneousModificator) + checkData.spellModificator - checkData.quality;
       checkData.modifier += checkData.modificators.reduce((a, b) => a + (b.enabled ? parseInt(b.value) : 0), 0);
 
