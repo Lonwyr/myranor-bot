@@ -2,9 +2,20 @@
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
 	<Popover
-		title="{check>/name}"
-		placement="Left"
-		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer">
+			title="{check>/name}"
+			placement="Left"
+			class="sapUiResponsivePadding--header sapUiResponsivePadding--footer">
+		<HBox>
+			<Select items="{character>/attributes}" selectedKey="{check>/attributes/0}" >
+				<core:Item key="{character>name}" text="{character>name} ({character>value})" />
+			</Select>
+			<Select items="{character>/attributes}" selectedKey="{check>/attributes/1}" >
+				<core:Item key="{character>name}" text="{character>name} ({character>value})" />
+			</Select>
+			<Select items="{character>/attributes}" selectedKey="{check>/attributes/2}" >
+				<core:Item key="{character>name}" text="{character>name} ({character>value})" />
+			</Select>
+		</HBox>
         <DisplayListItem label="{i18n>spellModificator}" value="{check>/spellModificator}"/>
         <DisplayListItem label="{i18n>formulaQuality}" value="{check>/quality}"/>
 		<List visible="{= ${check>/modificators/length} !== 0}" items="{check>/modificators}">
@@ -18,17 +29,6 @@
 				<Switch state="{check>enabled}" />
 			</InputListItem>
 		</List>
-		<HBox>
-			<Select items="{character>/attributes}" selectedKey="{check>/attributes/0}" >
-				<core:Item key="{character>name}" text="{character>name} ({character>value})" />
-			</Select>
-			<Select items="{character>/attributes}" selectedKey="{check>/attributes/1}" >
-				<core:Item key="{character>name}" text="{character>name} ({character>value})" />
-			</Select>
-			<Select items="{character>/attributes}" selectedKey="{check>/attributes/2}" >
-				<core:Item key="{character>name}" text="{character>name} ({character>value})" />
-			</Select>
-		</HBox>
         <InputListItem label="{i18n>modificator}" >
             <Input
                 value="{check>/spontaneousModificator}"
@@ -38,6 +38,7 @@
 			<OverflowToolbar>
 				<ToolbarSpacer/>
 				<Button
+					type="Emphasized"
 					text="{i18n>roll}"
 					press=".onRollSpell" />
 			</OverflowToolbar>

@@ -240,6 +240,10 @@ sap.ui.define([
       this.getModel("spells").updateBindings(true);
     },
 
+    updateNewSpellModificator: function () {
+      this.getModel("newSpell").updateBindings(true);
+    },
+
     openSpellPopover: function (clickEvent) {
       const button = clickEvent.getSource()
       const bindingContext = clickEvent.getSource().getBindingContext("spells")
