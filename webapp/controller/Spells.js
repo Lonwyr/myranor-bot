@@ -279,10 +279,6 @@ sap.ui.define([
     formatSpellModifierSwitchLabel: function (name, value) {
       return `${name} (${value})`;
     },
-    formatAttributeSelectionItemText: function (attributeName, attributes) {
-      const attributeValue = attributes.find(att => att.name === attributeName);
-      return `${attributeName} (${attributeValue})`;
-    },
 
     onRollSpell: function (clickEvent) {
       spellPopoverPromise.then(oPopover => oPopover.close())
