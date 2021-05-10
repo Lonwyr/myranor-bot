@@ -18,6 +18,17 @@
 				<Switch state="{check>enabled}" />
 			</InputListItem>
 		</List>
+		<HBox>
+			<Select items="{character>/attributes}" selectedKey="{check>/attributes/0}" >
+				<core:Item key="{character>name}" text="{character>name} ({character>value})" />
+			</Select>
+			<Select items="{character>/attributes}" selectedKey="{check>/attributes/1}" >
+				<core:Item key="{character>name}" text="{character>name} ({character>value})" />
+			</Select>
+			<Select items="{character>/attributes}" selectedKey="{check>/attributes/2}" >
+				<core:Item key="{character>name}" text="{character>name} ({character>value})" />
+			</Select>
+		</HBox>
         <InputListItem label="{i18n>modificator}" >
             <Input
                 value="{check>/spontaneousModificator}"
