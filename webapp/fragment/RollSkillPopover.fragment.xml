@@ -17,6 +17,7 @@
 			<OverflowToolbar>
 				<ToolbarSpacer/>
 				<Button
+					type="Emphasized"
 					text="{i18n>roll}"
 					press=".onRollSkill" />
 			</OverflowToolbar>
