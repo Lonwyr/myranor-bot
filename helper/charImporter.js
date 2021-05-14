@@ -156,37 +156,42 @@ module.exports = {
         const url = msg.attachments.toJSON()[0].url
         if (!url.endsWith('.xml') && !url.endsWith('.json')) throw new Error('no XML or JSON provided')
 
-        request.get(url, function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                let charJson
+        try {
+            request.get(url, function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    let charJson
 
-                if (url.endsWith('.xml')) {
-                    const charString = convert.xml2json(body, {compact: true, spaces: 2})
-                    const char = JSON.parse(charString).helden.held
-                    const attributes = char.eigenschaften.eigenschaft
-                    const skills = char.talentliste.talent
-                    const spells = char.zauberliste.zauber
-                    const sf = char.sf.sonderfertigkeit
+                    if (url.endsWith('.xml')) {
+                        const charString = convert.xml2json(body, {compact: true, spaces: 2})
+                        const char = JSON.parse(charString).helden.held
+                        const attributes = char.eigenschaften.eigenschaft
+                        const skills = char.talentliste.talent
+                        const spells = char.zauberliste.zauber
+                        const sf = char.sf.sonderfertigkeit
 
-                    charJson = {
-                        name: char._attributes.name,
-                        attributes: extractAttributes(attributes),
-                        skills: extractSkillsAndSpells(skills),
-                        instructions: extractInstructions(sf),
-                        spontaneousCasting: extractSpontaneousCasting(sf)
+                        charJson = {
+                            name: char._attributes.name,
+                            attributes: extractAttributes(attributes),
+                            skills: extractSkillsAndSpells(skills),
+                            instructions: extractInstructions(sf),
+                            spontaneousCasting: extractSpontaneousCasting(sf)
+                        }
+
+                        charJson.spells = extractSkillsAndSpells(spells)
+                    } else {
+                        charJson = JSON.parse(body)
                     }
 
-                    charJson.spells = extractSkillsAndSpells(spells)
+                    cache.store(userId, charJson, slot)
+                    
+                msg.reply(`Charakter ist gespeichert in **Slot ${slot}**.\nIch wärm die Würfel schon mal vor!`)
                 } else {
-                    charJson = JSON.parse(body)
+                    throw error
                 }
-
-                cache.store(userId, charJson, slot)
-                
-            msg.reply(`Charakter is gespeichert in **Slot ${slot}**.\nIch wärm die Würfel schon mal vor!`)
-            } else {
-                throw error
-            }
-        })
+            })
+        } catch (error) {
+            console.log(error)
+            msg.reply(`Charakter konnte nicht gespeichert werden.\n${error.message}`)
+        }
     }
 }
