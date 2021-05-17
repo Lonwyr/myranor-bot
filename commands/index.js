@@ -11,6 +11,7 @@ module.exports = Object.assign({
   zfw: require('./zfw'),
   switch: require('./switch'),
   lockchannel: require('./lockchannel'),
+  newtoken: require('./newtoken'),
   init: require('./init')
 },
 require('./specificSkillsAndSpells'));

@@ -73,6 +73,21 @@ module.exports = {
             client.release()
         }
     },
+    checkUserId: async function (userId) {
+        const client = await pool.connect()
+        try {                
+            const getQuery = {
+                text: `SELECT userid
+                FROM activeslot
+                WHERE userid = $1`,
+                values: [userId]
+            }
+            const result = await client.query(getQuery)
+            return result.rows.length === 1
+        } finally {
+            client.release()
+        }
+    },
     getUserIdByAppPassword: async function (password) {
         const client = await pool.connect()
         try {                
