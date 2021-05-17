@@ -75,10 +75,7 @@
       "spells": {
         "type": "com.lonwyr.MyranorBot.model.SpellsModel"
       },
-      "newSpell": {
-        "type": "sap.ui.model.json.JSONModel"
-      },
-      "editSpell": {
+      "spell": {
         "type": "sap.ui.model.json.JSONModel"
       },
       "settings": {

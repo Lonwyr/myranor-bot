@@ -11,8 +11,7 @@ sap.ui.define([
   ) {
   "use strict";
 
-  let addSpellDialogPromise;
-  let editSpellDialogPromise;
+  let spellDialogPromise;
   let spellPopoverPromise;
   let spellResultDialogPromise;
   
@@ -30,31 +29,6 @@ sap.ui.define([
     })
   }
 
-  function addParameter(model) {
-    let data = model.getData();
-    data.modificators.push({
-      name: "",
-      enabled: true,
-      value: 0
-    });
-    model.setData(data)
-  }
-
-  function removeParameter(event, modelName) {
-    var list = event.getSource(),
-    item = event.getParameter("listItem"),
-    path = item.getBindingContext(modelName).getPath(),
-    model = item.getBindingContext(modelName).getModel();
-
-    // after deletion put the focus back to the list
-    list.attachEventOnce("updateFinished", list.focus, list);
-
-    const mod = model.getProperty(path);
-    let mods = model.getProperty("/modificators");
-    mods = mods.filter(modListItem => modListItem !== mod)
-    model.setProperty("/modificators", mods)
-  }
-
   return {
     switchSpellsToView: function () {
       this.getModel("spells").setProperty("/editSpells", false)
@@ -67,24 +41,24 @@ sap.ui.define([
     },
 
     rebindInstructionDependentSpellParameters: function (prefix, resetParameters) {
-      let model = this.getModel(prefix);
+      let model = this.getModel("spell");
       const instructionName = model.getProperty("/instruction");
       const instructions = this.getModel("magic").getProperty("/instructions");
       const instruction = instructions[instructionName];
 
-      const targetSelect = this.byId(prefix + "_targets");
+      const targetSelect = this.byId("targets");
       let targetBinding = targetSelect.getBinding("items");
       targetBinding.filter(new Filter("",
         targetOption => instruction.targetsCategories.includes(targetOption.category)
       ));
 
-      const maxDurationtSelect = this.byId(prefix + "_maxDuration");
+      const maxDurationtSelect = this.byId("maxDuration");
       let maxDurationBinding = maxDurationtSelect.getBinding("items");
       maxDurationBinding.filter(new Filter("",
         maxDurationOption => instruction.durations.includes(maxDurationOption.category)
       ));
 
-      const structureSelect =  this.byId(prefix + "_structure");
+      const structureSelect =  this.byId("structure");
       const structuresBindingPath = `/instructions/${instructionName}/structures`;
       structureSelect.bindItems({
         path: structuresBindingPath,
@@ -111,6 +85,7 @@ sap.ui.define([
         specialization: false,
         asp: 0,
         pAsp: 0,
+        inCreation: true,
         parameters: {
           castingTime: "1",
           targets: "1",
@@ -120,43 +95,48 @@ sap.ui.define([
         },
         modificators: []
       }
-      this.getModel("newSpell").setData(checkParameters)
+      this.getModel("spell").setData(checkParameters)
 
       // create popover
-			if (!addSpellDialogPromise) {
-				addSpellDialogPromise = Fragment.load({
+			if (!spellDialogPromise) {
+				spellDialogPromise = Fragment.load({
 					id: this.oView.getId(),
-					name: "com.lonwyr.MyranorBot.fragment.AddSpellDialog",
+					name: "com.lonwyr.MyranorBot.fragment.SpellDialog",
 					controller: this
 				}).then(oPopover => {
 					this.oView.addDependent(oPopover)
 					return oPopover
 				})
 			}
-			addSpellDialogPromise.then(oPopover => {
-        this.rebindInstructionDependentSpellParameters("newSpell")
+			spellDialogPromise.then(oPopover => {
+        this.rebindInstructionDependentSpellParameters("spell")
 				oPopover.open()
 			})
     },
 
-    addParameterToNewSpell: function () {
-      addParameter(this.getModel("newSpell"));
+    addParameterToSpell: function () {
+      let data = this.getModel("spell").getData();
+      data.modificators.push({
+        name: "",
+        enabled: true,
+        value: 0
+      });
+      this.getModel("spell").setData(data)
     },
 
-    removeParameterFormNewSpell: function (event) {
-      removeParameter(event, "newSpell");
-    },
+    removeParameterFormSpell: function (event) {
+      var list = event.getSource(),
+      item = event.getParameter("listItem"),
+      path = item.getBindingContext("spell").getPath(),
+      model = item.getBindingContext("spell").getModel();
 
-    addParameterToEditSpell: function () {
-      addParameter(this.getModel("editSpell"));
-    },
+      // after deletion put the focus back to the list
+      list.attachEventOnce("updateFinished", list.focus, list);
 
-    removeParameterFormEditSpell: function (event) {
-      removeParameter(event, "editSpell");
-    },
-
-    updateNewSpellModificator: function () {
-      this.getModel("newSpell").updateBindings(true);
+      const mod = model.getProperty(path);
+      let mods = model.getProperty("/modificators");
+      mods = mods.filter(modListItem => modListItem !== mod)
+      model.setProperty("/modificators", mods)
     },
 
     formatSpellName: function (spell, characterSpells) {
@@ -201,47 +181,43 @@ sap.ui.define([
       return category.find(item => {return item.id === id}).description
     },
 
-    closeAddSpellDialog: function () {
-      const newSpell = this.getModel("newSpell").getData();
-      this.getModel("spells").addSpell(newSpell);
-      addSpellDialogPromise.then(oPopover => oPopover.close());
+    closeSpellDialog: function () {      
+      const spell = this.getModel("spell").getData();
+      if (spell.inCreation) {
+        delete spell.inCreation;
+        this.getModel("spells").addSpell(spell);
+      }
+      spellDialogPromise.then(oPopover => oPopover.close());
     },
 
     onEditSpell: function (event) {
       const editSpellData = event.getSource().getBindingContext("spells").getProperty();
        // create popover
-			if (!editSpellDialogPromise) {
-				editSpellDialogPromise = Fragment.load({
+			if (!spellDialogPromise) {
+				spellDialogPromise = Fragment.load({
 					id: this.oView.getId(),
-					name: "com.lonwyr.MyranorBot.fragment.EditSpellDialog",
+					name: "com.lonwyr.MyranorBot.fragment.SpellDialog",
 					controller: this
 				}).then(oPopover => {
 					this.oView.addDependent(oPopover)
 					return oPopover
 				})
 			}
-			editSpellDialogPromise.then(oPopover => {
-         this.getModel("editSpell").setData(editSpellData);
-         this.rebindInstructionDependentSpellParameters("editSpell")
+			spellDialogPromise.then(oPopover => {
+         this.getModel("spell").setData(editSpellData);
+         this.rebindInstructionDependentSpellParameters("spell")
 				oPopover.open();
 			})
     },
+
     onDeleteSpell: function (event) {
       const deleteSpellPath = event.getSource().getBindingContext("spells").getPath();
       this.getModel("spells").removeSpell(deleteSpellPath)
     },
 
-    closeEditSpellDialog: function () {
-      editSpellDialogPromise.then(oPopover => oPopover.close());
-    },
-
-    updateEditSpellModificator: function () {
-      this.getModel("editSpell").updateBindings(true);
+    updateSpellModificator: function () {
+      this.getModel("spell").updateBindings(true);
       this.getModel("spells").updateBindings(true);
-    },
-
-    updateNewSpellModificator: function () {
-      this.getModel("newSpell").updateBindings(true);
     },
 
     openSpellPopover: function (clickEvent) {
