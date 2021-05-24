@@ -156,8 +156,8 @@ module.exports = {
         const url = msg.attachments.toJSON()[0].url
         if (!url.endsWith('.xml') && !url.endsWith('.json')) throw new Error('no XML or JSON provided')
 
-        try {
             request.get(url, function (error, response, body) {
+                try {
                 if (!error && response.statusCode == 200) {
                     let charJson
 
@@ -188,10 +188,10 @@ module.exports = {
                 } else {
                     throw error
                 }
-            })
-        } catch (error) {
-            console.log(error)
-            msg.reply(`Charakter konnte nicht gespeichert werden.\n${error.message}`)
-        }
+            } catch (error) {
+                console.log(error)
+                msg.reply(`Charakter konnte nicht gespeichert werden.\n${error.message}`)
+            }
+        })
     }
 }
