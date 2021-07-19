@@ -16,9 +16,9 @@
 				<core:Item key="{character>name}" text="{character>name} ({character>value})" />
 			</Select>
 		</HBox>
-        <DisplayListItem label="{i18n>spellModificator}" value="{check>/spellModificator}"/>
-        <DisplayListItem label="{i18n>formulaQuality}" value="{check>/quality}"/>
-		<List visible="{= ${check>/modificators/length} !== 0}" items="{check>/modificators}">
+        <DisplayListItem label="{i18n>spellModificator}" value="{check>/spellModificator}" visible="{= ${check>/aventuric} !== true}" />
+        <DisplayListItem label="{i18n>formulaQuality}" value="{check>/quality}" visible="{= ${check>/aventuric} !== true}" />
+		<List visible="{= ${check>/modificators/length} !== 0}" items="{check>/modificators}" >
 			<InputListItem label="{
 				parts: [
 					{path: 'check>name'},

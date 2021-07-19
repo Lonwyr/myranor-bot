@@ -25,7 +25,7 @@ function extractAttributes(attributes) {
     return attributesJson
 }
 
-function extractSkillsAndSpells(list) {
+function extractSkillsAndSpells(list, extractAttributes) {
     let json = {}
 
     if (list) {
@@ -35,7 +35,17 @@ function extractSkillsAndSpells(list) {
             name = name.replace(/liturgiekenntnis\:\ .*/gm, 'liturgiekenntnis') // Ritual- und Liturgiekenntnis
             const value = parseInt(item._attributes.value)
             if (!name.startsWith('lesenschreiben') && !name.startsWith('sprachenkennen')) {
-                json[name] = parseInt(value)
+                if (!extractAttributes) {
+                    json[name] = parseInt(value)
+                } else {
+                    json[name] = {
+                        value: parseInt(value),
+                        name: item._attributes.name,
+                        representation: item._attributes.repraesentation,
+                        attributes: item._attributes.probe.replace(/[()]/gm, '').split('/')
+                    }
+                }
+
             }
         }
     }
@@ -138,6 +148,18 @@ function extractSpontaneousCasting(list) {
     return spontaneousCasting
 }
 
+const aventuricRepresentations = [
+    "Magier",
+    "Hexe"
+]
+
+function filterSpells(spells, aventuric) {
+    return spells.filter(spell => {
+        const containedInAventuricRepresentations = aventuricRepresentations.includes(spell._attributes.repraesentation)
+        return containedInAventuricRepresentations === aventuric
+    })
+} 
+
 module.exports = {
     import: function (msg) {
         let slot = 1
@@ -166,18 +188,21 @@ module.exports = {
                         const char = JSON.parse(charString).helden.held
                         const attributes = char.eigenschaften.eigenschaft
                         const skills = char.talentliste.talent
-                        const spells = char.zauberliste.zauber
+                        const spells = char.zauberliste.zauber || []
+                        const aventuricSpells = filterSpells(spells, true)
+                        const myranicSpells = filterSpells(spells, false)
                         const sf = char.sf.sonderfertigkeit
 
                         charJson = {
                             name: char._attributes.name,
                             attributes: extractAttributes(attributes),
                             skills: extractSkillsAndSpells(skills),
+                            spells: extractSkillsAndSpells(myranicSpells),
+                            aventuricSpells: extractSkillsAndSpells(aventuricSpells, true),
                             instructions: extractInstructions(sf),
                             spontaneousCasting: extractSpontaneousCasting(sf)
                         }
 
-                        charJson.spells = extractSkillsAndSpells(spells)
                     } else {
                         charJson = JSON.parse(body)
                     }
