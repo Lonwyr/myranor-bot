@@ -287,6 +287,42 @@ sap.ui.define([
       })
     },
 
+    openAventuricSpellPopover: function (clickEvent) {
+      const button = clickEvent.getSource()
+      const bindingContext = clickEvent.getSource().getBindingContext("character")
+      const spell = bindingContext.getProperty()
+
+      const checkData = {
+        name: spell.name,
+        attributes: spell.attributes,
+        value: spell.value,
+        aventuric: true,
+        modificators: [],
+        spellModificator: 0,
+        quality: 0,
+        spontaneousModificator: 0,
+        specialization: false
+      }
+
+      this.getModel("check").setData(checkData)
+      this.getModel("check").setProperty("/spontaneousModificator", 0)
+
+      // create popover
+			if (!spellPopoverPromise) {
+				spellPopoverPromise = Fragment.load({
+					id: this.oView.getId(),
+					name: "com.lonwyr.MyranorBot.fragment.RollSpellPopover",
+					controller: this
+				}).then(oPopover => {
+					this.oView.addDependent(oPopover)
+					return oPopover
+				})
+			}
+			spellPopoverPromise.then(function(oPopover) {
+				oPopover.openBy(button)
+			})
+    },
+
     closeSpellResultDialog: function () {
       spellResultDialogPromise.then(dialog => dialog.close());
     }

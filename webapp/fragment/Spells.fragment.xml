@@ -2,9 +2,9 @@
    xmlns="sap.m"
     xmlns:uxap="sap.uxap"
    xmlns:core="sap.ui.core" >
-    <uxap:ObjectPageSection title="{i18n>spells}" visible="{= ${character>/spells/length}> 0}">
+    <uxap:ObjectPageSection title="{i18n>spells}" visible="{= (${character>/spells/length} + ${character>/aventuricSpells/length}) > 0}">
     <uxap:subSections>
-        <uxap:ObjectPageSubSection>
+        <uxap:ObjectPageSubSection visible="{= ${character>/spells/length} > 0}">
             <uxap:actions>
                 <Button visible="{= !${spells>/editSpells}}" icon="sap-icon://edit" press=".switchSpellsToEdit" />
                 <Button visible="{spells>/editSpells}" icon="sap-icon://save" press=".switchSpellsToView" />
@@ -112,6 +112,25 @@
                             </ColumnListItem>
                         </items>
                     </Table>
+                </uxap:blocks>
+            </uxap:ObjectPageSubSection>
+            <uxap:ObjectPageSubSection  visible="{= ${character>/aventuricSpells/length} > 0}">
+                <uxap:blocks>
+                    <List
+                            inset="false"
+                            items="{character>/aventuricSpells}">
+        
+                        <items>
+                            <NotificationListItem 
+                                        title="{character>name}"
+                                        description="{character>representation}"
+                                        showCloseButton="false">
+                                <buttons>
+                                    <Button text="{i18n>roll}" press=".openAventuricSpellPopover" />
+                                </buttons>
+                            </NotificationListItem>
+                        </items>
+                    </List>
                 </uxap:blocks>
             </uxap:ObjectPageSubSection>
         </uxap:subSections>

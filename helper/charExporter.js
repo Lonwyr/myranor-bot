@@ -56,6 +56,14 @@ function extractSpells(characterSpells) {
     return objects
 }
 
+function extractAventuricSpells(characterSpells) {
+    var objects = []
+    for (var name in characterSpells) {
+        objects.push(Object.assign({}, characterSpells[name], {id: name}))
+    }
+    return objects
+}
+
 module.exports = {
     export: function (character) {
         return {
@@ -63,6 +71,7 @@ module.exports = {
             attributes: extractAttributes(character.attributes),
             skills: extractSkills(character.skills),
             spells: extractSpells(character.spells),
+            aventuricSpells: extractAventuricSpells(character.aventuricSpells),
             instructions: character.instructions,
             spontaneousCasting: character.spontaneousCasting
         }
