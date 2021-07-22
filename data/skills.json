@@ -145,9 +145,9 @@
         "description": "Überzeugen",
         "attributes": ["KL", "IN", "CH"]
     }, {
-        "name": "fährtensuche",
+        "name": "fährtensuchen",
         "category": "Natur",
-        "description": "Fährtensuche",
+        "description": "Fährtensuchen",
         "attributes": ["KL", "IN", "KO"]
     }, {
         "name": "fallenstellen",
