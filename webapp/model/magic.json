@@ -491,7 +491,109 @@
             }],
 			"durations": ["timeframe"],
 			"targetsCategories": ["creature"]
+		},
+        "Beschwörungsmatrix": {
+			"requirements": [],
+			"structures": [{
+                "name": "komplex",
+                "modificator": "5"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["object"]
+		},
+        "Beschwörungsspeicher": {
+			"requirements": [],
+			"structures": [{
+                "name": "sehr schwer",
+                "modificator": "3"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["object"]
+		},
+        "Beschwörungstalisman": {
+			"requirements": [],
+			"structures": [{
+                "name": "extrem komplex",
+                "modificator": "7"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["object"]
+		},
+        "Chimärenerschaffung": {
+			"requirements": [],
+			"structures": [{
+                "name": "sehr schwer (grundlegend)",
+                "modificator": "3"
+            }, {
+                "name": "komplex (hervorrangend)",
+                "modificator": "5"
+            }, {
+                "name": "extrem komplex (anspruchsvoll)",
+                "modificator": "7"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature"]
+		},
+        "Golembau": {
+			"requirements": [],
+			"structures": [{
+                "name": "sehr schwer",
+                "modificator": "3"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature"]
+		},
+        "Kraftspeicher": {
+			"requirements": [],
+			"structures": [{
+                "name": "komplex (grundlegend)",
+                "modificator": "5"
+            }, {
+                "name": "sehr komplex (herausfordernd)",
+                "modificator": "6"
+            }, {
+                "name": "extrem komplex (anspruchsvoll)",
+                "modificator": "7"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["object"]
+		},
+        "Kraftumwandler": {
+			"requirements": [],
+			"structures": [{
+                "name": "schwer (grundlegend)",
+                "modificator": "2"
+            }, {
+                "name": "sehr schwer (hervorragend)",
+                "modificator": "3"
+            }, {
+                "name": "extrem schwer (anspruchsvoll)",
+                "modificator": "4"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["object"]
+		},
+        "Nektromantie": {
+			"requirements": [],
+			"structures": [{
+                "name": "schwer",
+                "modificator": "2"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["creature"]
+		},
+        "Sphärenstabilisator": {
+			"requirements": [],
+			"structures": [{
+                "name": "extrem komplex",
+                "modificator": "7"
+            }],
+			"durations": ["timeframe"],
+			"targetsCategories": ["object"]
 		}
+
+
+
     },
     "spellParameters": {
         "castingTime": [{
