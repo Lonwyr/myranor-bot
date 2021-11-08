@@ -10,6 +10,9 @@
                 value="{check>/modifier}"
                 type="Number" />
         </InputListItem>
+
+		<core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.WoundList' type='XML' />
+
 		<footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>

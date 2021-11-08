@@ -227,11 +227,12 @@ sap.ui.define([
       const characterSource = this.getModel("character").getProperty("/spells").find(source => source.id === spell.source)
 
       const checkData = {
-        name: spell.name, //`${spell.name} (${characterSource.name} - ${spell.instruction})`,
+        name: spell.name,
         attributes: characterSource.attributes,
         value: characterSource.value,
         modificators: spell.modificators,
         quality: spell.quality,
+        checkProperties: characterSource.attributes,
         spellModificator: this.calculateSpellParameters(spell.parameters, this.getModel("magic").getProperty("/spellParameters")),
         spontaneousModificator: 0,
         specialization: spell.specialization
@@ -263,10 +264,12 @@ sap.ui.define([
     onRollSpell: function (clickEvent) {
       spellPopoverPromise.then(oPopover => oPopover.close())
       let checkData = Object.assign({}, this.getModel("check").getData());
-      const characterAttributes = this.getModel("character").getProperty("/attributes")
+      const characterAttributes = this.getModel("character").getProperty("/attributes");
       checkData.attributes = checkData.attributes.map(att => characterAttributes.find(characterAttribute => characterAttribute.name === att));
+      checkData.attributes.forEach(attr => attr.value += this.getWoundModifier(attr.name));
       checkData.modifier = parseInt(checkData.spontaneousModificator) + checkData.spellModificator - checkData.quality;
       checkData.modifier += checkData.modificators.reduce((a, b) => a + (b.enabled ? parseInt(b.value) : 0), 0);
+      checkData.modifier += this.getEnergyModifier();
 
       return Roller.checkSpell(checkData).then((result) => {
         this.getModel("check").setProperty("/result", JSON.parse(result));
@@ -295,6 +298,7 @@ sap.ui.define([
       const checkData = {
         name: spell.name,
         attributes: spell.attributes,
+        checkProperties: spell.attributes,
         value: spell.value,
         aventuric: true,
         modificators: [],

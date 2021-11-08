@@ -71,6 +71,7 @@ module.exports = {
             attributes: extractAttributes(character.attributes),
             skills: extractSkills(character.skills),
             spells: extractSpells(character.spells),
+            stats: character.stats,
             aventuricSpells: extractAventuricSpells(character.aventuricSpells),
             instructions: character.instructions,
             spontaneousCasting: character.spontaneousCasting

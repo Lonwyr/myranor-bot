@@ -25,6 +25,38 @@ function extractAttributes(attributes) {
     return attributesJson
 }
 
+const energies = [{
+    name: "Lebensenergie",
+    abb: "LeP",
+    components: ["KO", "KO", "KK"],
+    factor: 0.5
+}, {
+    name: "Ausdauer",
+    abb: "AuP",
+    components: ["MU", "KO", "GE"],
+    factor: 0.5
+}, {
+    name: "Astralenergie",
+    abb: "AsP",
+    components: ["MU", "IN", "CH"],
+    factor: 0.5
+}]
+
+function extractStats(char, charJson) {
+    let stats = {}
+
+    energies.forEach(function (energy) {
+        const energyEntry = char.eigenschaften.eigenschaft.find(attribute => attribute._attributes.name === energy.name)
+        const basis = energy.components
+            .map(component => charJson.attributes[component])
+            .reduce((a,b) => a + b) * energy.factor
+        const mod = parseInt(energyEntry._attributes.mod)
+        stats[energy.abb] = Math.round(basis + mod)
+    })
+
+    return stats
+}
+
 function extractSkillsAndSpells(list, extractAttributes) {
     let json = {}
 
@@ -202,6 +234,8 @@ module.exports = {
                             instructions: extractInstructions(sf),
                             spontaneousCasting: extractSpontaneousCasting(sf)
                         }
+
+                        charJson.stats = extractStats(char, charJson)
 
                     } else {
                         charJson = JSON.parse(body)

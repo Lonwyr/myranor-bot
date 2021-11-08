@@ -1,1 +1,8 @@
 /* Enter your custom styles here */
+.myranorBotEnergySlider {
+    height: 5rem;
+}
+
+.myranorBotEnergyTitleIndicator {
+    width: 200px;
+}

@@ -34,6 +34,9 @@
                 value="{check>/spontaneousModificator}"
                 type="Number" />
         </InputListItem>
+		
+		<core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.WoundList' type='XML' />
+
 		<footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>

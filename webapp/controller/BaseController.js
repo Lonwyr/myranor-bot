@@ -16,6 +16,65 @@ sap.ui.define([
         this.getRouter().navTo("RouteLogin");
       }
     },
+
+    formatWoundsVisibility: function (woundsCount, affectedProperties, checkProperties) {
+      const hasWound = woundsCount > 0;
+      const woundRelevant = Object.keys(affectedProperties).some(attr => checkProperties.includes(attr));
+      return hasWound && woundRelevant;
+    },
+
+    getEnergyModifier: function (isSingeD20Check) {
+      let mod = 0;
+      const statusData = this.getModel("status").getProperty("/stats");
+      const characterSatsData = this.getModel("character").getProperty("/stats");
+
+      if (!statusData.lowLepIgnored) {
+        const lepEnergyStatus = statusData.LeP/characterSatsData.LeP;
+        
+        if (lepEnergyStatus < 1/4) {
+          mod += 3;
+        } else if (lepEnergyStatus < 1/3) {
+          mod += 2;
+        } else if (lepEnergyStatus < 1/2) {
+          mod += 1;
+        }
+      }
+
+      if (!statusData.lowAupIgnored) {
+        const aupEnergyStatus = statusData.AuP/characterSatsData.AuP;
+        
+        if (aupEnergyStatus < 1/4) {
+          mod += 2;
+        } else if (aupEnergyStatus < 1/3) {
+          mod += 1;
+        }
+      }
+
+      return isSingeD20Check ? mod : mod * 3;
+    },
+
+    getWoundModifier: function(checkAttribute) {
+      const statusData = this.getModel("status").getProperty("/wounds");
+      const woundsData = this.getModel("wounds").getData();
+
+      if (!statusData.useZones) {
+        if(statusData.genericWounds.ignored || !Object.keys(woundsData.genericWounds).indexOf(checkAttribute) === -1) {
+          return 0;
+        } else {
+          return statusData.genericWounds.count * woundsData.genericWounds[checkAttribute];
+        }
+      }
+      
+      let modifier = 0
+      Object.keys(statusData.zones).forEach(key => {
+        const zoneWounds = statusData.zones[key]
+        if (!zoneWounds.ignored) {
+          modifier += zoneWounds.count * (woundsData.zones[key][checkAttribute] || 0)
+        }
+      });
+
+      return modifier
+    },
     
     /**
      * Convenience method for getting the view model by name in every controller of the application.

@@ -2,9 +2,9 @@
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
 	<Popover
-		title="{check>/name}"
-		placement="Bottom"
-		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer">
+			title="{check>/name}"
+			placement="Bottom"
+			class="sapUiResponsivePadding--header sapUiResponsivePadding--footer">
         <InputListItem label="{i18n>modificator}" >
             <Input
                 value="{check>/modifier}"
@@ -21,6 +21,9 @@
 				<core:Item key="3" text="{i18n>size3}" />
 			</Select>
         </InputListItem>
+
+		<core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.WoundList' type='XML' />
+	
 		<footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>

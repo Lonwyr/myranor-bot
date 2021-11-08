@@ -3,6 +3,7 @@ sap.ui.define([
   "com/lonwyr/MyranorBot/controller/Attributes",
   "com/lonwyr/MyranorBot/controller/Combat",
   "com/lonwyr/MyranorBot/controller/Spells",
+  "com/lonwyr/MyranorBot/controller/Status",
   "sap/ui/core/Fragment",
   "sap/m/GroupHeaderListItem",
   "com/lonwyr/MyranorBot/utils/Roller"
@@ -11,6 +12,7 @@ sap.ui.define([
     AttributesController,
     CombatController,
     SpellsController,
+    StatusController,
     Fragment,
     GroupHeaderListItem,
     Roller
@@ -46,6 +48,13 @@ sap.ui.define([
   }
 
   return Controller.extend("com.lonwyr.MyranorBot.controller.Main", Object.assign({
+    formatEnergyBarWidth: function (max) {
+      if (isNaN(max)) {
+        return "0px";
+      }
+      return max * 10 + 'px';
+    },
+
     formatAttributeName: function (attribute) {
       return this.getResourceBundle("i18n").getText(attribute);
     },
@@ -79,6 +88,7 @@ sap.ui.define([
         id: skill.id,
         name: skill.name,
         value: skill.value,
+        checkProperties: skill.attributes,
         modifier: 0,
         attributes: getAttributes(clickEvent, skill.attributes)
       }
@@ -103,6 +113,8 @@ sap.ui.define([
       popoverPromise.then(oPopover => oPopover.close())
       let checkData = this.getModel("check").getData();
       checkData.modifier = parseInt(checkData.modifier) || 0
+      checkData.modifier += this.getEnergyModifier();
+      checkData.attributes.forEach(attr => attr.value += this.getWoundModifier(attr.name));
       return Roller.checkSkill(checkData).then((result) => {
         this.getModel("check").setProperty("/result", JSON.parse(result));
 
@@ -156,5 +168,5 @@ sap.ui.define([
     closeResultDialog: function () {
       resultDialogPromise.then(dialog => dialog.close());
     }
-  }, AttributesController, CombatController, SpellsController));
+  }, AttributesController, CombatController, SpellsController, StatusController));
 });

@@ -1,0 +1,74 @@
+<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:core="sap.ui.core">
+        <InputListItem
+                label="{i18n>lowLeP}"
+                visible="{parts: ['status>/stats/LeP', 'character>/stats/LeP'], formatter:'.formatLepModVisibility'}">
+            <Switch
+                    state="{= !${status>/stats/lowLepIgnored}}" 
+                    change=".setStatusIgnored" />
+        </InputListItem>
+        <InputListItem
+                label="{i18n>lowAuP}"
+                visible="{parts: ['status>/stats/AuP', 'character>/stats/AuP'], formatter:'.formatAuPModVisibility'}">
+            <Switch
+                    state="{= !${status>/stats/lowAupIgnored}}" 
+                    change=".setStatusIgnored" />
+        </InputListItem>
+    <List headerText="{i18n>wounds}" visible="{parts: ['status>/wounds', 'wounds>/zones', 'check>/checkProperties'], formatter:'.formatWoundsListVisibility'}" noDataText="{i18n>noValidWounds}">
+        <InputListItem
+                label="{i18n>head}"
+                visible="{parts: ['status>/wounds/zones/head/count', 'wounds>/zones/head', 'check>/checkProperties'], formatter:'.formatWoundsVisibility'}">
+            <Switch
+                    state="{= !${status>/wounds/zones/head/ignored}}" 
+                    change=".setStatusIgnored" />
+        </InputListItem>
+        <InputListItem
+                label="{i18n>leftArm}"
+                visible="{parts: ['status>/wounds/zones/leftArm/count', 'wounds>/zones/leftArm', 'check>/checkProperties'], formatter:'.formatWoundsVisibility'}">
+            <Switch
+                    state="{= !${status>/wounds/zones/leftArm/ignored}}" 
+                    change=".setStatusIgnored" />
+        </InputListItem>
+        <InputListItem
+                label="{i18n>rightArm}"
+                visible="{parts: ['status>/wounds/zones/rightArm/count', 'wounds>/zones/rightArm', 'check>/checkProperties'], formatter:'.formatWoundsVisibility'}">
+            <Switch
+                    state="{= !${status>/wounds/zones/rightArm/ignored}}" 
+                    change=".setStatusIgnored" />
+        </InputListItem>
+        <InputListItem
+                label="{i18n>body}"
+                visible="{parts: ['status>/wounds/zones/hebodyad/count', 'wounds>/zones/head', 'check>/checkProperties'], formatter:'.formatWoundsVisibility'}">
+            <Switch
+                    state="{= !${status>/wounds/zones/body/ignored}}" 
+                    change=".setStatusIgnored" />
+        </InputListItem>
+        <InputListItem
+                label="{i18n>belly}"
+                visible="{parts: ['status>/wounds/zones/belly/count', 'wounds>/zones/belly', 'check>/checkProperties'], formatter:'.formatWoundsVisibility'}">
+            <Switch
+                    state="{= !${status>/wounds/zones/belly/ignored}}" 
+                    change=".setStatusIgnored" />
+        </InputListItem>
+        <InputListItem
+                label="{i18n>leftLeg}"
+                visible="{parts: ['status>/wounds/zones/leftLeg/count', 'wounds>/zones/leftLeg', 'check>/checkProperties'], formatter:'.formatWoundsVisibility'}">
+            <Switch
+                    state="{= !${status>/wounds/zones/leftLeg/ignored}}" 
+                    change=".setStatusIgnored" />
+        </InputListItem>
+        <InputListItem
+                label="{i18n>rightLeg}"
+                visible="{parts: ['status>/wounds/zones/rightLeg/count', 'wounds>/zones/rightLeg', 'check>/checkProperties'], formatter:'.formatWoundsVisibility'}">
+            <Switch
+                    state="{= !${status>/wounds/zones/rightLeg/ignored}}" 
+                    change=".setStatusIgnored" />
+        </InputListItem>
+    </List>
+    <InputListItem visible="{= !${status>/wounds/useZones} &amp;&amp; ${status>/wounds/genericWounds/count} > 0}" label="{i18n>genericWounds}">
+        <Switch
+                    state="{= !${status>/wounds/genericWounds/ignored}}" 
+                    change=".setStatusIgnored" />
+    </InputListItem>
+</core:FragmentDefinition>

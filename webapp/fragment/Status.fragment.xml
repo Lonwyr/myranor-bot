@@ -1,0 +1,116 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:uxap="sap.uxap"
+    xmlns:core="sap.ui.core" >
+    <uxap:ObjectPageSection title="{i18n>status}">
+        <uxap:subSections>
+            <uxap:ObjectPageSubSection title="{i18n>status}">
+                <uxap:blocks>
+                    <List>
+                    <InputListItem label="{i18n>LeP}" class="myranorBotEnergySlider" >
+                        <Slider value="{status>/stats/LeP}" max="{character>/stats/LeP}" class="myranorBotEnergySlider" enableTickmarks="true" change=".setEnergy" />
+                    </InputListItem>
+                    <InputListItem label="{i18n>AuP}" class="myranorBotEnergySlider">
+                        <Slider value="{status>/stats/AuP}" max="{character>/stats/AuP}" class="myranorBotEnergySlider" enableTickmarks="true" change=".setEnergy" />
+                    </InputListItem>
+                    <InputListItem label="{i18n>AsP}" class="myranorBotEnergySlider">
+                        <Slider value="{status>/stats/AsP}" max="{character>/stats/AsP}" class="myranorBotEnergySlider" enableTickmarks="true" change=".setEnergy" />
+                    </InputListItem>
+                    </List>
+                </uxap:blocks>
+            </uxap:ObjectPageSubSection>
+            <uxap:ObjectPageSubSection title="{i18n>wounds}">
+                <uxap:actions>
+                    <Switch state="{status>/wounds/useZones}" customTextOn="{i18n>zones}" customTextOff="{i18n>simple}" change=".onZoneModeSwitch" />
+                </uxap:actions>
+                <uxap:blocks>
+                    <List visible="{status>/wounds/useZones}">
+                        <InputListItem label="{i18n>head}">
+                            <RatingIndicator
+                                change=".storeStatus"
+                                maxValue="3"
+                                value="{status>/wounds/zones/head/count}"
+                                iconSize="32px"
+                                iconSelected="sap-icon://target-group"
+                                iconUnselected="sap-icon://target-group"
+                                iconHovered="sap-icon://target-group" />
+                        </InputListItem>
+                        <InputListItem label="{i18n>leftArm}">
+                            <RatingIndicator
+                                change=".storeStatus"
+                                maxValue="3"
+                                value="{status>/wounds/zones/leftArm/count}"
+                                iconSize="32px"
+                                iconSelected="sap-icon://target-group"
+                                iconUnselected="sap-icon://target-group"
+                                iconHovered="sap-icon://target-group" />
+                        </InputListItem>
+                        <InputListItem label="{i18n>rightArm}">
+                            <RatingIndicator
+                                change=".storeStatus"
+                                maxValue="3"
+                                value="{status>/wounds/zones/rightArm/count}"
+                                iconSize="32px"
+                                iconSelected="sap-icon://target-group"
+                                iconUnselected="sap-icon://target-group"
+                                iconHovered="sap-icon://target-group" />
+                        </InputListItem>
+                        <InputListItem label="{i18n>body}">
+                            <RatingIndicator
+                                change=".storeStatus"
+                                maxValue="3"
+                                value="{status>/wounds/zones/body/count}"
+                                iconSize="32px"
+                                iconSelected="sap-icon://target-group"
+                                iconUnselected="sap-icon://target-group"
+                                iconHovered="sap-icon://target-group" />
+                        </InputListItem>
+                        <InputListItem label="{i18n>belly}">
+                            <RatingIndicator
+                                change=".storeStatus"
+                                maxValue="3"
+                                value="{status>/wounds/zones/belly/count}"
+                                iconSize="32px"
+                                iconSelected="sap-icon://target-group"
+                                iconUnselected="sap-icon://target-group"
+                                iconHovered="sap-icon://target-group" />
+                        </InputListItem>
+                        <InputListItem label="{i18n>leftLeg}">
+                            <RatingIndicator
+                                change=".storeStatus"
+                                maxValue="3"
+                                value="{status>/wounds/zones/leftLeg/count}"
+                                iconSize="32px"
+                                iconSelected="sap-icon://target-group"
+                                iconUnselected="sap-icon://target-group"
+                                iconHovered="sap-icon://target-group" />
+                        </InputListItem>
+                        <InputListItem label="{i18n>rightLeg}">
+                            <RatingIndicator
+                                change=".storeStatus"
+                                maxValue="3"
+                                value="{status>/wounds/zones/rightLeg/count}"
+                                iconSize="32px"
+                                iconSelected="sap-icon://target-group"
+                                iconUnselected="sap-icon://target-group"
+                                iconHovered="sap-icon://target-group" />
+                        </InputListItem>
+                    </List>
+                    <List visible="{= !${status>/wounds/useZones}}">
+                        <InputListItem label="{i18n>genericWounds}">
+                            <RatingIndicator
+                                change=".storeStatus"
+                                maxValue="10"
+                                value="{status>/wounds/genericWounds/count}"
+                                iconSize="32px"
+                                iconSelected="sap-icon://target-group"
+                                iconUnselected="sap-icon://target-group"
+                                iconHovered="sap-icon://target-group" />
+                        </InputListItem>
+                    </List>
+                </uxap:blocks>
+            </uxap:ObjectPageSubSection>
+        </uxap:subSections>
+    </uxap:ObjectPageSection>
+</core:FragmentDefinition>

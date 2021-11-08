@@ -10,6 +10,11 @@
         "KO": 0,
         "KK": 0
     },
+    "stats": {
+        "LeP": 10,
+        "AuP": 10,
+        "AsP": 0
+    },
     "skills": {
         "akrobatik": 0,
         "athletik": 0,

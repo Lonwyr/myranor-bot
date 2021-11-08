@@ -25,6 +25,7 @@ sap.ui.define([
       const checkParameters = {
         name: attribute.name,
         value: parseInt(attribute.value),
+        checkProperties: [attribute.name],
         modifier: 0
       }
       this.getModel("check").setData(checkParameters)
@@ -47,8 +48,11 @@ sap.ui.define([
     onRollAttribute: function () {
       attributePopoverPromise.then(oPopover => oPopover.close());
       let checkData = this.getModel("check").getData();
-      checkData.modifier = parseInt(checkData.modifier) || 0
+      checkData.modifier = (parseInt(checkData.modifier) || 0);
       checkData.value = checkData.value - checkData.modifier
+        + this.getWoundModifier(checkData.name)
+        -  this.getEnergyModifier(true);
+
       return Roller.checkAttribute(checkData).then((result) => {
         this.getModel("check").setProperty("/result", JSON.parse(result));
 

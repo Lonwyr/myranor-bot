@@ -3,23 +3,54 @@
 		xmlns:uxap="sap.uxap"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
-	  xmlns:f="sap.f"
+		xmlns:layout="sap.ui.layout"
   xmlns:mvc="sap.ui.core.mvc">
   <Page title="{character>/name}">
     <content>
-    	<uxap:ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
+    	<uxap:ObjectPageLayout upperCaseAnchorBar="false">
         <uxap:headerTitle>
-          <uxap:ObjectPageHeader objectTitle="{character>/name}">
-            <!--uxap:actions>
-              <uxap:ObjectPageHeaderActionButton icon="sap-icon://synchronize" press="toggleTitle"
-                              text="toggle title" tooltip="synchronize"/>
-            </uxap:actions-->
-          </uxap:ObjectPageHeader>
-        </uxap:headerTitle>
+          <uxap:ObjectPageDynamicHeaderTitle>
+            <uxap:expandedHeading>
+						  <Title text="{character>/name}" wrapping="true"/>
+					  </uxap:expandedHeading>
+					  <uxap:snappedHeading>
+						  <Title text="{character>/name}" wrapping="true"/>
+					  </uxap:snappedHeading>
+          </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle> 
+        <uxap:headerContent>
+            <HBox wrap="Wrap">
+              <layout:VerticalLayout class="sapUiTinyMarginEnd" width="{path: 'character>/stats/LeP', formatter:'.formatEnergyBarWidth'}">
+                <Title text="LeP" />
+                <ProgressIndicator
+                        percentValue="{= ${status>/stats/LeP} / ${character>/stats/LeP} * 100}"
+                        state="{parts:['status>/stats/LeP', 'character>/stats/LeP'], formatter:'.formatLepState'}"
+                        showValue="true"
+                        displayValue="{parts:['status>/stats/LeP', 'character>/stats/LeP'], formatter:'.formatLepText'}" />
+              </layout:VerticalLayout>
+              <layout:VerticalLayout class="sapUiTinyMarginBegin sapUiTinyMarginEnd" width="{path: 'character>/stats/AuP', formatter:'.formatEnergyBarWidth'}">
+                <Title text="AuP" />
+                <ProgressIndicator
+                        percentValue="{= ${status>/stats/AuP} / ${character>/stats/AuP} * 100}"
+                        state="{parts:['status>/stats/AuP', 'character>/stats/AuP'], formatter:'.formatAupState'}"
+                        showValue="true"
+                        displayValue="{parts:['status>/stats/AuP', 'character>/stats/AuP'], formatter:'.formatAupText'}" />
+              </layout:VerticalLayout>
+              <layout:VerticalLayout class="sapUiTinyMarginBegin" width="{path: 'character>/stats/AsP', formatter:'.formatEnergyBarWidth'}">
+                <Title text="AsP" />
+                <ProgressIndicator
+                        percentValue="{= ${status>/stats/AsP} / ${character>/stats/AsP} * 100}"
+                        state="Information"
+                        showValue="true"
+                        displayValue="{parts:['status>/stats/AsP', 'character>/stats/AsP'], formatter:'.formatAspText'}" />
+              </layout:VerticalLayout>
+            </HBox>
+        </uxap:headerContent>
         <uxap:sections>
           <core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.Attributes' type='XML' />
           <core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.Skills' type='XML' />
           <core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.Spells' type='XML' />
+          <core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.Status' type='XML' />
           <core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.Combat' type='XML' />
         </uxap:sections>
       </uxap:ObjectPageLayout>

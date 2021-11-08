@@ -13,6 +13,10 @@
 			"magic": {
 				"uri": "model/magic.json",
 				"type": "JSON"
+			},
+			"wounds": {
+				"uri": "model/wounds.json",
+				"type": "JSON"
 			}
 		}
   },
@@ -80,6 +84,13 @@
       },
       "settings": {
         "type": "sap.ui.model.json.JSONModel"
+      },
+      "status": {
+        "type": "com.lonwyr.MyranorBot.model.StatusModel"
+      },
+      "wounds": {
+        "type": "sap.ui.model.json.JSONModel",
+				"dataSource": "wounds"
       }
     },
     "resources": {

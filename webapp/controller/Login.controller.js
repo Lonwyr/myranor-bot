@@ -21,6 +21,7 @@ sap.ui.define([
       this.getModel('settings').setData(start.settings);
       this.getModel('combat').loadCombat(start.settings.slots.activeSlot);
       this.getModel('spells').loadSpells(start.settings.slots.activeSlot);
+      this.getModel('status').loadStatus(start.settings.slots.activeSlot);
     });
   };
 

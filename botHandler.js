@@ -14,7 +14,7 @@ async function getChannelById(channelid) {
         channel = await bot.channels.fetch(channelid)
     }
     return channel;
-} 
+}
 
 module.exports = {
     init: function() {
