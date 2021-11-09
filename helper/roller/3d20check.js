@@ -55,6 +55,7 @@ module.exports = function (data) {
 
     if (status === 'success') {
       pointsLeft += data.ritualCasting ? 7 : 0;
+      pointsLeft += data.additionalPoints || 0;
     }
   
     return {

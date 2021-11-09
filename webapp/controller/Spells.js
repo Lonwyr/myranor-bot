@@ -85,6 +85,7 @@ sap.ui.define([
         specialization: false,
         asp: 0,
         pAsp: 0,
+        additionalZfp: 0,
         inCreation: true,
         parameters: {
           castingTime: "1",
@@ -240,6 +241,7 @@ sap.ui.define([
         pAsp: spell.pAsp,
         value: characterSource.value,
         modificators: spell.modificators,
+        additionalPoints: parseInt(spell.additionalZfp),
         quality: spell.quality,
         parameters: spell.parameters,
         checkProperties: characterSource.attributes,

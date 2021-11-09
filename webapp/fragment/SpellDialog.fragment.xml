@@ -25,6 +25,9 @@
 				<InputListItem label="{i18n>pAsP}">
 					<Input value="{spell>/pAsp}" />
 				</InputListItem>
+				<InputListItem label="{i18n>additionalZfp}">
+					<Input value="{spell>/additionalZfp}" />
+				</InputListItem>
 				<InputListItem label="{i18n>specialization}">
 					<CheckBox selected="{spell>/specialization}" width="100%" />
 				</InputListItem>

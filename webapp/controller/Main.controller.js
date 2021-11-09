@@ -114,7 +114,12 @@ sap.ui.define([
       let checkData = this.getModel("check").getData();
       checkData.modifier = parseInt(checkData.modifier) || 0
       checkData.modifier += this.getEnergyModifier();
-      checkData.attributes.forEach(attr => attr.value += this.getWoundModifier(attr.name));
+      checkData.attributes = checkData.attributes.map(attr => {
+        return {
+          name: attr.name,
+          value: attr.value + this.getWoundModifier(attr.name)
+        };
+      });
       return Roller.checkSkill(checkData).then((result) => {
         this.getModel("check").setProperty("/result", JSON.parse(result));
 
