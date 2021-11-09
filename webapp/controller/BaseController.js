@@ -22,6 +22,18 @@ sap.ui.define([
       const woundRelevant = Object.keys(affectedProperties).some(attr => checkProperties.includes(attr));
       return hasWound && woundRelevant;
     },
+    
+    formatWoundsListVisibility: function (status, wounds, checkProperties) {
+      if (!status.useZones) {
+        return false;
+      }
+
+      let woundAffectedProperties = new Set();
+      let validZones = Object.keys(status.zones).filter(zoneName => status.zones[zoneName].count > 0);
+      validZones.forEach(zone => Object.keys(wounds[zone]).map(property => woundAffectedProperties.add(property)));
+      
+      return checkProperties.some(property => woundAffectedProperties.has(property));
+    },
 
     getEnergyModifier: function (isSingeD20Check) {
       let mod = 0;

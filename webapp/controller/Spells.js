@@ -140,17 +140,19 @@ sap.ui.define([
     },
 
     formatSpellName: function (spell, characterSpells) {
-      if (!spell ||!characterSpells) {
+      if (!spell || !characterSpells) {
         return "";
       }
-      return characterSpells.find(item => item.id === spell).name;
+      return characterSpells.find(item => item.id === spell.source).name + " - " + spell.instruction;
     },
 
-    formatZfW: function (source, characterSources, specialization) {
+    formatZfW: function (source, characterSources, specialization, formulaQuality, spellParameters, parameters, modificators) {
       if (!source || !characterSources || specialization === undefined) {
         return "";
       }
-      return "ZfW " + (characterSources.find(item => item.id === source).value + (specialization ? 2 : 0));
+      const mod = this.calculateSpellModificator(formulaQuality, spellParameters, parameters, modificators)
+
+      return (characterSources.find(item => item.id === source).value + (specialization ? 2 : 0)) + (mod >= 0 ? " (+" : " (") + mod + ")";
     },
 
     calculateSpellParameters: function (spellParameters, parameters) {
@@ -232,6 +234,7 @@ sap.ui.define([
         value: characterSource.value,
         modificators: spell.modificators,
         quality: spell.quality,
+        parameters: spell.parameters,
         checkProperties: characterSource.attributes,
         spellModificator: this.calculateSpellParameters(spell.parameters, this.getModel("magic").getProperty("/spellParameters")),
         spontaneousModificator: 0,

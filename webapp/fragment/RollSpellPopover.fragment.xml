@@ -20,10 +20,7 @@
         <DisplayListItem label="{i18n>formulaQuality}" value="{check>/quality}" visible="{= ${check>/aventuric} !== true}" />
 		<List visible="{= ${check>/modificators/length} !== 0}" items="{check>/modificators}" >
 			<InputListItem label="{
-				parts: [
-					{path: 'check>name'},
-					{path: 'check>value'}
-				], 
+				parts: ['check>name', 'check>value'], 
 				formatter: '.formatSpellModifierSwitchLabel'
 			}">
 				<Switch state="{check>enabled}" />
@@ -35,7 +32,15 @@
                 type="Number" />
         </InputListItem>
 		
-		<core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.WoundList' type='XML' />
+		<core:Fragment fragmentName='com.lonwyr.MyranorBot.fragment.WoundList' type='XML'/>
+
+		<List headerText="{i18n>parameters}" visible="{= ${check>/aventuric} !== true}" class="sapUiMediumMarginTop">
+			<DisplayListItem label="{i18n>castingTime}" value="{parts: ['check>/parameters/castingTime', 'magic>/spellParameters/castingTime'], formatter: '.formatSpellParameter'}" />
+			<DisplayListItem label="{i18n>targets}" value="{parts: ['check>/parameters/targets', 'magic>/spellParameters/targets'], formatter: '.formatSpellParameter'}" />
+			<DisplayListItem label="{i18n>range}" value="{parts: ['check>/parameters/range', 'magic>/spellParameters/range'], formatter: '.formatSpellParameter'}" />
+			<DisplayListItem label="{i18n>maxDuration}" value="{parts: ['check>/parameters/maxDuration', 'magic>/spellParameters/maxDuration'], formatter: '.formatSpellParameter'}" />
+			<DisplayListItem label="{i18n>structure}" value="{parts: ['check>/parameters/structure', 'magic>/spellParameters/structure'], formatter: '.formatSpellParameter'}" />
+		</List>
 
 		<footer>
 			<OverflowToolbar>

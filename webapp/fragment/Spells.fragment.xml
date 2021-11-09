@@ -27,6 +27,14 @@
                                 <Text text="{i18n>name}" />
                             </Column>
                             <Column
+                                width="12em">
+                                <Text text="{i18n>source}" />
+                            </Column>
+                            <Column
+                                width="12em">
+                                <Text text="{i18n>zfw}" />
+                            </Column>
+                            <!--Column
                                 demandPopin="true"
                                 minScreenWidth="1200px"
                                 hAlign="Center"
@@ -61,7 +69,7 @@
                                 hAlign="Center"
                                 width="4em">
                                 <Text text="{i18n>structure}" />
-                            </Column>
+                            </Column-->
                             <Column
                                 vAlign="Middle"
                                 hAlign="Center"
@@ -76,10 +84,23 @@
                         <items>
                             <ColumnListItem>
                                 <cells>
-                                    <ObjectHeader
+                                <Title text="{spells>name}" />
+                                <Text text="{parts: ['spells>', 'character>/spells'], formatter: '.formatSpellName' }" />
+                                <ObjectNumber number="{parts: ['spells>source', 'character>/spells', 'spells>specialization',
+						                            'spells>quality',
+                                                    'spells>parameters',
+						                            'magic>/spellParameters',
+                                                    'spells>modificators'], formatter: '.formatZfW'}" />
+                                <!--Text text="{parts: [
+						                            'spells>quality',
+                                                    'spells>parameters',
+						                            'magic>/spellParameters',
+                                                    'spells>modificators'
+                                                ], formatter: '.calculateSpellModificator'}" />
+                                    <!ObjectHeader
                                         title="{spells>name}"
                                         number="{parts: [{path: 'spells>source'}, {path: 'character>/spells'}, {path: 'spells>specialization'}], formatter: '.formatZfW'}"
-                                        class="sapUiResponsivePadding--header" >
+                                        class="sapUiResponsivePadding- -header" >
                                         <statuses>
                                             <ObjectStatus
                                                 title="{i18n>modificator}"
@@ -101,7 +122,7 @@
                                     <Text text="{parts: [{path: 'spells>parameters/targets'}, {path: 'magic>/spellParameters/targets'}], formatter: '.formatSpellParameter'}" />
                                     <Text text="{parts: [{path: 'spells>parameters/range'}, {path: 'magic>/spellParameters/range'}], formatter: '.formatSpellParameter'}" />
                                     <Text text="{parts: [{path: 'spells>parameters/maxDuration'}, {path: 'magic>/spellParameters/maxDuration'}], formatter: '.formatSpellParameter'}" />
-                                    <Text text="{parts: [{path: 'spells>parameters/structure'}, {path: 'magic>/spellParameters/structure'}], formatter: '.formatSpellParameter'}" />
+                                    <Text text="{parts: [{path: 'spells>parameters/structure'}, {path: 'magic>/spellParameters/structure'}], formatter: '.formatSpellParameter'}" /-->
                                     <HBox>
                                         <Button text="{i18n>roll}" press=".openSpellPopover" visible="{= !${spells>/editSpells}}" />
                                         <Button icon="sap-icon://edit" press=".onEditSpell" visible="{spells>/editSpells}" />

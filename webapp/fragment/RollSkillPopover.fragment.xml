@@ -8,7 +8,7 @@
         <InputListItem label="{i18n>specialization}" >
 		    <CheckBox selected="{check>/specialization}" />
         </InputListItem>
-        <InputListItem label="{i18n>modificator}" >
+        <InputListItem label="{i18n>modificator}">
             <Input
                 value="{check>/modifier}"
                 type="Number" />
