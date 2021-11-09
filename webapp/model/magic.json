@@ -492,7 +492,7 @@
 			"durations": ["timeframe"],
 			"targetsCategories": ["creature"]
 		},
-        "Beschwörungsmatrix": {
+        "Influxion (Beschwörungsmatrix)": {
 			"requirements": [],
 			"structures": [{
                 "name": "komplex",
@@ -501,7 +501,7 @@
 			"durations": ["timeframe"],
 			"targetsCategories": ["object"]
 		},
-        "Beschwörungsspeicher": {
+        "Influxion (Beschwörungsspeicher)": {
 			"requirements": [],
 			"structures": [{
                 "name": "sehr schwer",
@@ -510,7 +510,7 @@
 			"durations": ["timeframe"],
 			"targetsCategories": ["object"]
 		},
-        "Beschwörungstalisman": {
+        "Influxion (Beschwörungstalisman)": {
 			"requirements": [],
 			"structures": [{
                 "name": "extrem komplex",
@@ -519,7 +519,7 @@
 			"durations": ["timeframe"],
 			"targetsCategories": ["object"]
 		},
-        "Chimärenerschaffung": {
+        "Influxion (Chimärenerschaffung)": {
 			"requirements": [],
 			"structures": [{
                 "name": "sehr schwer (grundlegend)",
@@ -534,7 +534,7 @@
 			"durations": ["timeframe"],
 			"targetsCategories": ["creature"]
 		},
-        "Golembau": {
+        "Influxion (Golembau)": {
 			"requirements": [],
 			"structures": [{
                 "name": "sehr schwer",
@@ -543,7 +543,7 @@
 			"durations": ["timeframe"],
 			"targetsCategories": ["creature"]
 		},
-        "Kraftspeicher": {
+        "Influxion (Kraftspeicher)": {
 			"requirements": [],
 			"structures": [{
                 "name": "komplex (grundlegend)",
@@ -558,7 +558,7 @@
 			"durations": ["timeframe"],
 			"targetsCategories": ["object"]
 		},
-        "Kraftumwandler": {
+        "Influxion (Kraftumwandler)": {
 			"requirements": [],
 			"structures": [{
                 "name": "schwer (grundlegend)",
@@ -573,7 +573,7 @@
 			"durations": ["timeframe"],
 			"targetsCategories": ["object"]
 		},
-        "Nektromantie": {
+        "Influxion (Nektromantie)": {
 			"requirements": [],
 			"structures": [{
                 "name": "schwer",
@@ -582,7 +582,7 @@
 			"durations": ["timeframe"],
 			"targetsCategories": ["creature"]
 		},
-        "Sphärenstabilisator": {
+        "Influxion (Sphärenstabilisator)": {
 			"requirements": [],
 			"structures": [{
                 "name": "extrem komplex",

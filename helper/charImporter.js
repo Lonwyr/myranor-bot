@@ -86,12 +86,16 @@ function extractSkillsAndSpells(list, extractAttributes) {
 }
 
 function extractInstructions(list) {
+    let sfs = []
     const instructionSf = list.find(sf => sf._attributes.name === "Instruktion")
     if (instructionSf) {
-        return instructionSf.auswahl.map(instruction => instruction._attributes.name.replace("/", " "))
+        const instructionSfNames = instructionSf.auswahl.map(instruction => instruction._attributes.name.replace("/", " "))
+        sfs = sfs.concat(instructionSfNames)
     }
+    const influxtionSf = list.map(sf => sf._attributes.name).filter(sfName => sfName.startsWith("Influxion"))
+    sfs = sfs.concat(influxtionSf)
 
-    return []
+    return sfs
 }
 
 function extractSpontaneousCasting(list) {
