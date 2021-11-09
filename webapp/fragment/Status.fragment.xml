@@ -9,13 +9,19 @@
                 <uxap:blocks>
                     <List>
                     <InputListItem label="{i18n>LeP}" class="myranorBotEnergySlider" >
-                        <Slider value="{status>/stats/LeP}" max="{character>/stats/LeP}" class="myranorBotEnergySlider" enableTickmarks="true" change=".setEnergy" />
+                        <Slider value="{status>/stats/LeP}" max="{character>/stats/LeP}" class="myranorBotEnergySlider" enableTickmarks="true" change=".setEnergy">
+                            <ResponsiveScale tickmarksBetweenLabels="5"/>
+                    </Slider>
                     </InputListItem>
                     <InputListItem label="{i18n>AuP}" class="myranorBotEnergySlider">
-                        <Slider value="{status>/stats/AuP}" max="{character>/stats/AuP}" class="myranorBotEnergySlider" enableTickmarks="true" change=".setEnergy" />
+                        <Slider value="{status>/stats/AuP}" max="{character>/stats/AuP}" class="myranorBotEnergySlider" enableTickmarks="true" change=".setEnergy">
+                            <ResponsiveScale tickmarksBetweenLabels="5"/>
+                    </Slider>
                     </InputListItem>
                     <InputListItem label="{i18n>AsP}" class="myranorBotEnergySlider">
-                        <Slider value="{status>/stats/AsP}" max="{character>/stats/AsP}" class="myranorBotEnergySlider" enableTickmarks="true" change=".setEnergy" />
+                        <Slider value="{status>/stats/AsP}" max="{character>/stats/AsP}" class="myranorBotEnergySlider" enableTickmarks="true" change=".setEnergy">
+                            <ResponsiveScale tickmarksBetweenLabels="5"/>
+                    </Slider>
                     </InputListItem>
                     </List>
                 </uxap:blocks>
