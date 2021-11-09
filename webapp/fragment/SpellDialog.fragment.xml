@@ -19,6 +19,12 @@
 						<core:Item key="{character>}" text="{character>}" />
 					</Select>
 				</InputListItem>
+				<InputListItem label="{i18n>AsP}">
+					<Input value="{spell>/asp}" />
+				</InputListItem>
+				<InputListItem label="{i18n>pAsP}">
+					<Input value="{spell>/pAsp}" />
+				</InputListItem>
 				<InputListItem label="{i18n>specialization}">
 					<CheckBox selected="{spell>/specialization}" width="100%" />
 				</InputListItem>

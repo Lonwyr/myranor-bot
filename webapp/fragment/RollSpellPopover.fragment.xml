@@ -18,6 +18,8 @@
 		</HBox>
         <DisplayListItem label="{i18n>spellModificator}" value="{check>/spellModificator}" visible="{= ${check>/aventuric} !== true}" />
         <DisplayListItem label="{i18n>formulaQuality}" value="{check>/quality}" visible="{= ${check>/aventuric} !== true}" />
+        <DisplayListItem label="{i18n>AsP}" value="{check>/asp}" visible="{= ${check>/asp} > 0}" />
+        <DisplayListItem label="{i18n>pAsP}" value="{check>/pAsp}" visible="{= ${check>/pAsp} > 0}" />
 		<List visible="{= ${check>/modificators/length} !== 0}" items="{check>/modificators}" >
 			<InputListItem label="{
 				parts: ['check>name', 'check>value'], 

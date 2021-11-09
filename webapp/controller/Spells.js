@@ -231,6 +231,8 @@ sap.ui.define([
       const checkData = {
         name: spell.name,
         attributes: characterSource.attributes,
+        asp: spell.asp,
+        pAsp: spell.pAsp,
         value: characterSource.value,
         modificators: spell.modificators,
         quality: spell.quality,
