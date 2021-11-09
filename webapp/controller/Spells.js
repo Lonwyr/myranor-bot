@@ -217,12 +217,17 @@ sap.ui.define([
       this.getModel("spells").removeSpell(deleteSpellPath)
     },
 
+    updateCheck: function () {
+      this.getModel("check").updateBindings(true);
+    },
+
     updateSpellModificator: function () {
       this.getModel("spell").updateBindings(true);
       this.getModel("spells").updateBindings(true);
     },
 
     openSpellPopover: function (clickEvent) {
+      this.updateCheck()
       const button = clickEvent.getSource()
       const bindingContext = clickEvent.getSource().getBindingContext("spells")
       const spell = bindingContext.getProperty()
@@ -271,10 +276,16 @@ sap.ui.define([
       let checkData = Object.assign({}, this.getModel("check").getData());
       const characterAttributes = this.getModel("character").getProperty("/attributes");
       checkData.attributes = checkData.attributes.map(att => characterAttributes.find(characterAttribute => characterAttribute.name === att));
-      checkData.attributes.forEach(attr => attr.value += this.getWoundModifier(attr.name));
+      checkData.attributes = checkData.attributes.map(attr => {
+        return {
+          name: attr.name,
+          value: attr.value + this.getWoundModifier(attr.name)
+        };
+      });
       checkData.modifier = parseInt(checkData.spontaneousModificator) + checkData.spellModificator - checkData.quality;
       checkData.modifier += checkData.modificators.reduce((a, b) => a + (b.enabled ? parseInt(b.value) : 0), 0);
       checkData.modifier += this.getEnergyModifier();
+      checkData.ritualCasting = checkData.parameters.castingTime === "10";
 
       return Roller.checkSpell(checkData).then((result) => {
         this.getModel("check").setProperty("/result", JSON.parse(result));

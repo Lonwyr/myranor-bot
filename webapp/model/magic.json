@@ -605,6 +605,10 @@
             "description": "6 SR",
             "modificator": 0
         }, {
+            "id": "10",
+            "description": "Großbeschwörung",
+            "modificator": 0
+        }, {
             "id": "3",
             "description": "1 SR",
             "modificator": 1

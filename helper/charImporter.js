@@ -234,6 +234,7 @@ module.exports = {
                             attributes: extractAttributes(attributes),
                             skills: extractSkillsAndSpells(skills),
                             spells: extractSkillsAndSpells(myranicSpells),
+                            ritualcasting: !!sf.find(s => s._attributes.name === "Großbeschwörung"),
                             aventuricSpells: extractSkillsAndSpells(aventuricSpells, true),
                             instructions: extractInstructions(sf),
                             spontaneousCasting: extractSpontaneousCasting(sf)

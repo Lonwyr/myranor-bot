@@ -6,13 +6,13 @@
 			placement="Left"
 			class="sapUiResponsivePadding--header sapUiResponsivePadding--footer">
 		<HBox>
-			<Select items="{character>/attributes}" selectedKey="{check>/attributes/0}" >
+			<Select items="{character>/attributes}" selectedKey="{check>/attributes/0}" change=".updateCheck">
 				<core:Item key="{character>name}" text="{character>name} ({character>value})" />
 			</Select>
-			<Select items="{character>/attributes}" selectedKey="{check>/attributes/1}" >
+			<Select items="{character>/attributes}" selectedKey="{check>/attributes/1}" change=".updateCheck">
 				<core:Item key="{character>name}" text="{character>name} ({character>value})" />
 			</Select>
-			<Select items="{character>/attributes}" selectedKey="{check>/attributes/2}" >
+			<Select items="{character>/attributes}" selectedKey="{check>/attributes/2}"  change=".updateCheck">
 				<core:Item key="{character>name}" text="{character>name} ({character>value})" />
 			</Select>
 		</HBox>

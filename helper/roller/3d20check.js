@@ -10,7 +10,6 @@ module.exports = function (data) {
     const value = data.value + (data.specialization ? 2 : 0)
     const extremeCheckPenalty = Math.max(modifier - value, 0)
   
-  
     rolls.forEach((roll, index) => {
       const attribute = attributes[index]      
       if (attribute) {
@@ -52,6 +51,10 @@ module.exports = function (data) {
       status = pointsLeft >= 0 ? 'success' : 'fail'
     } else {
       status = 'neutral'
+    }
+
+    if (status === 'success') {
+      pointsLeft += data.ritualCasting ? 7 : 0;
     }
   
     return {
