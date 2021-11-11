@@ -50,7 +50,16 @@ function extractStats(char, charJson) {
         const basis = energy.components
             .map(component => charJson.attributes[component])
             .reduce((a,b) => a + b) * energy.factor
-        const mod = parseInt(energyEntry._attributes.mod)
+        let mod = parseInt(energyEntry._attributes.mod) + parseInt(energyEntry._attributes.value)
+        if (energyEntry._attributes.grossemeditation) {
+            mod += parseInt(energyEntry._attributes.grossemeditation)
+        }
+        if (energyEntry._attributes.karmalqueste) {
+            mod += parseInt(energyEntry._attributes.karmalqueste)
+        }
+        if (energyEntry._attributes.permanent) {
+            mod += parseInt(energyEntry._attributes.permanent)
+        }
         stats[energy.abb] = Math.round(basis + mod)
     })
 
