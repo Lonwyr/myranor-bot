@@ -1,9 +1,9 @@
 sap.ui.define([
   "sap/ui/core/Fragment",
-  "com/lonwyr/MyranorBot/utils/Roller"
+  "com/lonwyr/MyranorBot/utils/HttpHelper"
 ], function(
     Fragment,
-    Roller
+    HttpHelper
   ) {
   "use strict";
 
@@ -49,7 +49,7 @@ sap.ui.define([
       let checkData = this.getModel("check").getData();
       checkData.modifier = parseInt(checkData.modifier) || 0
       checkData.value = checkData.value - checkData.modifier
-      return Roller.checkAttribute(checkData).then((result) => {
+      return HttpHelper.checkAttribute(checkData).then((result) => {
         this.getModel("check").setProperty("/result", JSON.parse(result));
 
         if (!attributeResultDialogPromise) {

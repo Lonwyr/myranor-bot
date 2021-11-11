@@ -5,7 +5,7 @@ sap.ui.define([
   "com/lonwyr/MyranorBot/controller/Spells",
   "sap/ui/core/Fragment",
   "sap/m/GroupHeaderListItem",
-  "com/lonwyr/MyranorBot/utils/Roller"
+  "com/lonwyr/MyranorBot/utils/HttpHelper"
 ], function(
     Controller,
     AttributesController,
@@ -13,7 +13,7 @@ sap.ui.define([
     SpellsController,
     Fragment,
     GroupHeaderListItem,
-    Roller
+    HttpHelper
   ) {
   "use strict";
 
@@ -70,7 +70,7 @@ sap.ui.define([
     },
     onRollAttribute: function (clickEvent) {
       const attribute = getProperty(clickEvent)
-      return Roller.checkAttribute(attribute)
+      return HttpHelper.checkAttribute(attribute)
     },
     openSkillPopover: function (clickEvent) {
       const button = clickEvent.getSource()
@@ -103,7 +103,7 @@ sap.ui.define([
       popoverPromise.then(oPopover => oPopover.close())
       let checkData = this.getModel("check").getData();
       checkData.modifier = parseInt(checkData.modifier) || 0
-      return Roller.checkSkill(checkData).then((result) => {
+      return HttpHelper.checkSkill(checkData).then((result) => {
         this.getModel("check").setProperty("/result", JSON.parse(result));
 
         if (!resultDialogPromise) {

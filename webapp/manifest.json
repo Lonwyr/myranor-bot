@@ -91,11 +91,11 @@
     },
     "routing": {
       "config": {
-        "routerClass": "sap.m.routing.Router",
+        "routerClass": "com.lonwyr.MyranorBot.Router",
         "viewType": "XML",
         "viewPath": "com.lonwyr.MyranorBot.view",
         "controlId": "idAppControl",
-        "controlAggregation": "pages",
+        "controlAggregation": "midColumnPages",
         "async": true
       },
       "routes": [
@@ -109,6 +109,7 @@
         {
           "name": "RouteLogin",
           "pattern": "login",
+          "controlAggregation": "beginColumnPages",
           "target": [
             "TargetLogin"
           ]
@@ -117,13 +118,15 @@
       "targets": {
         "TargetMain": {
           "viewType": "XML",
-          "viewLevel": 1,
+          "viewLevel": 2,
+          "controlAggregation": "beginColumnPages",
           "viewId": "main",
           "viewName": "Main"
         },
         "TargetLogin": {
           "viewType": "XML",
           "viewLevel": 1,
+          "controlAggregation": "beginColumnPages",
           "viewId": "login",
           "viewName": "Login"
         }

@@ -1,9 +1,9 @@
 sap.ui.define([
   "sap/ui/core/Fragment",
-  "com/lonwyr/MyranorBot/utils/Roller"
+  "com/lonwyr/MyranorBot/utils/HttpHelper"
 ], function(
     Fragment,
-    Roller
+    HttpHelper
   ) {
   "use strict";
 
@@ -108,7 +108,7 @@ sap.ui.define([
       checkData.modifier = parseInt(checkData.modifier) || 0
       checkData.sizeDifference = checkData.sizeClass - (checkData.sizeTarget || 0)
       checkData.value = checkData.value - checkData.modifier
-      return Roller.checkAttack(checkData).then((result) => {
+      return HttpHelper.checkAttack(checkData).then((result) => {
         this.getModel("check").setProperty("/result", JSON.parse(result));
 
         if (!attackResultDialogPromise) {
@@ -165,7 +165,7 @@ sap.ui.define([
       let checkData = this.getModel("check").getData();
       checkData.modifier = parseInt(checkData.modifier) || 0
       checkData.value = checkData.value - checkData.modifier
-      return Roller.checkDefense(checkData).then((result) => {
+      return HttpHelper.checkDefense(checkData).then((result) => {
         this.getModel("check").setProperty("/result", JSON.parse(result));
 
         if (!defenseResultDialogPromise) {

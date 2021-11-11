@@ -2,12 +2,12 @@ sap.ui.define([
   "sap/ui/core/Fragment",
   "sap/ui/core/Item",
 	"sap/ui/model/Filter",
-  "com/lonwyr/MyranorBot/utils/Roller"
+  "com/lonwyr/MyranorBot/utils/HttpHelper"
 ], function(
     Fragment,
     Item,
     Filter,
-    Roller
+    HttpHelper
   ) {
   "use strict";
 
@@ -268,7 +268,7 @@ sap.ui.define([
       checkData.modifier = parseInt(checkData.spontaneousModificator) + checkData.spellModificator - checkData.quality;
       checkData.modifier += checkData.modificators.reduce((a, b) => a + (b.enabled ? parseInt(b.value) : 0), 0);
 
-      return Roller.checkSpell(checkData).then((result) => {
+      return HttpHelper.checkSpell(checkData).then((result) => {
         this.getModel("check").setProperty("/result", JSON.parse(result));
 
         if (!spellResultDialogPromise) {
