@@ -57,10 +57,11 @@ sap.ui.define([
             this.storeCombat(slot);
         },
         removeWeapon: function (path) {
-            let aWeapons = this.getProperty(path.substring(0, path.lastIndexOf("/")));
+            const weaponCategory = path.substring(0, path.lastIndexOf("/"));
+            let aWeapons = this.getProperty(weaponCategory);
             const index = parseInt(path.substring(path.lastIndexOf("/")+1));
             aWeapons.splice(index, 1);
-            this.setProperty("/meeleWeapons", aWeapons);
+            this.setProperty(weaponCategory, aWeapons);
         }
     });
   });
