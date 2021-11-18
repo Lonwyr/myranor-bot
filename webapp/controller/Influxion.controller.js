@@ -232,7 +232,7 @@ sap.ui.define([
       const units = round(weight/materialData.weight);
       const qualityLevel = 1 + materialData.qualities.findIndex(i => i.name === quality);
       const costs = materialData.priceFactor ? units * (qualityLevel ** materialData.priceFactor) : units * qualityLevel;
-      return costs;
+      return round(costs);
     },
 
     calculateWeight: function(golemSizes, category, structure, duration, materials, material, quality, volume, golemSize, chimeraWeight, corpseWeight) {
