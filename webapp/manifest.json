@@ -91,6 +91,9 @@
       "wounds": {
         "type": "sap.ui.model.json.JSONModel",
 				"dataSource": "wounds"
+      },
+      "influxion": {
+        "type": "sap.ui.model.json.JSONModel"
       }
     },
     "resources": {
@@ -118,6 +121,13 @@
           ]
         },
         {
+          "name": "RouteInfluxion",
+          "pattern": "influxion",
+          "target": [
+            "TargetInfluxion"
+          ]
+        },
+        {
           "name": "RouteLogin",
           "pattern": "login",
           "target": [
@@ -131,6 +141,12 @@
           "viewLevel": 1,
           "viewId": "main",
           "viewName": "Main"
+        },
+        "TargetInfluxion": {
+          "viewType": "XML",
+          "viewLevel": 1,
+          "viewId": "influxion",
+          "viewName": "Influxion"
         },
         "TargetLogin": {
           "viewType": "XML",
