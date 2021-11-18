@@ -17,8 +17,6 @@ sap.ui.define([
     const weight = calculateWeight(totalCosts, golemSizes, category, materials, material, quality, golemSize, chimeraWeight, corpseWeight);
     const power = weightCategories.findIndex(w => w > weight) - 2;
     const weightCost = structure.costs.weight * (2 ** power);
-    console.log(`category: ${category}\ntotalCosts: ${totalCosts}\nweight: ${weight}\npower: ${power}\nweightCost: ${weightCost}`);
-
     return weightCost;
   }
 
