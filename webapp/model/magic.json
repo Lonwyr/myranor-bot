@@ -494,106 +494,204 @@
 		},
         "Influxion (Beschwörungsmatrix)": {
 			"requirements": [],
+            "influxion": true,
 			"structures": [{
                 "name": "komplex",
-                "modificator": "5"
+                "description": "test",
+                "modificator": "5",
+                "costs": {
+                    "base": 8,
+                    "time": 1,
+                    "weight": 1,
+                    "volume": 0.25
+                }
             }],
 			"durations": ["timeframe"],
 			"targetsCategories": ["object"]
 		},
         "Influxion (Beschwörungsspeicher)": {
 			"requirements": [],
+            "influxion": true,
 			"structures": [{
                 "name": "sehr schwer",
-                "modificator": "3"
+                "description": "",
+                "modificator": "3",
+                "costs": {
+                    "base": 4,
+                    "time": 1,
+                    "weight": 1,
+                    "volume": 0.25
+                }
             }],
 			"durations": ["timeframe"],
 			"targetsCategories": ["object"]
 		},
         "Influxion (Beschwörungstalisman)": {
 			"requirements": [],
+            "influxion": true,
 			"structures": [{
                 "name": "extrem komplex",
-                "modificator": "7"
+                "description": "",
+                "modificator": "7",
+                "costs": {
+                    "base": 32,
+                    "time": 1,
+                    "weight": 1
+                }
             }],
 			"durations": ["timeframe"],
 			"targetsCategories": ["object"]
 		},
         "Influxion (Chimärenerschaffung)": {
 			"requirements": [],
+            "influxion": true,
 			"structures": [{
                 "name": "sehr schwer (grundlegend)",
-                "modificator": "3"
+                "description": "Verbindungen gleicher Klasse",
+                "modificator": "3",
+                "costs": {
+                    "base": 8,
+                    "time": 1,
+                    "weight": 1
+                }
             }, {
                 "name": "komplex (hervorrangend)",
-                "modificator": "5"
+                "description": "Verbindung mit unterschiedlichen Klassen",
+                "modificator": "5",
+                "costs": {
+                    "base": 16,
+                    "time": 1,
+                    "weight": 1
+                }
             }, {
                 "name": "extrem komplex (anspruchsvoll)",
-                "modificator": "7"
+                "description": "Verbindung mit nicht körperlosen Dämonen",
+                "modificator": "7",
+                "costs": {
+                    "base": 32,
+                    "time": 1,
+                    "weight": 1
+                }
             }],
 			"durations": ["timeframe"],
 			"targetsCategories": ["creature"]
 		},
         "Influxion (Golembau)": {
 			"requirements": [],
+            "influxion": true,
 			"structures": [{
                 "name": "sehr schwer",
-                "modificator": "3"
+                "description": "",
+                "modificator": "3",
+                "costs": {
+                    "base": 8,
+                    "time": 1,
+                    "weight": 1
+                }
             }],
 			"durations": ["timeframe"],
 			"targetsCategories": ["creature"]
 		},
         "Influxion (Kraftspeicher)": {
 			"requirements": [],
+            "influxion": true,
 			"structures": [{
                 "name": "komplex (grundlegend)",
-                "modificator": "5"
+                "description": "1 AsP/Tag",
+                "modificator": "5",
+                "costs": {
+                    "base": 8,
+                    "time": 1,
+                    "weight": 1
+                }
             }, {
                 "name": "sehr komplex (herausfordernd)",
-                "modificator": "6"
+                "modificator": "6",
+                "description": "1 AsP/Stunde",
+                "costs": {
+                    "base": 16,
+                    "time": 1,
+                    "weight": 1
+                }
             }, {
                 "name": "extrem komplex (anspruchsvoll)",
-                "modificator": "7"
+                "modificator": "7",
+                "description": "1 AsP/SR",
+                "costs": {
+                    "base": 32,
+                    "time": 1,
+                    "weight": 1
+                }
             }],
 			"durations": ["timeframe"],
 			"targetsCategories": ["object"]
 		},
         "Influxion (Kraftumwandler)": {
 			"requirements": [],
+            "influxion": true,
 			"structures": [{
                 "name": "schwer (grundlegend)",
-                "modificator": "2"
+                "modificator": "2",
+                "description": "Lebewesen",
+                "costs": {
+                    "base": 4,
+                    "time": 1,
+                    "weight": 1
+                }
             }, {
                 "name": "sehr schwer (hervorragend)",
-                "modificator": "3"
+                "modificator": "3",
+                "description": "Lebewesen und Leichen",
+                "costs": {
+                    "base": 8,
+                    "time": 1,
+                    "weight": 1
+                }
             }, {
                 "name": "extrem schwer (anspruchsvoll)",
-                "modificator": "4"
+                "modificator": "4",
+                "description": "Lebewesen, Leichen und Planzen",
+                "costs": {
+                    "base": 16,
+                    "time": 1,
+                    "weight": 1
+                }
             }],
 			"durations": ["timeframe"],
 			"targetsCategories": ["object"]
 		},
-        "Influxion (Nektromantie)": {
+        "Influxion (Nekromantie)": {
 			"requirements": [],
+            "influxion": true,
 			"structures": [{
                 "name": "schwer",
-                "modificator": "2"
+                "modificator": "2",
+                "description": "",
+                "costs": {
+                    "base": 4,
+                    "time": 1,
+                    "weight": 1
+                }
             }],
 			"durations": ["timeframe"],
 			"targetsCategories": ["creature"]
 		},
         "Influxion (Sphärenstabilisator)": {
 			"requirements": [],
+            "influxion": true,
 			"structures": [{
                 "name": "extrem komplex",
-                "modificator": "7"
+                "modificator": "7",
+                "description": "",
+                "costs": {
+                    "base": 8,
+                    "time": 1,
+                    "weight": 1
+                }
             }],
 			"durations": ["timeframe"],
 			"targetsCategories": ["object"]
 		}
-
-
-
     },
     "spellParameters": {
         "castingTime": [{
@@ -833,5 +931,392 @@
             "description": "extrem komplex",
             "modificator": 7
         }]
-    }
+    },
+    "golemSizes": [{
+        "id": 1,
+        "description": "Winzig",
+        "weight": 0.05
+    }, {
+        "id": 2,
+        "description": "Sehr Klein",
+        "weight": 0.4
+    }, {
+        "id": 3,
+        "description": "Klein",
+        "weight": 3
+    }, {
+        "id": 4,
+        "description": "Mittel",
+        "weight": 25
+    }, {
+        "id": 5,
+        "description": "Groß",
+        "weight": 200
+    }, {
+        "id": 6,
+        "description": "Sehr Groß",
+        "weight": 1000
+    }],
+    "influxions": [
+        "Beschwörungsmatrix",
+        "Beschwörungsspeicher",
+        "Beschwörungstalisman",
+        "Chimärenerschaffung",
+        "Golembau",
+        "Kraftspeicher",
+        "Kraftumwandler",
+        "Nekromantie",
+        "Sphärenstabilisator"
+    ],
+    "materials": [
+        {
+            "category": "Sonstiges",
+            "influxions": [
+                "Beschwörungsmatrix",
+                "Beschwörungsspeicher",
+                "Beschwörungstalisman",
+                "Chimärenerschaffung",
+                "Golembau",
+                "Kraftspeicher",
+                "Kraftumwandler",
+                "Nekromantie",
+                "Sphärenstabilisator"
+            ],
+            "properties": [
+                "Nicht passend"
+            ],
+            "weight": 1,
+            "golemWeightMod": 1,
+            "qualities": [
+                {
+                    "name": "Nicht passendes Material",
+                    "necromancyWeightMod": 1
+                }
+            ]
+        },
+        {
+            "category": "Edelsteine",
+            "influxions": [
+                "Beschwörungstalisman",
+                "Kraftspeicher",
+                "Sphärenstabilisator"
+            ],
+            "properties": [
+                "Traditionell"
+            ],
+            "weight": 0.001,
+            "qualities": [
+                {
+                    "name": "Bernstein, Gwen Petryl, Löwenauge, Zirkon"
+                }, { 
+                    "name": "Roter Feuerstein, Rubin, Saphir, Smaragd"
+                }, {
+                    "name": "Diamant, Khorrund, Trilopanit"
+                }, {
+                    "name": "Thearchit, Vinshinisher Nigrit"
+                }, {
+                    "name": "Makelloser Optrilith"
+                }, {
+                    "name": "Biolith, Solar"
+                }
+            ]
+        },
+        {
+            "category": "Feststoffe",
+            "influxions": ["Golembau"],
+            "properties": [],
+            "weight": 2,
+            "golemWeightMod": 6,
+            "qualities": [
+                {
+                    "name": "Glas, Gips, Pulverschnee"
+                }, { 
+                    "name": "Lehm, Porzellan, Schneematsch"
+                }, {
+                    "name": "Korallen, Neuschnee, Ton"
+                }, {
+                    "name": "Altschnee, Mörtel"
+                }, {
+                    "name": "Beton, Eis"
+                }, {
+                    "name": "Chartmörtel, Gletschereis"
+                }
+            ]
+        },
+        {
+            "category": "Flüssigkeit",
+            "influxions": [
+                "Beschwörungsspeicher",
+                "Golembau",
+                "Kraftspeicher",
+                "Kraftumwandler"
+            ],
+            "properties": [],
+            "weight": 1,
+            "golemWeightMod": 2,
+            "qualities": [
+                {
+                    "name": "Blut eines Löwen, Neretonie"
+                }, { 
+                    "name": "Blut eines Ghorla, Harz der Geisterbuche"
+                }, {
+                    "name": "Blut einer Hornechse, Harz des Styarendorns"
+                }, {
+                    "name": "Blut eines Han'kro, Harz des Auijaja, Harz eines Mammutbaums"
+                }, {
+                    "name": "Blut eines Greifen, Harz der Blutulme"
+                }, {
+                    "name": "Blut eines Drachen, Harz des Fliegenden Baumes"
+                }
+            ]
+        },
+        {
+            "category": "Gas",
+            "influxions": ["Golembau"],
+            "properties": [],
+            "weight": 2,
+            "golemWeightMod": 1,
+            "qualities": [
+                {
+                    "name": "Kohle"
+                }, { 
+                    "name": "Bernstein"
+                }, {
+                    "name": "Orazal"
+                }, {
+                    "name": "Braunöl"
+                }, {
+                    "name": "Schwefel"
+                }, {
+                    "name": "Brennendes Eis"
+                }
+            ]
+        },
+        {
+            "category": "Gestein",
+            "influxions": ["Golembau"],
+            "properties": ["Traditionell"],
+            "weight": 2,
+            "golemWeightMod": 8,
+            "qualities": [
+                {
+                    "name": "Alabaster"
+                }, { 
+                    "name": "Quarz"
+                }, {
+                    "name": "Basalt"
+                }, {
+                    "name": "Vulkangestein"
+                }, {
+                    "name": "Mamor"
+                }, {
+                    "name": "Lignolith"
+                }
+            ]
+        },
+        {
+            "category": "Holz",
+            "influxions": [
+                "Beschwörungsmatrix",
+                "Beschwörungsspeicher",
+                "Beschwörungstalisman",
+                "Kraftumwandler"
+            ],
+            "properties": [
+                "Traditionell"
+            ],
+            "weight": 0.25,
+            "qualities": [
+                {
+                    "name": "Banyan, Lorthalis-Eiche, Neretonie, Olivesche"
+                }, { 
+                    "name": "Himmelszeder, Schwarzerle, Silberbuche"
+                }, {
+                    "name": "Baan Bashur-Himmelszeder, Satyarendorn"
+                }, {
+                    "name": "Auijaja, Boinure Graublut-Tarnex, Mammutbaum"
+                }, {
+                    "name": "Blutulme"
+                }, {
+                    "name": "Baumshrat-Holz, Pheroxyl"
+                }
+            ]
+        },
+        {
+            "category": "Karfunkelstein",
+            "influxions": [
+                "Beschwörungsmatrix",
+                "Beschwörungsspeicher",
+                "Beschwörungstalisman",
+                "Kraftspeicher",
+                "Sphärenstabilisator"
+            ],
+            "properties": [
+                "Magisch",
+                "Potent"
+            ],
+            "weight": 0.001,
+            "qualities": [
+                {
+                    "name": "Baumdrache, Grubenwurm, Horndrache, Tatzelwurm"
+                }, { 
+                    "name": "Donnerschlange, Himmelsdrache, Höhlendrache, Kristallwurm"
+                }, {
+                    "name": "Gletscherwurm, Perldrache, Sturmwinddrache"
+                }, {
+                    "name": "Gischtwurm, Verkünder"
+                }, {
+                    "name": "Golddrache, Riesenlindwurm"
+                }, {
+                    "name": "Purpurwurm"
+                }
+            ]
+        },
+        {
+            "category": "Kreatur",
+            "influxions": [
+                "Chimärenerschaffung"
+            ],
+            "properties": [
+                "Geformt"
+            ],
+            "weight": 1,
+            "otherUnits": true, 
+            "qualities": [
+                {
+                    "name": "Überdurchschnittlich"
+                }, { 
+                    "name": "Kräftig"
+                }, {
+                    "name": "Mächtig"
+                }, {
+                    "name": "Großwüchsig"
+                }, {
+                    "name": "Riesenwüchsig"
+                }, {
+                    "name": "Legendenumwoben"
+                }
+            ]
+        },
+        {
+            "category": "Leiche",
+            "influxions": [
+                "Nekromantie"
+            ],
+            "properties": [
+                "Geformt"
+            ],
+            "weight": 1,
+            "otherUnits": true, 
+            "qualities": [
+                {
+                    "name": "Skelett",
+                    "necromancyWeigthMod": 0.1
+                }, { 
+                    "name": "Vertrockneter Leichnam",
+                    "necromancyWeigthMod": 0.3
+                }, {
+                    "name": "Verwester Leichnam",
+                    "necromancyWeigthMod": 0.5
+                }, {
+                    "name": "Verfaulter Leichnam",
+                    "necromancyWeigthMod": 0.8
+                }, {
+                    "name": "Frisch Verstorbener",
+                    "necromancyWeigthMod": 1
+                }, {
+                    "name": "Mumie",
+                    "necromancyWeigthMod": 0.05
+                }
+            ]
+        },
+        {
+            "category": "Magisches Metall",
+            "influxions": [
+                "Beschwörungsmatrix",
+                "Beschwörungsspeicher",
+                "Beschwörungstalisman",
+                "Kraftspeicher",
+                "Kraftumwandler",
+                "Sphärenstabilisator"
+            ],
+            "properties": [
+                "Effizient",
+                "Kostbar",
+                "Magisch",
+                "Potent",
+                "Traditionell"
+            ],
+            "priceFactor": 4,
+            "weight": 0.025,
+            "qualities": [
+                {
+                    "name": "Orichalcum, Raffinat"
+                }, { 
+                    "name": "Mindorium"
+                }, {
+                    "name": "Quiranium"
+                }, {
+                    "name": "Arkanium"
+                }, {
+                    "name": "Endurium"
+                }, {
+                    "name": "Titaniumstahl"
+                }
+            ]
+        },
+        {
+            "category": "Metall",
+            "influxions": [
+                "Golembau"
+            ],
+            "properties": [
+                "Wertvoll"
+            ],
+            "weight": 2,
+            "priceFactor": 2,
+            "golemWeightMod": 10,
+            "qualities": [
+                {
+                    "name": "Kupfer, Zinn"
+                }, { 
+                    "name": "Bronze, Messing"
+                }, {
+                    "name": "Farbstahl, Meteoreisen, Zink"
+                }, {
+                    "name": "Cupritan, Tombak"
+                }, {
+                    "name": "Elektrum, Silber, Scheesilber"
+                }, {
+                    "name": "Illuminium, Mondsilber, Quecksilber"
+                }
+            ]
+        },
+        {
+            "category": "Organisches Material",
+            "influxions": [
+                "Golembau"
+            ],
+            "properties": [
+                "Traditionell"
+            ],
+            "weight": 2,
+            "golemWeightMod": 4,
+            "qualities": [
+                {
+                    "name": "Holz der Neretonie, Knochen"
+                }, { 
+                    "name": "Holz der Himmelszeder, Teile eines verwesenen Leichnams"
+                }, {
+                    "name": "Holu des Satyarendorns, Teile einer Wasserleiche"
+                }, {
+                    "name": "Holz des Auijaja, Teile einer Eisleiche"
+                }, {
+                    "name": "Holz der Blutulme, Teile eines frisch Verstorbenen"
+                }, {
+                    "name": "Holz des Baumschrates, Teile einer Mumie"
+                }
+            ]
+        }
+    ]
 }

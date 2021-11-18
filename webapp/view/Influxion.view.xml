@@ -1,0 +1,134 @@
+ <mvc:View controllerName="com.lonwyr.MyranorBot.controller.Influxion"
+  displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+  xmlns:mvc="sap.ui.core.mvc">
+  <Page title="{i18n>influxionCalculator}">
+    <content>
+		<InputListItem label="{i18n>influxion}">
+			<Select selectedKey="{influxion>/category}" items="{magic>/influxions}" width="100%" change=".onInfluxionSelected">
+				<core:Item key="{magic>}" text="{magic>}" />
+			</Select>
+		</InputListItem>
+		<InputListItem id="materialSelect" label="{i18n>material}">
+			<Select items="{influxion>/materials}" width="100%" selectedKey="{influxion>/material}" change=".onMaterialSelected" >
+				<core:Item key="{influxion>category}" text="{influxion>category}" />
+			</Select>
+		</InputListItem>
+		<InputListItem label="{i18n>quality}" visible="{= ${influxion>/qualities/length} > 1}">
+			<Select selectedKey="{influxion>/quality}" items="{influxion>/qualities}" width="100%">
+				<core:Item key="{influxion>name}" text="{influxion>name}" />
+			</Select>
+		</InputListItem>
+		<InputListItem label="{i18n>maxDuration}">
+			<Select selectedKey="{influxion>/duration}" items="{path: 'magic>/spellParameters/maxDuration', filters: [{path: 'category', operator: 'EQ', value1: 'timeframe'}]}" width="100%" change=".onSetDuration">
+				<core:Item key="{magic>id}" text="{magic>description}" />
+			</Select>
+		</InputListItem>
+		<InputListItem label="{i18n>golemSize}" visible="{= ${influxion>/category} === 'Golembau'}">
+			<Select selectedKey="{influxion>/golemSize}" items="{magic>/golemSizes}" width="100%">
+				<core:Item key="{magic>id}" text="{magic>description}" />
+			</Select>
+		</InputListItem>
+		<InputListItem label="{i18n>creatureWeights}" visible="{= ${influxion>/category} === 'Chimärenerschaffung'}">
+			<Input value="{influxion>/chimeraWeight}" />
+		</InputListItem>
+		<InputListItem label="{i18n>corpseWeight}" visible="{= ${influxion>/category} === 'Nekromantie'}">
+			<Input value="{influxion>/corpseWeight}" />
+		</InputListItem>
+		<InputListItem label="{i18n>volume}" visible="{= ${influxion>/structure/costs/volume} > 0}">
+			<Input value="{influxion>/volume}" />
+		</InputListItem>
+		<InputListItem label="{i18n>aspModificators}">
+			<MultiComboBox id="savingsBox" maxWidth="80%" items="{path: 'influxion>/aspModificators',
+				sorter: {
+					path: 'group',
+					descending: false,
+					group: true
+				},
+				groupHeaderFactory: '.getGroupHeader'
+			}" 
+			selectionChange=".onAspModificatorsChange" showSecondaryValues= "true">
+				<core:ListItem key="{influxion>name}" text="{influxion>name}" additionalText="{influxion>valueText}" />
+			</MultiComboBox>
+		</InputListItem>
+		<InputListItem label="{i18n>structure}" visible="{= ${influxion>/structures/length} > 1}" >
+			<Select selectedKey="{influxion>/structure/name}" items="{influxion>/structures}"  showSecondaryValues= "true" change=".onSetStructure">
+				<core:ListItem key="{influxion>name}" text="{influxion>description}" additionalText="{influxion>name}" />
+			</Select>
+		</InputListItem>
+		<MessageStrip
+			text="{i18n>aspModificatorsInfo}"
+			type="Information"
+			showIcon="true" />
+
+		<DisplayListItem 
+			class="sapUiMediumMarginTop"
+			label="{i18n>AsP}"
+			value="{parts: [
+				'magic>/golemSizes',
+				'influxion>/category',
+				'influxion>/structure',
+				'influxion>/duration',
+				'influxion>/materials',
+				'influxion>/material',
+				'influxion>/quality',
+				'influxion>/volume',
+				'influxion>/golemSize',
+				'influxion>/chimeraWeight',
+				'influxion>/corpseWeight',
+				'influxion>/aspModificators'
+		] , formatter: '.formatAsp'}" />	
+		<DisplayListItem label="{i18n>weight}" value="{parts: [
+				'magic>/golemSizes',
+				'influxion>/category',
+				'influxion>/structure',
+				'influxion>/duration',
+				'influxion>/materials',
+				'influxion>/material',
+				'influxion>/quality',
+				'influxion>/volume',
+				'influxion>/golemSize',
+				'influxion>/chimeraWeight',
+				'influxion>/corpseWeight'
+		] , formatter: '.formatWeight'}" />
+		<DisplayListItem label="{i18n>materialUnits}" value="{parts: [
+				'magic>/golemSizes',
+				'influxion>/category',
+				'influxion>/structure',
+				'influxion>/duration',
+				'influxion>/materials',
+				'influxion>/material',
+				'influxion>/quality',
+				'influxion>/volume',
+				'influxion>/golemSize',
+				'influxion>/chimeraWeight',
+				'influxion>/corpseWeight'
+		] , formatter: '.formatMaterialUnits'}" />
+		<DisplayListItem label="{i18n>materialCosts}" value="{parts: [
+				'magic>/golemSizes',
+				'influxion>/category',
+				'influxion>/structure',
+				'influxion>/duration',
+				'influxion>/materials',
+				'influxion>/material',
+				'influxion>/quality',
+				'influxion>/volume',
+				'influxion>/golemSize',
+				'influxion>/chimeraWeight',
+				'influxion>/corpseWeight'
+		] , formatter: '.formatMaterialCosts'}" />
+		<MessageStrip
+			text="{i18n>weightModificatorsInfo}"
+			type="Information"
+			showIcon="true" />	
+    </content>
+		<footer>
+			<OverflowToolbar>
+				<Button
+					text="{i18n>impressum}"
+					press=".openImpressum" />
+			</OverflowToolbar>
+		</footer>
+  </Page>
+</mvc:View>
