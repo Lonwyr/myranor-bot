@@ -26,17 +26,22 @@ module.exports = {
         }
     },
     start: async (req, res) => {
-        const userid = await getUserIdByUserToken(req, res)
-        if (userid) {
-            const character = botHandler.getCharacter(userid)
-            const channel = await botHandler.getChannel(userid)
-            res.send({
-                character: character,
-                settings: {
-                    slots: await cache.getSlotInfo(userid),
-                    channel: `${channel.guild.name} - ${channel.name}`
-                }
-            })
+        try {
+            const userid = await getUserIdByUserToken(req, res)
+            if (userid) {
+                const character = botHandler.getCharacter(userid)
+                const channel = await botHandler.getChannel(userid)
+                res.send({
+                    character: character,
+                    settings: {
+                        slots: await cache.getSlotInfo(userid),
+                        channel: `${channel.guild.name} - ${channel.name}`
+                    }
+                })
+            }
+        } catch(e) {
+            res.status = 503
+            console.error(e)
         }
     },
     checkAttribute: async (req, res) => {
