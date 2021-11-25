@@ -64,6 +64,7 @@ sap.ui.define([
         },
         storeStatus: function (slot) {
             window.localStorage.setItem(statusKey + slot, JSON.stringify(this.getData()));
+            this.updateBindings(true);
         },
 
         setZoneMode: function (useZones) {

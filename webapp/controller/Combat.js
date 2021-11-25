@@ -83,7 +83,8 @@ sap.ui.define([
         tp: weapon.tp,
         sizeClass: this.getModel("combat").getProperty("/sizeClass"),
         modifier: 0,
-        sizeTarget: 0
+        sizeTarget: 0,
+        sizeDifference: 0
       }
       this.getModel("check").setData(checkParameters)
 
@@ -106,7 +107,9 @@ sap.ui.define([
       attackPopoverPromise.then(oPopover => oPopover.close());
       let checkData = this.getModel("check").getData();
       checkData.modifier = parseInt(checkData.modifier) || 0;
-      checkData.sizeDifference = checkData.sizeClass - (checkData.sizeTarget || 0)
+      if (checkData.type === "meele") {
+        checkData.sizeDifference = checkData.sizeClass - (checkData.sizeTarget || 0)
+      }
       checkData.value = checkData.value - checkData.modifier
         + this.getWoundModifier("AT") 
         - this.getEnergyModifier(true);

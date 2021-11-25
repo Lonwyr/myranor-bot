@@ -17,8 +17,6 @@ sap.ui.define([
     const weight = calculateWeight(totalCosts, golemSizes, category, materials, material, quality, golemSize, chimeraWeight, corpseWeight);
     const power = weightCategories.findIndex(w => w > weight) - 2;
     const weightCost = structure.costs.weight * (2 ** power);
-    console.log(`category: ${category}\ntotalCosts: ${totalCosts}\nweight: ${weight}\npower: ${power}\nweightCost: ${weightCost}`);
-
     return weightCost;
   }
 
@@ -234,7 +232,7 @@ sap.ui.define([
       const units = round(weight/materialData.weight);
       const qualityLevel = 1 + materialData.qualities.findIndex(i => i.name === quality);
       const costs = materialData.priceFactor ? units * (qualityLevel ** materialData.priceFactor) : units * qualityLevel;
-      return costs;
+      return round(costs);
     },
 
     calculateWeight: function(golemSizes, category, structure, duration, materials, material, quality, volume, golemSize, chimeraWeight, corpseWeight) {
