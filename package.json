@@ -6,8 +6,7 @@
         "node": ">=0.12"
     },
     "scripts": {
-        "start": "node app.js",
-        "build": "ui5 build self-contained --all"
+        "start": "node app.js"
     },
     "main": "app.js",
     "config": {
