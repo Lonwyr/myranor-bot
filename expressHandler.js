@@ -22,9 +22,9 @@ module.exports = {
         app.use(express.json())
 
         // application serving
-        app.use('/', express.static('webapp/index.html'))
-        app.use('/index.html', express.static('webapp/index.html'))
-        app.use('/webapp', express.static('webapp'))
+        app.use('/', express.static('dist/index.html'))
+        app.use('/index.html', express.static('dist/index.html'))
+        app.use('/dist', express.static('dist'))
         
         // server requests of the app
         app.post('/myranorbot/validateuser', function (req, res) {
