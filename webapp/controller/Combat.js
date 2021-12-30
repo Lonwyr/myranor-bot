@@ -53,6 +53,7 @@ sap.ui.define([
         name: "Ausweichen",
         modifier: 0,
         type: "dodge",
+        checkProperties: ["PA"],
         value: parseInt(this.getModel("combat").getProperty("/dodge"))
       }
       this.getModel("check").setData(checkParameters)
