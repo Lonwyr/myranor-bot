@@ -25,6 +25,11 @@
 				<core:Item key="{magic>id}" text="{magic>description}" />
 			</Select>
 		</InputListItem>
+		<InputListItem label="{i18n>castingTime}">
+			<Select selectedKey="{influxion>/castingTime}" items="{path: 'magic>/spellParameters/castingTime']}" width="100%" change=".onSetCastingTime">
+				<core:Item key="{magic>id}" text="{magic>description}" />
+			</Select>
+		</InputListItem>
 		<InputListItem label="{i18n>golemSize}" visible="{= ${influxion>/category} === 'Golembau'}">
 			<Select selectedKey="{influxion>/golemSize}" items="{magic>/golemSizes}" width="100%">
 				<core:Item key="{magic>id}" text="{magic>description}" />
@@ -90,7 +95,8 @@
 				'influxion>/volume',
 				'influxion>/golemSize',
 				'influxion>/chimeraWeight',
-				'influxion>/corpseWeight'
+				'influxion>/corpseWeight',
+				'influxion>/aspModificators'
 		] , formatter: '.formatWeight'}" />
 		<DisplayListItem label="{i18n>materialUnits}" value="{parts: [
 				'magic>/golemSizes',
@@ -103,7 +109,8 @@
 				'influxion>/volume',
 				'influxion>/golemSize',
 				'influxion>/chimeraWeight',
-				'influxion>/corpseWeight'
+				'influxion>/corpseWeight',
+				'influxion>/aspModificators'
 		] , formatter: '.formatMaterialUnits'}" />
 		<DisplayListItem label="{i18n>materialCosts}" value="{parts: [
 				'magic>/golemSizes',
@@ -117,6 +124,7 @@
 				'influxion>/golemSize',
 				'influxion>/chimeraWeight',
 				'influxion>/corpseWeight'
+				'influxion>/aspModificators'
 		] , formatter: '.formatMaterialCosts'}" />
 		<MessageStrip
 			text="{i18n>weightModificatorsInfo}"

@@ -270,9 +270,9 @@
         "description": "Sprachenkunde",
         "attributes": ["KL", "KL", "IN"]
     }, {
-        "name": "sternenkunde",
+        "name": "sternkunde",
         "category": "Wissen",
-        "description": "Sternenkunde",
+        "description": "Sternkunde",
         "attributes": ["KL", "KL", "IN"]
     }, {
         "name": "tierkunde",
@@ -295,9 +295,9 @@
         "description": "Ackerbau",
         "attributes": ["IN", "FF", "KO"]
     }, {
-        "name": "alchemie",
+        "name": "alchimie",
         "category": "Handwerklich",
-        "description": "Alchemie",
+        "description": "Alchimie",
         "attributes": ["MU", "KL", "FF"]
     }, {
         "name": "bergbau",
@@ -352,7 +352,7 @@
     }, {
         "name": "gerberkürschner",
         "category": "Handwerklich",
-        "description": "Gerberkürschner",
+        "description": "Gerber/Kürschner",
         "attributes": ["KL", "FF", "KO"]
     }, {
         "name": "glaskunst",
@@ -462,12 +462,12 @@
     }, {
         "name": "steinschneiderjuwelier",
         "category": "Handwerklich",
-        "description": "Steinschneider/juwelier",
+        "description": "Steinschneider/Juwelier",
         "attributes": ["IN", "FF", "FF"]
     }, {
         "name": "stoffefärben",
         "category": "Handwerklich",
-        "description": "Stoffefärben",
+        "description": "Stoffe Färben",
         "attributes": ["KL", "FF", "KK"]
     }, {
         "name": "tätowieren",
