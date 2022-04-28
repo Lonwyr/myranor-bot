@@ -43,7 +43,7 @@ sap.ui.define([
     return weight;
   }
 
-  function calculateTotalCosts(structure, duration, volume) {
+  function calculateTotalCosts(structure, duration, volume, materials, aspModificators) {
     if ([structure, duration].some(i => i === undefined)) {
       return 0;
     }
@@ -57,6 +57,22 @@ sap.ui.define([
     if (costsData.volume) {
       totalCosts += volume * costsData.volume;
     }
+    
+    const modificators = aspModificators.filter(m => m.selected);
+    const relativeModificators = modificators.filter(m => m.factor !== undefined) || [];
+    const relativeModificator = relativeModificators.map(m => m.factor).reduce((a,b) => a + b, 1);
+    const absoluteModificators = modificators.filter(m => m.value !== undefined) || [];
+    const absoluteModificator = absoluteModificators.map(m => m.value).reduce((a,b) => a + b, 0);
+    const relativePAspModificators = modificators.filter(m => m.pAsPFactor !== undefined) || [];
+    let relativePAspModificator = relativePAspModificators.map(m => m.pAsPFactor).reduce((a,b) => a + b, 1);
+    const efficient = materials.find(m => m.category === material).properties.some(m => m === "Effizient");
+    if (efficient) {
+      const materialData = materials.find(m => m.category === material);
+      const qualityLevel = 1 + materialData.qualities.findIndex(i => i.name === quality);
+      relativePAspModificator += -0.1 * qualityLevel;
+    }
+
+    totalCosts = totalCosts * relativeModificator + absoluteModificator;
 
     return totalCosts;
   }
@@ -206,16 +222,16 @@ sap.ui.define([
       this._influxionModel.setProperty("/quality", materials[0].qualities[0].name);
     },
 
-    formatWeight: function(golemSizes, category, structure, duration, materials, material, quality, volume, golemSize, chimeraWeight, corpseWeight) {
+    formatWeight: function(golemSizes, category, structure, duration, materials, material, quality, volume, golemSize, chimeraWeight, corpseWeight, aspModificators) {
       if ([golemSizes, category, structure, duration, materials, material, quality, golemSize, chimeraWeight, corpseWeight].some(i => i === undefined)) {
         return;
       }
-      const weight = this.calculateWeight(golemSizes, category, structure, duration, materials, material, quality, volume, golemSize, chimeraWeight, corpseWeight);
+      const weight = this.calculateWeight(golemSizes, category, structure, duration, materials, material, quality, volume, golemSize, chimeraWeight, corpseWeight, aspModificators);
       return round(weight);
     },
 
-    formatMaterialUnits: function(golemSizes, category, structure, duration, materials, material, quality, volume, golemSize, chimeraWeight, corpseWeight) {
-      if ([golemSizes, category, structure, duration, materials, material, quality, golemSize, chimeraWeight, corpseWeight].some(i => i === undefined)) {
+    formatMaterialUnits: function(golemSizes, category, structure, duration, materials, material, quality, volume, golemSize, chimeraWeight, corpseWeight, aspModificators) {
+      if ([golemSizes, category, structure, duration, materials, material, quality, golemSize, chimeraWeight, corpseWeight, aspModificators].some(i => i === undefined)) {
         return;
       }
       const weight = this.calculateWeight(golemSizes, category, structure, duration, materials, material, quality, volume, golemSize, chimeraWeight, corpseWeight);
@@ -223,11 +239,11 @@ sap.ui.define([
       return round(weight/materialData.weight);
     },
 
-    formatMaterialCosts: function(golemSizes, category, structure, duration, materials, material, quality, volume, golemSize, chimeraWeight, corpseWeight) {
-      if ([golemSizes, category, structure, duration, materials, material, quality, golemSize, chimeraWeight, corpseWeight].some(i => i === undefined)) {
+    formatMaterialCosts: function(golemSizes, category, structure, duration, materials, material, quality, volume, golemSize, chimeraWeight, corpseWeight, aspModificators) {
+      if ([golemSizes, category, structure, duration, materials, material, quality, golemSize, chimeraWeight, corpseWeight, aspModificators].some(i => i === undefined)) {
         return;
       }
-      const weight = this.calculateWeight(golemSizes, category, structure, duration, materials, material, quality, volume, golemSize, chimeraWeight, corpseWeight);
+      const weight = this.calculateWeight(golemSizes, category, structure, duration, materials, material, quality, volume, golemSize, chimeraWeight, corpseWeight, aspModificators);
       const materialData = materials.find(m => m.category === material);
       const units = round(weight/materialData.weight);
       const qualityLevel = 1 + materialData.qualities.findIndex(i => i.name === quality);
@@ -235,7 +251,7 @@ sap.ui.define([
       return round(costs);
     },
 
-    calculateWeight: function(golemSizes, category, structure, duration, materials, material, quality, volume, golemSize, chimeraWeight, corpseWeight) {
+    calculateWeight: function(golemSizes, category, structure, duration, materials, material, quality, volume, golemSize, chimeraWeight, corpseWeight, aspModificators) {
       if ([golemSizes, category, structure, duration, materials, material, quality, golemSize, chimeraWeight, corpseWeight].some(i => i === undefined)) {
         return;
       }
@@ -256,7 +272,7 @@ sap.ui.define([
           weight = chimeraWeight;
           break;
         default:
-          const totalCosts = calculateTotalCosts(structure, duration, volume);
+          const totalCosts = calculateTotalCosts(structure, duration, volume, materials, aspModificators);
           weight = totalCosts / 25 * materialData.weight;
       }
 
@@ -302,24 +318,9 @@ sap.ui.define([
         return;
       }
 
-      let totalCosts = calculateTotalCosts(structure, duration, volume);
-      totalCosts += calculateWeightCost(totalCosts, category, structure, materials, material, quality, golemSizes, golemSize, chimeraWeight, corpseWeight);
+      let totalCosts = calculateTotalCosts(structure, duration, volume, materials, aspModificators);
+      totalCosts += calculateWeightCost(totalCosts, category, structure, materials, material, quality, golemSizes, golemSize, chimeraWeight, corpseWeight, aspModificators);
 
-      const modificators = aspModificators.filter(m => m.selected);
-      const relativeModificators = modificators.filter(m => m.factor !== undefined) || [];
-      const relativeModificator = relativeModificators.map(m => m.factor).reduce((a,b) => a + b, 1);
-      const absoluteModificators = modificators.filter(m => m.value !== undefined) || [];
-      const absoluteModificator = absoluteModificators.map(m => m.value).reduce((a,b) => a + b, 0);
-      const relativePAspModificators = modificators.filter(m => m.pAsPFactor !== undefined) || [];
-      let relativePAspModificator = relativePAspModificators.map(m => m.pAsPFactor).reduce((a,b) => a + b, 1);
-      const efficient = materials.find(m => m.category === material).properties.some(m => m === "Effizient");
-      if (efficient) {
-        const materialData = materials.find(m => m.category === material);
-        const qualityLevel = 1 + materialData.qualities.findIndex(i => i.name === quality);
-        relativePAspModificator += -0.1 * qualityLevel;
-      }
-
-      totalCosts = totalCosts * relativeModificator + absoluteModificator;
       totalCosts = Math.max(Math.round(totalCosts), 1);
       let pAsp = duration === "10" ? Math.max(Math.round(totalCosts * relativePAspModificator / 10),1) : 0;
 
